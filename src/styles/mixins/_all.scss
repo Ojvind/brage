@@ -1,0 +1,32 @@
+// @import './utils';
+
+
+@mixin use-one($mixins...) {
+  $found-mixin: false;
+
+  @for $i from 1 through length($mixins) {
+    $mixin-call: nth($mixins, $i);
+    $mixin-name: nth($mixin-call, 1);
+
+    @if mixin-exists($mixin-name) and $found-mixin == false {
+      $mixin-args: ();
+      $found-mixin: true;
+
+      @if length($mixin-call) > 1 {
+        @for $j from 2 through length($mixin-call) {
+          $mixin-args: append($mixin-args, nth($mixin-call, $j));
+          $mixin-args: join($mixin-args, (), 'comma');
+        }
+      }
+
+      @if $mixin-name == 'media' {
+        @include media($mixin-args...);
+          @content;
+      }
+      @else if $mixin-name == 'form-large' {
+        @include form-large($mixin-args...);
+          @content;
+      }
+    }
+  }
+}

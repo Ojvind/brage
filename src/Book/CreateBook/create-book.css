@@ -1,0 +1,13 @@
+.create-book {
+  margin-top: 1em;
+  background-color: silver;
+  width: 100%;
+}
+
+.create-book__input {
+  padding: 0.6em 0.2em 0.6em 0.4em;
+}
+
+.create-book__button {
+  padding: 0.6em 0.2em 0.6em 0.4em;
+}

@@ -1,0 +1,27 @@
+.Label {
+  padding: 10px;
+  background: none;
+  cursor: pointer;
+  transition: color 0.25s ease-in-out;
+  transition: background 0.25s ease-in-out;
+}
+.Label_white {
+  border: 1px solid #fff;
+  color: #fff;
+}
+.Label_red {
+  border: 1px solid #fff;
+  color: red;
+}
+.Label_white:hover {
+  color: #000;
+  background: #fff;
+}
+.Label_black {
+  border: 1px solid #000;
+  color: #000;
+}
+.Label_black:hover {
+  color: #fff;
+  background: #000;
+}

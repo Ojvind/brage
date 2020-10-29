@@ -1,0 +1,13 @@
+.o-page-section {
+  padding: $section-padding 0;
+
+  &__container {
+    @extend .container; // sass-lint:disable-line placeholder-in-extend
+  }
+
+  &__squished-wrapper {
+    @include media(desktop) {
+      padding-right: calc(50% + 2rem);
+    }
+  }
+}

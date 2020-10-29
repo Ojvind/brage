@@ -1,0 +1,55 @@
+import React from "react";
+import StoryRouter from 'storybook-react-router';
+import { storiesOf } from "@storybook/react";
+import apolloStorybookDecorator from "apollo-storybook-react";
+
+import WriterListItemDetail from './WriterListItemDetail';
+
+import '../../styles/importer.scss'
+
+const typeDefs = `
+  type Query {
+    helloWorld: String
+  }
+
+  type Mutation {
+    createWriter(name: String!, surname: String!, homepage: String): Writer!
+  }
+
+  type Writer {
+    id: ID!
+    name: String!
+    surname: String!
+    homepage: String
+  }
+
+  schema {
+    query: Query
+    mutation: Mutation
+  }
+`;
+
+export const writer = {
+  id: '555-999',
+  name: 'Öjvind',
+  surname: 'Otterbjörk',
+  homepage: 'http://ojvind.otterbjork.com',
+};
+
+storiesOf("WriterListItemDetail", module)
+  .addDecorator(
+    apolloStorybookDecorator({
+      typeDefs,
+    })
+  )
+  .addDecorator(
+    StoryRouter({}, {
+      routes: [
+        { },
+      ]})
+  )
+  .add("default", () => {
+    return <WriterListItemDetail 
+      writer={writer}
+  />;
+  });

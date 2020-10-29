@@ -1,0 +1,41 @@
+.c-wysiwyg-editor {
+  a {
+    color: var(--link-color);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: .4em 0;
+
+      &::before { // sass-lint:disable-line nesting-depth
+        color: $blue;
+        content: '\2022';
+        font-weight: bold;
+        margin-right: .6em;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &:not(:first-child) {
+      margin-top: 1em;
+    }
+  }
+
+  tr {
+    &:nth-child(odd) {
+      background: $lightest-grey;
+    }
+  }
+
+  td {
+    padding: .5em .8em;
+  }
+}

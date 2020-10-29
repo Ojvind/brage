@@ -1,0 +1,13 @@
+@mixin media($device) {
+  @if not(map-has-key($media-breakpoints, $device)) {
+    @error 'Unrecognized device name "#{$device}"';
+  }
+
+  @each $breakpoint in $media-breakpoints {
+    @if nth($breakpoint, 1) == $device {
+      @media #{unquote(nth($breakpoint, 2))} {
+        @content;
+      }
+    }
+  }
+}

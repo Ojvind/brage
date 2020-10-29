@@ -1,0 +1,15 @@
+$screen-desktop-contain: 75rem;
+$screen-desktop-min: 62rem;
+
+$screen-mobile-max: $screen-desktop-min - .01;
+$screen-mobile-contain: 30rem;
+
+$screen-tablet: 45rem;
+
+$media-breakpoints: (
+  mobile-contain: 'all and (max-width: #{$screen-mobile-contain})',
+  mobile: 'all and (max-width: #{$screen-mobile-max})',
+  desktop: 'all and (min-width: #{$screen-desktop-min})',
+  tablet-and-up: 'all and (min-width: #{$screen-tablet})',
+  tablet-and-down: 'all and (max-width: #{$screen-tablet})'
+);
