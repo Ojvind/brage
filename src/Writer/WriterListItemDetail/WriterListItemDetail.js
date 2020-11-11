@@ -10,15 +10,16 @@ import Input from '../../Input';
 import Label from '../../Label';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class WriterListItemDetail extends React.Component {
   state = {
     edit: false,
-    name: "",
-    surname: "",
-    homepage: ""
+    id: this.props.writer.id,
+    name: this.props.writer.name,
+    surname: this.props.writer.surname,
+    homepage: this.props.writer.homepage
   };
 
   onNameChange = event => {
@@ -39,16 +40,11 @@ class WriterListItemDetail extends React.Component {
   }
 
   render() {
-    const { writer } = this.props;
 
-    const id = writer.id;
-    const name = writer.name;
-    const surname = writer.surname;
-    const homepage = writer.homepage;
+    const { id, name, surname, homepage } = this.state;
 
-    const coffee = <FontAwesomeIcon icon={faCoffee} />
-    const edit = <FontAwesomeIcon icon={faEdit} />
     // const coffee = <FontAwesomeIcon icon={faCoffee} />
+    const edit = <FontAwesomeIcon icon={faEdit} />
 
     return (
       <div>
@@ -57,26 +53,24 @@ class WriterListItemDetail extends React.Component {
         {
           (!this.state.edit) ?
             <Label>{name}</Label> :
-            <Input type="text" onChange={this.onNameChange} id="name" value={name} />
+            <Input onChange={this.onNameChange} id="name" inputLabel="Name" value={name} />
         }
         {
           (!this.state.edit) ?
             <Label>{surname}</Label> :
-            <Input type="text" onChange={this.onSurNameChange} id="surname" value={surname} />
+            <Input onChange={this.onSurNameChange} id="surname" inputLabel="Surname" value={surname} />
         }
         {
           (!this.state.edit) ?
             <a href={homepage} target="_blank" rel="noopener noreferrer">{homepage}</a> :
-            <Input type="text" onChange={this.onHomePageChange} id="homepage" value={homepage} />
+            <Input onChange={this.onHomePageChange} id="homepage" inputLabel="Homepage" value={homepage} />
         }
         {
             (!this.state.edit) ?
             <button 
               onClick={() => this.toggleChange(()=>{})}>
-              {coffee}        
               {edit}  
               <i class="fas fa-edit fa-2x"></i> 
-              Hey Hopp min sköna
             </button> :
             <Mutation
               mutation={UPDATE_WRITER}
@@ -100,7 +94,7 @@ class WriterListItemDetail extends React.Component {
                     className={'create-writer__button'}
                     onClick={() => this.toggleChange(updateWriter)}
                     color={'black'}>
-                    Updatera writer för 17
+                    Updatera writer för 171111
                   </Button>
                 );
                 if (error) {
