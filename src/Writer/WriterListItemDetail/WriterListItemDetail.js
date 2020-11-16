@@ -70,7 +70,7 @@ class WriterListItemDetail extends React.Component {
             <button 
               onClick={() => this.toggleChange(()=>{})}>
               {edit}  
-              <i class="fas fa-edit fa-2x"></i> 
+              <i className="fas fa-edit fa-2x"></i> 
             </button> :
             <Mutation
               mutation={UPDATE_WRITER}
