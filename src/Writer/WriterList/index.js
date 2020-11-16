@@ -40,6 +40,7 @@ export default function WriterList({ match, writers, loading, fetchMore }) {
             <WriterListItem
               match={match}
               writer={writer}
+              key={writer.id}
             />
           )
         })}

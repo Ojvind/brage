@@ -70,7 +70,7 @@ Input.propTypes = {
   customValid: PropTypes.bool,
   className: PropTypes.string,
   whitelist: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 Input.defaultProps = {

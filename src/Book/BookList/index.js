@@ -51,6 +51,7 @@ const BookList = ({
               <BookListItem
                 match={match}
                 book={book}
+                key={book.id}
               />
             )
           })}
