@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { GET_BOOK } from '../queries';
 import { Mutation } from 'react-apollo';
 import { UPDATE_BOOK } from '../mutations';
@@ -16,109 +16,88 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 
-class BookListItemDetail extends React.Component {
+function toggleChange(updateBook, toggleEdit, edit) {
+  updateBook();
+  toggleEdit(!edit);
+}
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      edit: false,
-      title: this.props.book.title,
-      yearRead: this.props.book.yearRead,
-      yearPublished: this.props.book.yearPublished
-    };
-  };
+function BookListItemDetail(props) {
 
-  onTitleChange = event => {
-    this.setState({ title: event.target.value });
-  };
+  const [edit, toggleEdit] = useState(false);
+  const [title, onTitleChange] = useState(props.book.title);
+  const [yearRead, onYearReadChange] = useState(props.book.yearRead);
+  const [yearPublished, onYearPublishedChange] = useState(props.book.yearPublished);
 
-  onYearReadChange = event => {
-    this.setState({ yearRead: event.target.value });
-  };
+  const editIcon = <FontAwesomeIcon icon={faEdit} />
 
-  onYearPublishedChange = event => {
-    this.setState({ yearPublished: event.target.value });
-  };
+  console.log(props.book.id);
 
-  toggleChange = (updateBook) => {
-    updateBook();
-    this.setState({ edit: !this.state.edit })
-  }
-
-  render() {
-
-    const { title, yearRead, yearPublished } = this.state;
-    const id = this.props.book.id;
-
-    const edit = <FontAwesomeIcon icon={faEdit} />
-
-    return (
-      <div className="App-content_small-header">
-        <div>
-          <h4>Book:</h4>
-          <Label>{id}</Label>
-          {
-          (!this.state.edit) ?
-            <Label>{title}</Label> :
-            <Input onChange={this.onTitleChange} id="title" value={title} />
-          }
-          {
-            (!this.state.edit) ?
-              <Label>{yearRead}</Label> :
-              <Input onChange={this.onYearReadChange} id="yearRead" value={yearRead} />
-          }
-          {
-            (!this.state.edit) ?
-              <Label>{yearPublished}</Label> :
-              <Input onChange={this.onYearPublishedChange} id="yearPublished" value={yearPublished} />
-          }
-          {
-            (!this.state.edit) ?
-            <button
-              onClick={() => this.toggleChange(()=>{})}>
-              {edit}
-            </button> :
-            <Mutation
-              mutation={UPDATE_BOOK}
-              variables={{
-                id,
-                title: this.state.title,
-                yearRead: this.state.yearRead,
-                yearPublished: this.state.yearPublished
-              }}
-              refetchQueries={[
-                  {
-                    query: GET_BOOK,
-                    variables:{
-                      id,
-                    }
+  return (
+    <div className="App-content_small-header">
+      <div>
+        <h4>Book:</h4>
+        <Label>{props.id}</Label>
+        {
+        (!edit) ?
+          <Label>{title}</Label> :
+          <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="title" value={title} />
+        }
+        {
+          (!edit) ?
+            <Label>{yearRead}</Label> :
+            <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="yearRead" value={yearRead} />
+        }
+        {
+          (!edit) ?
+            <Label>{yearPublished}</Label> :
+            <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="yearPublished" value={yearPublished} />
+        }
+        {
+          (!edit) ?
+          <button
+            onClick={() => toggleChange(()=>{}, toggleEdit, edit)}>
+            {editIcon}
+          </button> :
+          <Mutation
+            mutation={UPDATE_BOOK}
+            variables={{
+              id: props.book.id,
+              title,
+              yearRead,
+              yearPublished
+            }}
+            refetchQueries={[
+                {
+                  query: GET_BOOK,
+                  variables:{
+                    id: props.book.id,
                   }
-                ]}
-              >
-              {(updateBook, { data, loading, error }) => {
-                const button = (
-                  <Button
-                      className={'create-book__button'}
-                      onClick={() => this.toggleChange(updateBook)}
-                      color={'black'}>
-                    Updatera book för 17
-                  </Button>
-                );
-                if (error) {
-                    return <div><ErrorMessage error={error} />{ button }</div>;
                 }
-  
-                return button;
-              }}
-            </Mutation>
-          }
-        </div>
-        <h5>
-          <Link to="/writers">Back to list of Writers</Link>
-        </h5>
+              ]}
+            >
+            {(updateBook, { data, loading, error }) => {
+              const button = (
+                <Button
+                    className={'create-book__button'}
+                    onClick={() => toggleChange(updateBook, toggleEdit, edit)}
+                    color={'black'}>
+                  Updatera book för 17
+                </Button>
+              );
+              if (error) {
+                  return <div><ErrorMessage error={error} />{ button }</div>;
+              }
+
+              return button;
+            }}
+          </Mutation>
+        }
       </div>
-    );
-  }
+      <h5>
+        <Link to="/writers">Back to list of Writers</Link>
+      </h5>
+    </div>
+  );
 } 
 
 export default BookListItemDetail
