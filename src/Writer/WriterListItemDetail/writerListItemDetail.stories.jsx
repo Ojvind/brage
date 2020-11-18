@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import StoryRouter from 'storybook-react-router';
-import { storiesOf } from "@storybook/react";
-import apolloStorybookDecorator from "apollo-storybook-react";
+import { storiesOf } from '@storybook/react';
+import apolloStorybookDecorator from 'apollo-storybook-react';
 
 import WriterListItemDetail from './WriterListItemDetail';
 
-import '../../styles/importer.scss'
+import '../../styles/importer.scss';
 
 const typeDefs = `
   type Query {
@@ -36,20 +36,17 @@ export const writer = {
   homepage: 'http://ojvind.otterbjork.com',
 };
 
-storiesOf("WriterListItemDetail", module)
+storiesOf('WriterListItemDetail', module)
   .addDecorator(
     apolloStorybookDecorator({
       typeDefs,
-    })
+    }),
   )
   .addDecorator(
     StoryRouter({}, {
       routes: [
         { },
-      ]})
+      ],
+    }),
   )
-  .add("default", () => {
-    return <WriterListItemDetail 
-      writer={writer}
-  />;
-  });
+  .add('default', () => <WriterListItemDetail writer={writer} />);
