@@ -1,7 +1,5 @@
-import { WRITER_FRAGMENT } from './fragments';
-import { WRITER_WITH_BOOKS_FRAGMENT } from './fragments';
-import { WRITERS_WITH_BOOKS_FRAGMENT } from './fragments';
 import gql from 'graphql-tag';
+import { WRITER_FRAGMENT, WRITER_WITH_BOOKS_FRAGMENT, WRITERS_WITH_BOOKS_FRAGMENT } from './fragments';
 
 export const GET_WRITER = gql`
   query($id: ID!) {
