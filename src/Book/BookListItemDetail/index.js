@@ -4,7 +4,7 @@ import { GET_BOOK } from '../queries';
 
 import Loading from '../../Loading';
 import ErrorMessage from '../../Error';
-import BookListItemDetail from './bookListItemDetail'
+import BookListItemDetail from './bookListItemDetail';
 
 class BookListItemDetailContainter extends React.Component {
   // state = {
@@ -15,7 +15,7 @@ class BookListItemDetailContainter extends React.Component {
   // };
 
   // updateState = (book) => {
-  //   this.setState({ 
+  //   this.setState({
   //     title: book.title,
   //     yearRead: book.yearRead,
   //     yearPublished: book.yearPublished,
@@ -41,27 +41,29 @@ class BookListItemDetailContainter extends React.Component {
 
   render() {
     const { match } = this.props;
-    return  (
+    return (
       <div>
         <Query
-           query={GET_BOOK}
-           notifyOnNetworkStatusChange={true}
-           variables={{
-             id: match.params.id,
-           }}
-         >
-           {({ data, loading, error, fetchMore }) => {
-              if (error) {
-                return <ErrorMessage error={error} />;
-              }
+          query={GET_BOOK}
+          notifyOnNetworkStatusChange
+          variables={{
+            id: match.params.id,
+          }}
+        >
+          {({
+            data, loading, error, fetchMore,
+          }) => {
+            if (error) {
+              return <ErrorMessage error={error} />;
+            }
 
-              const { viewer } = data;
+            const { viewer } = data;
 
-              if (loading && !viewer) {
-                return <Loading />;
-              }
+            if (loading && !viewer) {
+              return <Loading />;
+            }
             return (
-              <BookListItemDetail 
+              <BookListItemDetail
                 book={data.book}
               />
             );

@@ -7,9 +7,10 @@ export default {
   component: WriterListItem,
   title: 'WriterListItem',
   decorators: [StoryRouter({}, {
-         routes: [
-           { path: '/whatever', component: WriterListItem },
-         ]})],
+    routes: [
+      { path: '/whatever', component: WriterListItem },
+    ],
+  })],
   // Our exports that end in "Data" are not stories.
   excludeStories: /.*Data$/,
 };
@@ -25,9 +26,9 @@ export const matchData = {
   url: '/writer',
 };
 
-export const Default = () => {
-  return <WriterListItem 
-    writer={writerData} 
-    match={matchData} 
-  />;
-};
+export const Default = () => (
+  <WriterListItem
+    writer={writerData}
+    match={matchData}
+  />
+);

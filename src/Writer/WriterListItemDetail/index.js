@@ -1,5 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import { GET_WRITER } from '../queries';
 
 import Loading from '../../Loading';
@@ -9,40 +10,39 @@ import BookContainer from '../../Book';
 import CreateBook from '../../Book/CreateBook';
 import WriterListItemDetail from './WriterListItemDetail';
 
-import { Link } from 'react-router-dom';
-
 class WriterListItemDetailContainer extends React.Component {
-
   render() {
     const { match } = this.props;
-    return  (
+    return (
       <div>
-        <Query 
+        <Query
           query={GET_WRITER}
-          notifyOnNetworkStatusChange={true}
+          notifyOnNetworkStatusChange
           variables={{
             id: match.params.id,
           }}
         >
-          {({ data, loading, error, fetchMore }) => {
+          {({
+            data, loading, error, fetchMore,
+          }) => {
             if (error) {
               return <ErrorMessage error={error} />;
             }
-      
+
             const { viewer } = data;
-      
+
             if (loading && !viewer) {
               return <Loading />;
             }
-        
+
             return (
               <div>
                 <div className="App-content_small-header">
-                <div>
+                  <div>
                     <WriterListItemDetail
                       writer={data.writer}
                     />
-                    <BookContainer 
+                    <BookContainer
                       writerId={data.writer.id}
                       match={match}
                     />

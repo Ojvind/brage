@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import StoryRouter from 'storybook-react-router';
-import { storiesOf } from "@storybook/react";
-import apolloStorybookDecorator from "apollo-storybook-react";
+import { storiesOf } from '@storybook/react';
+import apolloStorybookDecorator from 'apollo-storybook-react';
 
 import WriterList from '.';
 
-import '../../styles/importer.scss'
+import '../../styles/importer.scss';
 
 const typeDefs = `
   type Query {
@@ -30,54 +30,52 @@ const typeDefs = `
 `;
 
 const mocks = {
-  Query: () => {
-    return {
-      helloWorld: () => {
-        return "Hello from Apollo!!";
-      }
-    };
-  }
+  Query: () => ({
+    helloWorld: () => 'Hello from Apollo!!',
+  }),
 };
 
 export const writersData = {
-  edges:[{
-  id: '555-999',
-  name: 'Öjvind',
-  surname: 'Otterbjörk',
-  homepage: 'http://ojvind.otterbjork.com',
-},{
-  id: '999-123',
-  name: 'Andrew',
-  surname: 'Eldrich',
-  homepage: 'http://www.the-sisters-of-mercy.com/',
-}],
-pageInfo: {
-  hasNextPage: false,
-  endCursor: 'södljfsödljf'
-}};
+  edges: [{
+    id: '555-999',
+    name: 'Öjvind',
+    surname: 'Otterbjörk',
+    homepage: 'http://ojvind.otterbjork.com',
+  }, {
+    id: '999-123',
+    name: 'Andrew',
+    surname: 'Eldrich',
+    homepage: 'http://www.the-sisters-of-mercy.com/',
+  }],
+  pageInfo: {
+    hasNextPage: false,
+    endCursor: 'södljfsödljf',
+  },
+};
 
 export const matchData = {
   url: '/writer',
 };
 
-storiesOf("WriterList", module)
+storiesOf('WriterList', module)
   .addDecorator(
     apolloStorybookDecorator({
       typeDefs,
-      mocks
-    })
+      mocks,
+    }),
   )
   .addDecorator(
     StoryRouter({}, {
       routes: [
         { },
-      ]})
+      ],
+    }),
   )
-  .add("default", () => {
-    return <WriterList 
-    writers={writersData} 
-    match={matchData} 
-    loading={false}
-    fetchMore={() => {}}
-  />;
-  });
+  .add('default', () => (
+    <WriterList
+      writers={writersData}
+      match={matchData}
+      loading={false}
+      fetchMore={() => {}}
+    />
+  ));

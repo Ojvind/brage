@@ -10,7 +10,6 @@ import Input from '../../Input';
 import Label from '../../Label';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class WriterListItemDetail extends React.Component {
@@ -42,8 +41,6 @@ class WriterListItemDetail extends React.Component {
   render() {
 
     const { id, name, surname, homepage } = this.state;
-
-    // const coffee = <FontAwesomeIcon icon={faCoffee} />
     const edit = <FontAwesomeIcon icon={faEdit} />
 
     return (

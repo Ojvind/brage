@@ -14,11 +14,10 @@ export default {
   excludeStories: /.*Data$/,
 };
 
-export const Default = () => {
-  return <Input/>;
-};
+export const Default = () => <Input />;
 
-export const WithLabel = () => {
-  return <Input 
-      inputLabel="Name"/>;
-};
+export const WithLabel = () => (
+  <Input
+    inputLabel="Name"
+  />
+);

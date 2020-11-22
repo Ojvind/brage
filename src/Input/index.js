@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 const Input = ({
   id,
   name,
@@ -19,7 +18,7 @@ const Input = ({
   const localValid = shouldCustomValidate ? customValid : valid;
 
   return (
-    <React.Fragment>
+    <>
       <div
         className={`
           c-field
@@ -56,7 +55,7 @@ const Input = ({
           </div>
         </label>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

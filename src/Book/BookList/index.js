@@ -25,51 +25,47 @@ const BookList = ({
   books,
   loading,
   fetchMore,
-}) => {
-  return (
+}) => (
+  <div>
     <div>
-      <div>
-        <div className="book-list__headerrow">
-          <div className="book-list__id">
-            Id
-          </div>
-          <div className="book-list__title">
-            Title
-          </div>
-          <div className="book-list__yearPublished">
-            Published
-          </div>
-          <div className="book-list__yearRead">
-            Read
-          </div>
-          <div className="book-list__createdAt">
-            created at
-          </div>
+      <div className="book-list__headerrow">
+        <div className="book-list__id">
+          Id
         </div>
-        {books.edges.map(( book ) => {
-            return (
-              <BookListItem
-                match={match}
-                book={book}
-                key={book.id}
-              />
-            )
-          })}
+        <div className="book-list__title">
+          Title
+        </div>
+        <div className="book-list__yearPublished">
+          Published
+        </div>
+        <div className="book-list__yearRead">
+          Read
+        </div>
+        <div className="book-list__createdAt">
+          created at
+        </div>
+      </div>
+      {books.edges.map((book) => (
+        <BookListItem
+          match={match}
+          book={book}
+          key={book.id}
+        />
+      ))}
 
-          <FetchMore
-            loading={loading}
-            hasNextPage={books.pageInfo.hasNextPage}
-            variables={{
-              cursor: books.pageInfo.endCursor,
-            }}
-            updateQuery={updateQuery}
-            fetchMore={fetchMore}
-          >
-            Books
-          </FetchMore>
-        </div>
+      <FetchMore
+        loading={loading}
+        hasNextPage={books.pageInfo.hasNextPage}
+        variables={{
+          cursor: books.pageInfo.endCursor,
+        }}
+        updateQuery={updateQuery}
+        fetchMore={fetchMore}
+      >
+        Books
+      </FetchMore>
     </div>
-  )
-};
+  </div>
+);
 
 export default BookList;

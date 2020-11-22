@@ -7,12 +7,12 @@ const Link = ({ newWindow, children, ...props }) => {
         {children}
       </a>
     );
-  }  
+  }
   return (
     <a {...props} target="_self">
       {children}
     </a>
   );
-}
+};
 
 export default Link;

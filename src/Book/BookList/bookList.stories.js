@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import StoryRouter from 'storybook-react-router';
-import { storiesOf } from "@storybook/react";
-import apolloStorybookDecorator from "apollo-storybook-react";
+import { storiesOf } from '@storybook/react';
+import apolloStorybookDecorator from 'apollo-storybook-react';
 
 import BookList from '.';
 
@@ -38,43 +38,45 @@ const typeDefs = `
 `;
 
 export const booksData = {
-  edges:[{
-  id: '555-999',
-  title: 'Prosaiska Eddan',
-  yearPublished: '1220',
-  yearRead: '2021',
-},{
-  id: '999-123',
-  title: 'Poetic Edda',
-  yearPublished: '1200',
-  yearRead: '2021',
-}],
-pageInfo: {
-  hasNextPage: false,
-  endCursor: 'södljfsödljf'
-}};
+  edges: [{
+    id: '555-999',
+    title: 'Prosaiska Eddan',
+    yearPublished: '1220',
+    yearRead: '2021',
+  }, {
+    id: '999-123',
+    title: 'Poetic Edda',
+    yearPublished: '1200',
+    yearRead: '2021',
+  }],
+  pageInfo: {
+    hasNextPage: false,
+    endCursor: 'södljfsödljf',
+  },
+};
 
 export const matchData = {
   url: '/Book',
 };
 
-storiesOf("BookList", module)
+storiesOf('BookList', module)
   .addDecorator(
     apolloStorybookDecorator({
       typeDefs,
-    })
+    }),
   )
   .addDecorator(
     StoryRouter({}, {
       routes: [
         { },
-      ]})
+      ],
+    }),
   )
-  .add("default", () => {
-    return <BookList 
-    books={booksData} 
-    match={matchData} 
-    loading={false}
-    fetchMore={() => {}}
-  />;
-  });
+  .add('default', () => (
+    <BookList
+      books={booksData}
+      match={matchData}
+      loading={false}
+      fetchMore={() => {}}
+    />
+  ));

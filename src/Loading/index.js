@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './style.css';
 
-const TICK_RATE = 500;
+const TICK_RATE = 5000;
 
 class Loading extends Component {
   state = {
