@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import StoryRouter from 'storybook-react-router';
-import { storiesOf } from "@storybook/react";
-import apolloStorybookDecorator from "apollo-storybook-react";
+import { storiesOf } from '@storybook/react';
+import apolloStorybookDecorator from 'apollo-storybook-react';
 
 import CreateWriter from '.';
 
@@ -29,29 +29,26 @@ schema {
 `;
 
 const mocks = {
-  Mutation: () => {
-    return {
-        id: '555-999',
-        name: 'Öjvind',
-        surname: 'Otterbjörk',
-        homepage: 'ojvind.otterbjork.com',
-    }
-  }
+  Mutation: () => ({
+    id: '555-999',
+    name: 'Öjvind',
+    surname: 'Otterbjörk',
+    homepage: 'ojvind.otterbjork.com',
+  }),
 };
 
-storiesOf("CreateWriter", module)
+storiesOf('CreateWriter', module)
   .addDecorator(
     apolloStorybookDecorator({
       typeDefs,
-      mocks
-    })
+      mocks,
+    }),
   )
   .addDecorator(
     StoryRouter({}, {
       routes: [
         { },
-      ]})
+      ],
+    }),
   )
-  .add("default", () => {
-    return <CreateWriter />;
-  });
+  .add('default', () => <CreateWriter />);

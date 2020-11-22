@@ -20,7 +20,9 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
   };
 };
 
-export default function WriterList({ match, writers, loading, fetchMore }) {
+export default function WriterList({
+  match, writers, loading, fetchMore,
+}) {
   return (
     <div>
       <div>
@@ -35,15 +37,13 @@ export default function WriterList({ match, writers, loading, fetchMore }) {
             Homepage
           </div>
         </div>
-        {writers.edges.map(( writer ) => {
-          return (
-            <WriterListItem
-              match={match}
-              writer={writer}
-              key={writer.id}
-            />
-          )
-        })}
+        {writers.edges.map((writer) => (
+          <WriterListItem
+            match={match}
+            writer={writer}
+            key={writer.id}
+          />
+        ))}
 
         <FetchMore
           loading={loading}
@@ -58,5 +58,5 @@ export default function WriterList({ match, writers, loading, fetchMore }) {
         </FetchMore>
       </div>
     </div>
-  )   
+  );
 }

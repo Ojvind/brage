@@ -6,7 +6,7 @@ export default function WriterListItem({ writer, match }) {
     <div className="writer-list__listrow" key={writer.id}>
       <span className="writer-list__name">
         <Link to={`${match.url}/${writer.id}/${writer.name}/${writer.surname}`}>{writer.name}</Link>
-      </span >
+      </span>
       <span className="writer-list__surname">
         <Link to={`${match.url}/${writer.id}/${writer.name}/${writer.surname}`}>{writer.surname}</Link>
       </span>

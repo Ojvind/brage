@@ -19,9 +19,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div className="App">
+        <div className="App">
           <Navigation
-            organizationName={"organizationName"}
+            organizationName="organizationName"
             onOrganizationSearch={this.onOrganizationSearch}
           />
           <div className="App-main">
@@ -31,13 +31,13 @@ class App extends Component {
               <Route exact path="/Topics" component={TopicList} />
               <Route path="/Topics/:topicId" component={TopicDetail} />
               <Route exact path="/writers" component={Writer} />
-              <Route path="/writers/:id/:name/:surname" component={WriterListItemDetailContainer}/>
-              <Route path="/books/:id/:title" component={BookListItemDetail}/>
+              <Route path="/writers/:id/:name/:surname" component={WriterListItemDetailContainer} />
+              <Route path="/books/:id/:title" component={BookListItemDetail} />
               <Route component={NoMatch} />
             </Switch>
-          </div>            
+          </div>
           <Footer />
-        </div>          
+        </div>
       </Router>
     );
   }

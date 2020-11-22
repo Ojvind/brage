@@ -10,22 +10,22 @@ const FetchMore = ({
   updateQuery,
   fetchMore,
   children,
-}) => {
-  return (
-    <div className="FetchMore">
-      {loading ? (
-        <Loading />
-      ) : (
-        hasNextPage && (
-          <ButtonUnobtrusive
-            className="FetchMore-button"
-            onClick={() => fetchMore({ variables, updateQuery })}
-          >
-            Moreeeee {children}
-          </ButtonUnobtrusive>
-        )
-      )}
-    </div>
-  );
-}
+}) => (
+  <div className="FetchMore">
+    {loading ? (
+      <Loading />
+    ) : (
+      hasNextPage && (
+      <ButtonUnobtrusive
+        className="FetchMore-button"
+        onClick={() => fetchMore({ variables, updateQuery })}
+      >
+        Moreeeee
+        {' '}
+        {children}
+      </ButtonUnobtrusive>
+      )
+    )}
+  </div>
+);
 export default FetchMore;
