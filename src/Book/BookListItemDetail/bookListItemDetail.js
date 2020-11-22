@@ -32,7 +32,7 @@ function BookListItemDetail(props) {
     <div className="App-content_small-header">
       <div>
         <h4>Book:</h4>
-        <Label>{props.id}</Label>
+        <Label>{props.book.id}</Label>
         {
         (!edit)
           ? <Label>{title}</Label>
