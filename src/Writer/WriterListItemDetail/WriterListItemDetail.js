@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { UPDATE_WRITER } from '../mutations';
 import { GET_WRITER } from '../queries';
 
@@ -9,103 +11,92 @@ import Button from '../../Button';
 import Input from '../../Input';
 import Label from '../../Label';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+function toggleChange(updateWriter, toggleEdit, edit) {
+  updateWriter();
+  toggleEdit(!edit);
+}
 
-class WriterListItemDetail extends React.Component {
-  state = {
-    edit: false,
-    id: this.props.writer.id,
-    name: this.props.writer.name,
-    surname: this.props.writer.surname,
-    homepage: this.props.writer.homepage
-  };
+function WriterListItemDetail(props) {
+  const [edit, toggleEdit] = useState(false);
+  const [name, onNameChange] = useState(props.writer.name);
+  const [surname, onSurnameChange] = useState(props.writer.surname);
+  const [homepage, onHomepageChange] = useState(props.writer.homepage);
 
-  onNameChange = event => {
-      this.setState({ name: event.target.value });
-  };
+  const editIcon = <FontAwesomeIcon icon={faEdit} />;
 
-  onSurNameChange = event => {
-      this.setState({ surname: event.target.value });
-  };
-
-  onHomePageChange = event => {
-      this.setState({ homepage: event.target.value });
-  };
-
-  toggleChange = (updateWriter) => {
-    updateWriter();
-    this.setState({ edit: !this.state.edit })
-  }
-
-  render() {
-
-    const { id, name, surname, homepage } = this.state;
-    const edit = <FontAwesomeIcon icon={faEdit} />
-
-    return (
+  return (
+    <div>
       <div>
-        <div>
-        <Label>{id}</Label>
+        <Label>{props.writer.id}</Label>
         {
-          (!this.state.edit) ?
-            <Label>{name}</Label> :
-            <Input onChange={this.onNameChange} id="name" inputLabel="Name" value={name} />
-        }
+        (!edit)
+          ? <Label>{name}</Label>
+          : <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
+      }
         {
-          (!this.state.edit) ?
-            <Label>{surname}</Label> :
-            <Input onChange={this.onSurNameChange} id="surname" inputLabel="Surname" value={surname} />
-        }
+        (!edit)
+          ? <Label>{surname}</Label>
+          : <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
+      }
         {
-          (!this.state.edit) ?
-            <a href={homepage} target="_blank" rel="noopener noreferrer">{homepage}</a> :
-            <Input onChange={this.onHomePageChange} id="homepage" inputLabel="Homepage" value={homepage} />
-        }
+        (!edit)
+          ? <a href={homepage} target="_blank" rel="noopener noreferrer">{homepage}</a>
+          : <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
+      }
         {
-            (!this.state.edit) ?
-            <button 
-              onClick={() => this.toggleChange(()=>{})}>
-              {edit}  
-              <i className="fas fa-edit fa-2x"></i> 
-            </button> :
-            <Mutation
-              mutation={UPDATE_WRITER}
-              variables={{ 
-                id, 
-                name: !this.state.name ? name : this.state.name, 
-                surname: !this.state.surname ? surname :  this.state.surname, 
-                homepage: !this.state.homepage ? homepage : this.state.homepage }}
+          (!edit)
+            ? (
+              <button
+                onClick={() => toggleChange(() => {}, toggleEdit, edit)}
+              >
+                {editIcon}
+                <i className="fas fa-edit fa-2x" />
+              </button>
+            )
+            : (
+              <Mutation
+                mutation={UPDATE_WRITER}
+                variables={{
+                  id: props.writer.id,
+                  name: !name ? name : name,
+                  surname: !surname ? surname : surname,
+                  homepage: !homepage ? homepage : homepage,
+                }}
                 refetchQueries={[
-                  { 
+                  {
                     query: GET_WRITER,
-                    variables:{
-                      id: id,
-                    }
-                  }
+                    variables: {
+                      id: props.writer.id,
+                    },
+                  },
                 ]}
               >
-              {(updateWriter, { data, loading, error }) => {
-                const button = (
-                  <Button
-                    className={'create-writer__button'}
-                    onClick={() => this.toggleChange(updateWriter)}
-                    color={'black'}>
-                    Updatera writer för 171111
-                  </Button>
-                );
-                if (error) {
-                  return <div><ErrorMessage error={error} />{ button }</div>;
-                }
-                return button; 
-              }}
-            </Mutation>
-          }
-        </div>
-      </div> 
-    );      
-  }
-} 
+                {(updateWriter, { data, loading, error }) => {
+                  const button = (
+                    <Button
+                      className="create-writer__button"
+                      onClick={() => toggleChange(updateWriter, toggleEdit, edit)}
+                      color="black"
+                    >
+                      Updatera writer för 171111
+                    </Button>
+                  );
+                  if (error) {
+                    return (
+                      <div>
+                        <ErrorMessage error={error} />
+                        { button }
+                      </div>
+                    );
+                  }
+                  return button;
+                }}
+              </Mutation>
+            )
+        }
+      </div>
+    </div>
+  );
+}
 
-export default WriterListItemDetail
-
+export default WriterListItemDetail;
