@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+
 import { UPDATE_WRITER } from '../mutations';
 import { GET_WRITER } from '../queries';
-
 import ErrorMessage from '../../Error';
-
 import Button from '../../Button';
 import Input from '../../Input';
 import Label from '../../Label';
@@ -16,18 +16,19 @@ function toggleChange(updateWriter, toggleEdit, edit) {
   toggleEdit(!edit);
 }
 
-function WriterListItemDetail(props) {
+const WriterListItemDetail = (props) => {
+  const { writer } = props;
   const [edit, toggleEdit] = useState(false);
-  const [name, onNameChange] = useState(props.writer.name);
-  const [surname, onSurnameChange] = useState(props.writer.surname);
-  const [homepage, onHomepageChange] = useState(props.writer.homepage);
+  const [name, onNameChange] = useState(writer.name);
+  const [surname, onSurnameChange] = useState(writer.surname);
+  const [homepage, onHomepageChange] = useState(writer.homepage);
 
   const editIcon = <FontAwesomeIcon icon={faEdit} />;
 
   return (
     <div>
       <div>
-        <Label>{props.writer.id}</Label>
+        <Label>{writer.id}</Label>
         {
         (!edit)
           ? <Label>{name}</Label>
@@ -47,6 +48,7 @@ function WriterListItemDetail(props) {
           (!edit)
             ? (
               <button
+                type="button"
                 onClick={() => toggleChange(() => {}, toggleEdit, edit)}
               >
                 {editIcon}
@@ -57,7 +59,7 @@ function WriterListItemDetail(props) {
               <Mutation
                 mutation={UPDATE_WRITER}
                 variables={{
-                  id: props.writer.id,
+                  id: writer.id,
                   name: !name ? name : name,
                   surname: !surname ? surname : surname,
                   homepage: !homepage ? homepage : homepage,
@@ -66,12 +68,12 @@ function WriterListItemDetail(props) {
                   {
                     query: GET_WRITER,
                     variables: {
-                      id: props.writer.id,
+                      id: writer.id,
                     },
                   },
                 ]}
               >
-                {(updateWriter, { data, loading, error }) => {
+                {(updateWriter, { data, loading, error }) => { // eslint-disable-line no-unused-vars
                   const button = (
                     <Button
                       className="create-writer__button"
@@ -97,6 +99,15 @@ function WriterListItemDetail(props) {
       </div>
     </div>
   );
-}
+};
+
+WriterListItemDetail.propTypes = {
+  writer: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    surname: PropTypes.string,
+    homepage: PropTypes.string,
+  }).isRequired,
+};
 
 export default WriterListItemDetail;
