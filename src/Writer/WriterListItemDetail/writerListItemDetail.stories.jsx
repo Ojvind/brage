@@ -29,7 +29,7 @@ const typeDefs = `
   }
 `;
 
-export const writer = {
+export const writer = { // eslint-disable-line import/prefer-default-export
   id: '555-999',
   name: 'Öjvind',
   surname: 'Otterbjörk',
