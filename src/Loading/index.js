@@ -24,15 +24,15 @@ class Loading extends Component {
   //   const { isCenter } = this.props;
   //   const { dots } = this.state;
 
-  //   const classNames = ['Loading'];
+    //   const classNames = ['Loading'];
 
-  //   if (isCenter) {
-  //     classNames.push('Loading_center');
-  //   }
+    //   if (isCenter) {
+    //     classNames.push('Loading_center');
+    //   }
 
     return (
       <div>
-      {/* <div className={classNames.join(' ')}> */}
+        {/* <div className={classNames.join(' ')}> */}
         <small>
           {/* Loading {new Array(dots).fill(0).map(dot => '.')} */}
         </small>

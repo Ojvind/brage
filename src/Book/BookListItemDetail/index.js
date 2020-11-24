@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import PropTypes from'prop-types';
+import PropTypes from 'prop-types';
 import { GET_BOOK } from '../queries';
 
 import Loading from '../../Loading';
@@ -39,7 +39,7 @@ const BookListItemDetailContainter = (props) => {
       </Query>
     </div>
   );
-}
+};
 
 BookListItemDetailContainter.propTypes = {
   match: PropTypes.shape({ params: { id: PropTypes.string } }),
