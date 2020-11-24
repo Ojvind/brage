@@ -27,8 +27,10 @@ const Footer = () => (
         </span>
         {' '}
         <Link
+          newWindow={false}
           className="Footer-link"
           href="https://www.getrevue.co/profile/rwieruch"
+          toolTip="Open in same window"
         >
           Get updates
         </Link>
@@ -37,7 +39,12 @@ const Footer = () => (
           about upcoming articles, books &
         </span>
         {' '}
-        <Link className="Footer-link" href="https://roadtoreact.com">
+        <Link
+          newWindow
+          className="Footer-link"
+          href="https://roadtoreact.com"
+          toolTip="Open in new window"
+        >
           courses
         </Link>
         <span className="Footer-text">.</span>

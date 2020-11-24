@@ -33,7 +33,7 @@ function CreateWriter() {
             { query: GET_WRITERS },
           ]}
         >
-          {(createWriter, { data, loading, error }) => {
+          {(createWriter, { data, loading, error }) => { // eslint-disable-line no-unused-vars
             const button = (
               <Button
                 className="create-writer__button"

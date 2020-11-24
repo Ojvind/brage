@@ -3,7 +3,7 @@ import './style.css';
 
 // const TICK_RATE = 5000;
 
-class Loading extends Component {
+class Loading extends Component { // eslint-disable-line react/prefer-stateless-function
   // state = {
   //   dots: 0,
   // };
