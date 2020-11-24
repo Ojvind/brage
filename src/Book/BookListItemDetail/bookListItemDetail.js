@@ -36,17 +36,17 @@ function BookListItemDetail(props) {
         {
         (!edit)
           ? <Label>{title}</Label>
-          : <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="title" value={title} />
+          : <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
         }
         {
           (!edit)
             ? <Label>{yearRead}</Label>
-            : <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="yearRead" value={yearRead} />
+            : <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
         }
         {
           (!edit)
             ? <Label>{yearPublished}</Label>
-            : <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="yearPublished" value={yearPublished} />
+            : <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
         }
         {
           (!edit)

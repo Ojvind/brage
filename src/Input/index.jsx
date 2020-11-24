@@ -9,14 +9,10 @@ const Input = ({
   valid,
   shouldCustomValidate,
   customValid,
-  className,
-  whitelist,
-  onClick,
   ...rest
 }) => {
   const inputId = id || `input--${name || ''}--${inputLabel.replace(/\s/, '-')}`;
   const localValid = shouldCustomValidate ? customValid : valid;
-
   return (
     <>
       <div
@@ -38,10 +34,8 @@ const Input = ({
               id={inputId}
               name={name}
               className="c-field__input"
-              data-hj-whitelist={whitelist || null}
               {...rest}
             />
-
             {validated && (
               <div className={`
                 c-input-with-button__suffix-icon
@@ -67,9 +61,6 @@ Input.propTypes = {
   valid: PropTypes.bool,
   shouldCustomValidate: PropTypes.bool,
   customValid: PropTypes.bool,
-  className: PropTypes.string,
-  whitelist: PropTypes.bool,
-  onClick: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -80,8 +71,6 @@ Input.defaultProps = {
   valid: null,
   shouldCustomValidate: false,
   customValid: undefined,
-  className: '',
-  whitelist: false,
 };
 
 export default Input;
