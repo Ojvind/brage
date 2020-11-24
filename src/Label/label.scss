@@ -1,7 +1,7 @@
 .Label {
   padding: 10px;
   background: none;
-  cursor: pointer;
+  cursor: crosshair;
   transition: color 0.25s ease-in-out;
   transition: background 0.25s ease-in-out;
 }
@@ -9,19 +9,31 @@
   border: 1px solid #fff;
   color: #fff;
 }
-.Label_red {
-  border: 1px solid #fff;
-  color: red;
-}
 .Label_white:hover {
   color: #000;
   background: #fff;
 }
+.Label_red {
+  border: 1px solid #fff;
+  color: red;
+}
+.Label_red {
+  border: 1px solid #fff;
+  color: red;
+}
 .Label_black {
-  border: 1px solid #000;
+  border: 0px solid #000;
   color: #000;
 }
 .Label_black:hover {
   color: #fff;
-  background: #000;
+  background: silver;
+}
+.Label_silver {
+  border: 0px solid #000;
+  color: silver;
+}
+.Label_silver:hover {
+  color: black;
+  background: silver;
 }
