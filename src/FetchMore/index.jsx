@@ -1,15 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Loading from '../Loading';
 import { ButtonUnobtrusive } from '../Button';
-import './style.css';
 
 const FetchMore = ({
-  loading,
-  hasNextPage,
-  variables,
-  updateQuery,
-  fetchMore,
-  children,
+  loading, hasNextPage, variables, updateQuery, fetchMore, children,
 }) => (
   <div className="FetchMore">
     {loading ? (
@@ -20,7 +16,7 @@ const FetchMore = ({
         className="FetchMore-button"
         onClick={() => fetchMore({ variables, updateQuery })}
       >
-        Moreeeee
+        More
         {' '}
         {children}
       </ButtonUnobtrusive>
@@ -28,4 +24,14 @@ const FetchMore = ({
     )}
   </div>
 );
+
+FetchMore.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  hasNextPage: PropTypes.bool.isRequired,
+  variables: PropTypes.string.isRequired,
+  updateQuery: PropTypes.string.isRequired,
+  fetchMore: PropTypes.func.isRequired,
+  children: PropTypes.shape({}).isRequired,
+};
+
 export default FetchMore;
