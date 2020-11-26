@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
-import Input from '../../Input';
-import Button from '../../Button';
+import PropTypes from 'prop-types';
 
 import { CREATE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 
-import './create-book.css';
-
+import Input from '../../Input';
+import Button from '../../Button';
 import ErrorMessage from '../../Error';
 
 const CreateBook = (props) => {
+  const { writerId } = props;
+
   const [title, onTitleChange] = useState('');
   const [yearPublished, onYearPublishedChange] = useState('');
   const [yearRead, onReadChange] = useState('');
 
-  const { writerId } = props;
   return (
     <div>
       <div className="create-book">
@@ -40,7 +40,7 @@ const CreateBook = (props) => {
             },
           ]}
         >
-          {(createbook, { data, loading, error }) => {
+          {(createbook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
             const button = (
               <Button
                 className="create-book__button"
@@ -68,6 +68,10 @@ const CreateBook = (props) => {
       </div>
     </div>
   );
+};
+
+CreateBook.propTypes = {
+  writerId: PropTypes.string.isRequired,
 };
 
 export default CreateBook;

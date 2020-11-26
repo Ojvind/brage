@@ -3,14 +3,14 @@ import { Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+
 import { GET_BOOK } from '../queries';
 import { UPDATE_BOOK } from '../mutations';
 
 import Button from '../../Button';
 import Input from '../../Input';
-
 import ErrorMessage from '../../Error';
-
 import Label from '../../Label';
 
 function toggleChange(updateBook, toggleEdit, edit) {
@@ -19,20 +19,20 @@ function toggleChange(updateBook, toggleEdit, edit) {
 }
 
 function BookListItemDetail(props) {
+  const { book } = props;
+
   const [edit, toggleEdit] = useState(false);
-  const [title, onTitleChange] = useState(props.book.title);
-  const [yearRead, onYearReadChange] = useState(props.book.yearRead);
-  const [yearPublished, onYearPublishedChange] = useState(props.book.yearPublished);
+  const [title, onTitleChange] = useState(book.title);
+  const [yearRead, onYearReadChange] = useState(book.yearRead);
+  const [yearPublished, onYearPublishedChange] = useState(book.yearPublished);
 
   const editIcon = <FontAwesomeIcon icon={faEdit} />;
-
-  console.log(props.book.id);
 
   return (
     <div className="App-content_small-header">
       <div>
         <h4>Book:</h4>
-        <Label>{props.book.id}</Label>
+        <Label>{book.id}</Label>
         {
         (!edit)
           ? <Label>{title}</Label>
@@ -52,6 +52,7 @@ function BookListItemDetail(props) {
           (!edit)
             ? (
               <button
+                type="button"
                 onClick={() => toggleChange(() => {}, toggleEdit, edit)}
               >
                 {editIcon}
@@ -61,7 +62,7 @@ function BookListItemDetail(props) {
               <Mutation
                 mutation={UPDATE_BOOK}
                 variables={{
-                  id: props.book.id,
+                  id: book.id,
                   title,
                   yearRead,
                   yearPublished,
@@ -70,12 +71,12 @@ function BookListItemDetail(props) {
                   {
                     query: GET_BOOK,
                     variables: {
-                      id: props.book.id,
+                      id: book.id,
                     },
                   },
                 ]}
               >
-                {(updateBook, { data, loading, error }) => {
+                {(updateBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
                   const button = (
                     <Button
                       className="create-book__button"
@@ -106,5 +107,15 @@ function BookListItemDetail(props) {
     </div>
   );
 }
+
+BookListItemDetail.propTypes = {
+  book: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    yearRead: PropTypes.string,
+    yearPublished: PropTypes.string,
+
+  }).isRequired,
+};
 
 export default BookListItemDetail;
