@@ -37,10 +37,10 @@ function CreateWriter() {
             const button = (
               <Button
                 className="create-writer__button"
-                onClick={createWriter}
+                onKlick={createWriter}
                 color="black"
               >
-                Create Writer för fan
+                Create Writer för faaaan
               </Button>
             );
             if (error) {

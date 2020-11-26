@@ -19,7 +19,7 @@ const BookListItemDetailContainter = (props) => {
         }}
       >
         {({
-          data, loading, error, fetchMore,
+          data, loading, error,
         }) => {
           if (error) {
             return <ErrorMessage error={error} />;

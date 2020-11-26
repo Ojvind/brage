@@ -1,5 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import PropTypes from 'prop-types';
+
 import BookList from './BookList';
 import { GET_BOOKS } from './queries';
 
@@ -39,5 +41,11 @@ const BookContainer = ({ match, location, writerId }) => (
     }}
   </Query>
 );
+
+BookContainer.propTypes = {
+  match: PropTypes.shape({}).isRequired,
+  location: PropTypes.string.isRequired,
+  writerId: PropTypes.string.isRequired,
+};
 
 export default BookContainer;
