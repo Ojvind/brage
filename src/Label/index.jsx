@@ -2,20 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Label = ({
-  children, className, inputId, color = 'black',
+  children, className, color = 'black',
 }) => (
   <label
     className={`${className} Label Label_${color}`}
-    htmlFor={inputId}
   >
     {children}
   </label>
 );
 
 Label.propTypes = {
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.string,
   className: PropTypes.string,
-  inputId: PropTypes.string.isRequired,
   color: PropTypes.string,
 };
 
