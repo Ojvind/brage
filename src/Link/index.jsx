@@ -39,7 +39,7 @@ const Link = ({
 
 Link.propTypes = {
   newWindow: PropTypes.bool,
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.string.isRequired,
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
   toolTip: PropTypes.string,

@@ -28,10 +28,14 @@ const FetchMore = ({
 FetchMore.propTypes = {
   loading: PropTypes.bool.isRequired,
   hasNextPage: PropTypes.bool.isRequired,
-  variables: PropTypes.string.isRequired,
-  updateQuery: PropTypes.string.isRequired,
+  variables: PropTypes.shape({}).isRequired,
+  updateQuery: PropTypes.func.isRequired,
   fetchMore: PropTypes.func.isRequired,
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.string,
+};
+
+FetchMore.defaultProps = {
+  children: ' ',
 };
 
 export default FetchMore;

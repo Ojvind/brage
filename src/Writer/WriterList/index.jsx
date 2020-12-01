@@ -63,7 +63,7 @@ const WriterList = ({
 
 WriterList.propTypes = {
   writers: PropTypes.shape({
-    edges: PropTypes.shape([]),
+    edges: PropTypes.arrayOf(PropTypes.shape({})),
     pageInfo: PropTypes.PropTypes.shape({
       hasNextPage: PropTypes.bool,
       endCursor: PropTypes.string,

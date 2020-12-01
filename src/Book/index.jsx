@@ -44,7 +44,7 @@ const BookContainer = ({ match, location, writerId }) => (
 
 BookContainer.propTypes = {
   match: PropTypes.shape({}).isRequired,
-  location: PropTypes.string.isRequired,
+  location: PropTypes.shape({}).isRequired,
   writerId: PropTypes.string.isRequired,
 };
 

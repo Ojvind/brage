@@ -33,13 +33,14 @@ const ButtonUnobtrusive = ({
 );
 
 const propTypes = {
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.string,
   className: PropTypes.string,
   color: PropTypes.string,
   type: PropTypes.string,
 };
 
 const defaultProps = {
+  children: '',
   className: 'Button_unobtrusive',
   color: 'red',
   type: 'button',
