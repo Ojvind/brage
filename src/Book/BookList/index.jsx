@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FetchMore from '../../FetchMore';
 import BookListItem from '../BookListItem';
 
@@ -42,7 +43,7 @@ const BookList = ({
           Read
         </div>
         <div className="book-list__createdAt">
-          created at
+          created aaaaaat
         </div>
       </div>
       {books.edges.map((book) => (
@@ -62,10 +63,23 @@ const BookList = ({
         updateQuery={updateQuery}
         fetchMore={fetchMore}
       >
-        Books
+        Boooooks
       </FetchMore>
     </div>
   </div>
 );
+
+BookList.propTypes = {
+  books: PropTypes.shape({
+    edges: PropTypes.shape([]),
+    pageInfo: PropTypes.PropTypes.shape({
+      hasNextPage: PropTypes.bool,
+      endCursor: PropTypes.string,
+    }),
+  }).isRequired,
+  match: PropTypes.shape({}).isRequired,
+  loading: PropTypes.bool.isRequired,
+  fetchMore: PropTypes.func.isRequired,
+};
 
 export default BookList;
