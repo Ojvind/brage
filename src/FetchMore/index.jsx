@@ -34,4 +34,8 @@ FetchMore.propTypes = {
   children: PropTypes.string,
 };
 
+FetchMore.defaultProps = {
+  children: ' ',
+};
+
 export default FetchMore;

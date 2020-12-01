@@ -40,6 +40,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  children: '',
   className: 'Button_unobtrusive',
   color: 'red',
   type: 'button',
