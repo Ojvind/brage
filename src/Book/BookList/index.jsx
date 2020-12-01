@@ -30,20 +30,17 @@ const BookList = ({
   <div>
     <div>
       <div className="book-list__headerrow">
-        <div className="book-list__id">
-          Id
-        </div>
         <div className="book-list__title">
           Title
         </div>
         <div className="book-list__yearPublished">
-          Published
+          Published (Year)
         </div>
         <div className="book-list__yearRead">
-          Read
+          Read (Year)
         </div>
         <div className="book-list__createdAt">
-          created aaaaaat
+          created at
         </div>
       </div>
       {books.edges.map((book) => (
@@ -71,7 +68,7 @@ const BookList = ({
 
 BookList.propTypes = {
   books: PropTypes.shape({
-    edges: PropTypes.shape([]),
+    edges: PropTypes.arrayOf(PropTypes.shape({})),
     pageInfo: PropTypes.PropTypes.shape({
       hasNextPage: PropTypes.bool,
       endCursor: PropTypes.string,

@@ -11,7 +11,7 @@ import CreateBook from '../../Book/CreateBook';
 import WriterListItemDetail from './WriterListItemDetail';
 
 const WriterListItemDetailContainer = (props) => {
-  const { match } = props;
+  const { match, location } = props;
   return (
     <div>
       <Query
@@ -43,6 +43,7 @@ const WriterListItemDetailContainer = (props) => {
                 <BookContainer
                   writerId={data.writer.id}
                   match={match}
+                  location={location}
                 />
                 <CreateBook writerId={data.writer.id} />
               </div>
@@ -58,11 +59,8 @@ const WriterListItemDetailContainer = (props) => {
 };
 
 WriterListItemDetailContainer.propTypes = {
-  match: PropTypes.shape({ params: { id: PropTypes.string } }),
-};
-
-WriterListItemDetailContainer.defaultProps = {
-  match: {},
+  match: PropTypes.shape({ params: { id: PropTypes.string } }).isRequired,
+  location: PropTypes.shape({}).isRequired,
 };
 
 export default WriterListItemDetailContainer;
