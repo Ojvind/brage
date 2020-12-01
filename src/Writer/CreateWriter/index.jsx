@@ -37,7 +37,7 @@ function CreateWriter() {
             const button = (
               <Button
                 className="create-writer__button"
-                onKlick={createWriter}
+                onClick={createWriter}
                 color="black"
               >
                 Create Writer för faaaan
