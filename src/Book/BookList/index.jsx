@@ -26,6 +26,7 @@ const BookList = ({
   books,
   loading,
   fetchMore,
+  writerId,
 }) => (
   <div>
     <div>
@@ -48,6 +49,7 @@ const BookList = ({
           match={match}
           book={book}
           key={book.id}
+          writerId={writerId}
         />
       ))}
 

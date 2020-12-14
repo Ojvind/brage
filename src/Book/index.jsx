@@ -34,6 +34,7 @@ const BookContainer = ({ match, location, writerId }) => (
             location={location}
             books={data.books}
             loading={loading}
+            writerId={writerId}
             fetchMore={fetchMore}
           />
         </div>

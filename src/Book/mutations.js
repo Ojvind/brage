@@ -21,6 +21,16 @@ export const CREATE_BOOK = gql`
   }
 `;
 
+export const DELETE_BOOK = gql`
+  mutation (
+    $bookId: ID!
+  ) {
+    deleteBook(
+      id: $bookId
+    )
+  } 
+`;
+
 export const UPDATE_BOOK = gql`
   mutation (
     $id: ID!,
