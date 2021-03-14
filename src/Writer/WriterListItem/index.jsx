@@ -3,7 +3,8 @@ import { Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Button from '../../Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { DELETE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 import ErrorMessage from '../../Error';
@@ -20,12 +21,12 @@ const deleteWriterMutation = (writerId) => (
   >
   {(deleteWriter, { data, loading, error }) => {
     const button = (
-      <Button
-        className="delete-book__button"
+      <IconButton 
+        aria-label="delete"
         onClick={deleteWriter}
       >
-        {writerId}
-      </Button>
+        <DeleteIcon fontSize="small" />
+      </IconButton>
     )
 
     if (error) {
