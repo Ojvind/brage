@@ -20,14 +20,16 @@ const deleteBookMutation = (bookId, writerId) => (
     ]}
   >
   {(deleteBook, { data, loading, error }) => {
+
     const button = (
       <Button
-        className="RepositoryItem-title-action"
+        className="delete-book__button"
         onClick={deleteBook}
       >
         {bookId}
       </Button>
     )
+
     if (error) {
       return (
         <div>
@@ -37,7 +39,7 @@ const deleteBookMutation = (bookId, writerId) => (
       );
     }
     return (
-      <div className="create-book__button">
+      <div>
         {button}
       </div>
     );

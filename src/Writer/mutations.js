@@ -21,3 +21,14 @@ mutation ($id: ID!, $name: String!, $surname: String!, $homepage: String ) {
     }
   }
 `;
+
+export const DELETE_WRITER = gql`
+  mutation (
+    $id: ID!
+  ) {
+    deleteWriter (
+      id: $id
+    ) 
+  }
+`;
+

@@ -1,6 +1,50 @@
 import React from 'react';
+import { Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import Button from '../../Button';
+import { DELETE_WRITER } from '../mutations';
+import { GET_WRITERS } from '../queries';
+import ErrorMessage from '../../Error';
+
+const deleteWriterMutation = (writerId) => (
+  <Mutation
+    mutation={DELETE_WRITER}
+    variables={{ id: writerId }}
+    refetchQueries={[
+      {
+        query: GET_WRITERS,
+      },
+    ]}
+  >
+  {(deleteWriter, { data, loading, error }) => {
+    const button = (
+      <Button
+        className="delete-book__button"
+        onClick={deleteWriter}
+      >
+        {writerId}
+      </Button>
+    )
+
+    if (error) {
+      return (
+        <div>
+          <ErrorMessage error={error} />
+          { button }
+        </div>
+      );
+    }
+    return (
+      <div>
+        {button}
+      </div>
+    );
+
+  }}
+  </Mutation>
+);
 
 const WriterListItem = ({ writer, match }) => (
   <div className="writer-list__listrow" key={writer.id}>
@@ -12,6 +56,9 @@ const WriterListItem = ({ writer, match }) => (
     </span>
     <span className="writer-list__homepage">
       <a href={writer.homepage} target="_blank" rel="noopener noreferrer">{writer.homepage}</a>
+    </span>
+    <span>
+      {deleteWriterMutation(writer.id)}
     </span>
   </div>
 );
