@@ -1,52 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-import Button from '../../Button';
 import { DELETE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 import ErrorMessage from '../../Error';
+import ConfirmDialog from '../../Shared/ConfirmDialog';
 
-const deleteBookMutation = (bookId, writerId) => (
-  <Mutation
-    mutation={DELETE_BOOK}
-    variables={{ bookId }}
-    refetchQueries={[
-      {
-        query: GET_BOOKS,
-        variables: { writerId },
-      },
-    ]}
-  >
-  {(deleteBook, { data, loading, error }) => {
+function DeleteBookMutation(bookId, writerId) {
+  const [open, setConfirmOpen] = useState(false);
 
-    const button = (
-      <Button
-        className="delete-book__button"
-        onClick={deleteBook}
-      >
-        {bookId}
-      </Button>
-    )
+  return (
+    <Mutation
+      mutation={DELETE_BOOK}
+      variables={{ bookId }}
+      refetchQueries={[
+        {
+          query: GET_BOOKS,
+          variables: { writerId },
+        },
+      ]}
+    >
+    {(deleteBook, { data, loading, error }) => {
+      const button = (
+        <div>
+          <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
+            <DeleteIcon />
+          </IconButton>
+          <ConfirmDialog
+            title="Delete book?"
+            open={open}
+            setOpen={setConfirmOpen}
+            onConfirm={deleteBook}
+          >
+            Are you sure you want to delete this book?
+          </ConfirmDialog>
+        </div>
+      )
 
-    if (error) {
+      if (error) {
+        return (
+          <div>
+            <ErrorMessage error={error} />
+            { button }
+          </div>
+        );
+      }
       return (
         <div>
-          <ErrorMessage error={error} />
-          { button }
+          {button}
         </div>
       );
-    }
-    return (
-      <div>
-        {button}
-      </div>
-    );
 
-  }}
-  </Mutation>
-);
+    }}
+    </Mutation>
+  );
+} 
 
 const BookListItem = ({ book, writerId }) => (
   <div className="book-list__listrow" key={book.id}>
@@ -68,7 +80,7 @@ const BookListItem = ({ book, writerId }) => (
       {book.createdAt}
     </span>
     <span>
-      {deleteBookMutation(book.id, writerId)}
+      {DeleteBookMutation(book.id, writerId)}
     </span>
   </div>
 );
