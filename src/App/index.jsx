@@ -16,7 +16,7 @@ const App = () => (
       <div className="App-main">
         <Switch>
           <Route exact path="/writers" component={Writer} />
-          <Route path="/writers/:id/:name/:surname" component={WriterListItemDetailContainer} />
+          <Route path="/:id/:name/:surname" component={WriterListItemDetailContainer} />
           <Route path="/books/:id/:title" component={BookListItemDetail} />
         </Switch>
       </div>

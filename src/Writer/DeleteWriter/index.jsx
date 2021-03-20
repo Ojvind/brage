@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import IconButton from '@material-ui/core/IconButton';
@@ -10,14 +9,13 @@ import { GET_WRITERS } from '../queries';
 import ErrorMessage from '../../Error';
 import ConfirmDialog from '../../Shared/ConfirmDialog';
 
-
-function DeleteWriterMutation(writerId) {
+const DeleteWriterMutation = (props) => {
   const [open, setConfirmOpen] = useState(false);
 
   return (  
     <Mutation
       mutation={DELETE_WRITER}
-      variables={{ id: writerId }}
+      variables={{ id: props.id }}
       refetchQueries={[
         {
           query: GET_WRITERS,
@@ -61,33 +59,8 @@ function DeleteWriterMutation(writerId) {
   );   
 }
 
-const WriterListItem = ({ writer, match }) => (
-  <div className="writer-list__listrow" key={writer.id}>
-    <span className="writer-list__name">
-      <Link to={`${match.url}/${writer.id}/${writer.name}/${writer.surname}`}>{writer.name}</Link>
-    </span>
-    <span className="writer-list__surname">
-      <Link to={`${match.url}/${writer.id}/${writer.name}/${writer.surname}`}>{writer.surname}</Link>
-    </span>
-    <span className="writer-list__homepage">
-      <a href={writer.homepage} target="_blank" rel="noopener noreferrer">{writer.homepage}</a>
-    </span>
-    <span>
-      {DeleteWriterMutation(writer.id)}
-    </span>
-  </div>
-);
-
-WriterListItem.propTypes = {
-  writer: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    surname: PropTypes.string,
-    homepage: PropTypes.string,
-  }).isRequired,
-  match: PropTypes.shape({
-    url: PropTypes.string,
-  }).isRequired,
+DeleteWriterMutation.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
-export default WriterListItem;
+export default DeleteWriterMutation;
