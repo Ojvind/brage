@@ -1,7 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FetchMore from '../../FetchMore';
-import BookListItem from '../BookListItem';
+import { DataGrid } from '@material-ui/data-grid';
+
+import DeleteBookMutation from '../DeleteBook';
+
+const columns = [
+  { 
+    field: 'id', 
+    headerName: 'ID', 
+    width: 50,
+  },
+  { field: 'title', headerName: 'Title', width: 250 },
+  { field: 'yearPublished', headerName: 'Published (year)', width: 130 },
+  { field: 'yearRead', headerName: 'Read (year)', width: 130 },
+  { 
+    field: 'delete',
+    headerName: ' ', 
+    width: 190,
+    renderCell: (params) => (
+      <DeleteBookMutation
+        bookId={`${params.getValue('id')}`}
+        writerId={`${params.getValue('writer').id}`}
+      />
+    ),
+  },
+];
 
 const updateQuery = (previousResult, { fetchMoreResult }) => {
   if (!fetchMoreResult) {
@@ -28,43 +52,19 @@ const BookList = ({
   fetchMore,
   writerId,
 }) => (
-  <div>
-    <div>
-      <div className="book-list__headerrow">
-        <div className="book-list__title">
-          Title
-        </div>
-        <div className="book-list__yearPublished">
-          Published (Year)
-        </div>
-        <div className="book-list__yearRead">
-          Read (Year)
-        </div>
-        <div className="book-list__createdAt">
-          created at
-        </div>
-      </div>
-      {books.edges.map((book) => (
-        <BookListItem
-          match={match}
-          book={book}
-          key={book.id}
-          writerId={writerId}
-        />
-      ))}
-
-      <FetchMore
-        loading={loading}
-        hasNextPage={books.pageInfo.hasNextPage}
-        variables={{
-          cursor: books.pageInfo.endCursor,
-        }}
-        updateQuery={updateQuery}
-        fetchMore={fetchMore}
-      >
-        Boooooks
-      </FetchMore>
-    </div>
+  <div>    
+    <DataGrid className="book-list__datagrid" rows={books.edges} columns={columns} pageSize={10} checkboxSelection />
+    <FetchMore
+      loading={loading}
+      hasNextPage={books.pageInfo.hasNextPage}
+      variables={{
+        cursor: books.pageInfo.endCursor,
+      }}
+      updateQuery={updateQuery}
+      fetchMore={fetchMore}
+    >
+      Boooooks
+    </FetchMore>
   </div>
 );
 

@@ -4,38 +4,38 @@ import PropTypes from 'prop-types';
 
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { DELETE_WRITER } from '../mutations';
-import { GET_WRITERS } from '../queries';
+import { DELETE_BOOK } from '../mutations';
+import { GET_BOOKS } from '../queries';
 import ErrorMessage from '../../Error';
 import ConfirmDialog from '../../Shared/ConfirmDialog';
 
-const DeleteWriterMutation = ({ writerId }) => {
+const DeleteBookMutation = ({ bookId, writerId }) => {
   const [open, setConfirmOpen] = useState(false);
 
-  return (  
+  return (
     <Mutation
-      mutation={DELETE_WRITER}
-      variables={{ id: writerId }}
+      mutation={DELETE_BOOK}
+      variables={{ bookId }}
       refetchQueries={[
         {
-          query: GET_WRITERS,
+          query: GET_BOOKS,
+          variables: { writerId },
         },
       ]}
     >
-    {(deleteWriter, { data, loading, error }) => {
+    {(deleteBook, { data, loading, error }) => {
       const button = (
         <div>
           <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
             <DeleteIcon />
           </IconButton>
           <ConfirmDialog
-            title="Delete Post?"
+            title="Delete book?"
             open={open}
             setOpen={setConfirmOpen}
-            onConfirm={deleteWriter}
+            onConfirm={deleteBook}
           >
-            Are you sure you want to delete this writer?
-            (it will also delete all his/her books...)
+            Are you sure you want to delete this book?
           </ConfirmDialog>
         </div>
       )
@@ -53,14 +53,15 @@ const DeleteWriterMutation = ({ writerId }) => {
           {button}
         </div>
       );
-  
+
     }}
     </Mutation>
-  );   
+  );
 }
 
-DeleteWriterMutation.propTypes = {
-  id: PropTypes.string.isRequired,
+DeleteBookMutation.propTypes = {
+  bookId: PropTypes.string.isRequired,
+  writerId: PropTypes.string.isRequired,
 };
 
-export default DeleteWriterMutation;
+export default DeleteBookMutation;

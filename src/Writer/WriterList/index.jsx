@@ -10,7 +10,7 @@ const columns = [
   { 
     field: 'id', 
     headerName: 'ID', 
-    width: 250,
+    width: 50,
     renderCell: (params) => (
       <Link to={`/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}>{params.value}</Link>
     ), 
@@ -44,7 +44,7 @@ const columns = [
     width: 190,
     renderCell: (params) => (
       <DeleteWriterMutation
-        id={`${params.getValue('id')}`}
+        writerId={`${params.getValue('id')}`}
       />
     ),
   },
@@ -72,7 +72,7 @@ const WriterList = ({
   match, writers, loading, fetchMore,
 }) => (
   <div>
-    <DataGrid className="datagrid" rows={writers.edges} columns={columns} pageSize={15} checkboxSelection />
+    <DataGrid className="writer-list__datagrid" rows={writers.edges} columns={columns} pageSize={15} checkboxSelection />
     <div>
       <FetchMore
         loading={loading}

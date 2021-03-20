@@ -9,6 +9,9 @@ query($writerId: ID, $cursor: String) {
         yearPublished
         yearRead
         createdAt
+        writer {
+          id
+        }
       }
       pageInfo {
         hasNextPage

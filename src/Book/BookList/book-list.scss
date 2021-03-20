@@ -1,8 +1,5 @@
 .book-list {
-  &__headerrow {
-    display: flex;
-    background-color: darksalmon;
-    margin-top: 1em;
-    padding: 0.2em;
+  &__datagrid {
+    min-height: 20em;
   }  
 }
