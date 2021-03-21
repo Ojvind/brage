@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 import Writer from '../Writer';
 import WriterListItemDetailContainer from '../Writer/WriterListItemDetail';
-import BookListItemDetail from '../Book/BookListItemDetail';
+import BookListItemDetailContainer from '../Book/BookListItemDetail';
 import './style.css';
 
 const App = () => (
@@ -16,8 +16,8 @@ const App = () => (
       <div className="App-main">
         <Switch>
           <Route exact path="/writers" component={Writer} />
-          <Route path="/:id/:name/:surname" component={WriterListItemDetailContainer} />
-          <Route path="/books/:id/:title" component={BookListItemDetail} />
+          <Route path="/writer/:id/:name/:surname" component={WriterListItemDetailContainer} />
+          <Route path="/book/:id/:title" component={BookListItemDetailContainer} />
         </Switch>
       </div>
       <Footer />

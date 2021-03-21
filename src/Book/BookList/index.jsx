@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FetchMore from '../../FetchMore';
 import { DataGrid } from '@material-ui/data-grid';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteBookMutation from '../DeleteBook';
 
@@ -9,7 +11,16 @@ const columns = [
   { 
     field: 'id', 
     headerName: 'ID', 
-    width: 50,
+    width: 70,
+    renderCell: (params) => (
+      <Tooltip title={params.value} placement="top-start">
+        <Link 
+          to={`/book/${params.getValue('id')}/${params.getValue('title')}`}
+        >
+          {params.value.substring(0, 3)}...
+        </Link>
+      </Tooltip>
+    ), 
   },
   { field: 'title', headerName: 'Title', width: 250 },
   { field: 'yearPublished', headerName: 'Published (year)', width: 130 },

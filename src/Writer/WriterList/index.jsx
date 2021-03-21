@@ -12,7 +12,7 @@ const columns = [
     headerName: 'ID', 
     width: 50,
     renderCell: (params) => (
-      <Link to={`/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}>{params.value}</Link>
+      <Link to={`/writer/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}>{params.value}</Link>
     ), 
   },
   { field: 'name', headerName: 'First name', width: 130 },
