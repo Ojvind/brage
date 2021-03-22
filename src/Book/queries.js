@@ -6,6 +6,7 @@ query($writerId: ID, $cursor: String) {
       edges {
         id
         title
+        url
         yearPublished
         yearRead
         createdAt
@@ -26,6 +27,7 @@ export const GET_BOOK = gql`
     book(id: $id) {
       id
       title
+      url
       yearPublished
       yearRead
       createdAt

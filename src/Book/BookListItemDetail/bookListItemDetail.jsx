@@ -23,8 +23,9 @@ function BookListItemDetail(props) {
 
   const [edit, toggleEdit] = useState(false);
   const [title, onTitleChange] = useState(book.title);
-  const [yearRead, onYearReadChange] = useState(book.yearRead);
+  const [url, onUrlChange] = useState(book.title);
   const [yearPublished, onYearPublishedChange] = useState(book.yearPublished);
+  const [yearRead, onYearReadChange] = useState(book.yearRead);
 
   const editIcon = <FontAwesomeIcon icon={faEdit} />;
 
@@ -34,19 +35,24 @@ function BookListItemDetail(props) {
         <h4>Book:</h4>
         <Label>{book.id}</Label>
         {
-        (!edit)
-          ? <Label>{title}</Label>
-          : <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
+          (!edit)
+            ? <Label>{title}</Label>
+            : <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
         }
         {
           (!edit)
-            ? <Label>{yearRead}</Label>
-            : <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
+            ? <Label>{url}</Label>
+            : <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
         }
         {
           (!edit)
             ? <Label>{yearPublished}</Label>
             : <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
+        }
+        {
+          (!edit)
+            ? <Label>{yearRead}</Label>
+            : <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
         }
         {
           (!edit)

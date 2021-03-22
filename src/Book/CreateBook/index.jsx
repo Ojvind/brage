@@ -13,6 +13,7 @@ const CreateBook = (props) => {
   const { writerId } = props;
 
   const [title, onTitleChange] = useState('');
+  const [url, onUrlChange] = useState('');
   const [yearPublished, onYearPublishedChange] = useState('');
   const [yearRead, onReadChange] = useState('');
 
@@ -23,6 +24,9 @@ const CreateBook = (props) => {
           <Input onChange={(e) => onTitleChange(e.target.value)} id="title" inputLabel="Title" />
         </div>
         <div className="create-book__input">
+          <Input onChange={(e) => onUrlChange(e.target.value)} id="url" inputLabel="Url" />
+        </div>
+        <div className="create-book__input">
           <Input onChange={(e) => onYearPublishedChange(e.target.value)} id="yearpublished" inputLabel="YearPublished" />
         </div>
         <div className="create-book__input">
@@ -31,7 +35,7 @@ const CreateBook = (props) => {
         <Mutation
           mutation={CREATE_BOOK}
           variables={{
-            title, yearRead, writerId, yearPublished,
+            writerId, title, url, yearPublished, yearRead
           }}
           refetchQueries={[
             {

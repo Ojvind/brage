@@ -72,7 +72,13 @@ const WriterList = ({
   match, writers, loading, fetchMore,
 }) => (
   <div>
-    <DataGrid className="writer-list__datagrid" rows={writers.edges} columns={columns} pageSize={15} checkboxSelection />
+    <DataGrid 
+      className="writer-list__datagrid" 
+      rows={writers.edges} 
+      columns={columns} 
+      pageSize={15}
+      rowHeight={35}
+      checkboxSelection />
     <div>
       <FetchMore
         loading={loading}

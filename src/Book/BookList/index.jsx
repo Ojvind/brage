@@ -3,9 +3,21 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FetchMore from '../../FetchMore';
 import { DataGrid } from '@material-ui/data-grid';
+import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 import DeleteBookMutation from '../DeleteBook';
+
+const HtmlTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 250,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+  },
+}))(Tooltip);
 
 const columns = [
   { 
@@ -13,7 +25,11 @@ const columns = [
     headerName: 'ID', 
     width: 70,
     renderCell: (params) => (
-      <Tooltip title={params.value} placement="top-start">
+      <Tooltip 
+        title={params.value} 
+        placement="top"
+        arrow
+      >
         <Link 
           to={`/book/${params.getValue('id')}/${params.getValue('title')}`}
         >
@@ -23,6 +39,31 @@ const columns = [
     ), 
   },
   { field: 'title', headerName: 'Title', width: 250 },
+  { 
+    field: 'url', 
+    headerName: 'url', 
+    width: 250,
+    renderCell: (params) => (
+      <HtmlTooltip
+        title={
+          <React.Fragment>
+            <Typography color="inherit">{params.value}</Typography>
+            <em>{"opens in a new"}</em> <b>{'tab...'}</b> <u>{'amazing content'}</u>.{' '}
+            {"It's very engaging. Right?"}
+          </React.Fragment>
+        } 
+        placement="top"
+        arrow
+      >
+        <a
+          target="_new"
+          href={params.value}
+        >
+          {params.value}
+        </a>
+      </HtmlTooltip>
+    ), 
+  },
   { field: 'yearPublished', headerName: 'Published (year)', width: 130 },
   { field: 'yearRead', headerName: 'Read (year)', width: 130 },
   { 
@@ -61,10 +102,15 @@ const BookList = ({
   books,
   loading,
   fetchMore,
-  writerId,
 }) => (
   <div>    
-    <DataGrid className="book-list__datagrid" rows={books.edges} columns={columns} pageSize={10} checkboxSelection />
+    <DataGrid 
+      className="book-list__datagrid"
+      rowHeight={35} 
+      rows={books.edges} 
+      columns={columns} 
+      pageSize={10} 
+      checkboxSelection />
     <FetchMore
       loading={loading}
       hasNextPage={books.pageInfo.hasNextPage}

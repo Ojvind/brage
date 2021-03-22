@@ -11,15 +11,16 @@ type Query {
 }
 
 type Mutation {
-  createBook(title: String!, yearRead: String!, writerId: ID!, yearPublished: String): Book!
+  createBook(writerId: ID!, title: String!, url: String, yearPublished: String, yearRead: String!): Book!
 }
 
 type Book {
+  writer: Writer!
   id: ID!
   title: String!
+  url: String
   yearPublished: String
   yearRead: String!
-  writer: Writer!
 }
 
 type Writer {
@@ -41,6 +42,7 @@ const mocks = {
   Mutation: () => ({
     id: '999-555',
     title: 'what',
+    url: 'oj.org',
     yearPublished: 'ever',
     yearRead: '19 hundra',
   }),
