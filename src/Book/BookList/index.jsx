@@ -25,7 +25,7 @@ const columns = [
     headerName: 'ID', 
     width: 70,
     renderCell: (params) => (
-      <Tooltip 
+      <Tooltip
         title={params.value} 
         placement="top"
         arrow

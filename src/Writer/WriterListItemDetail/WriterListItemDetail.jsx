@@ -9,7 +9,7 @@ import { GET_WRITER } from '../queries';
 import ErrorMessage from '../../Error';
 import Button from '../../Button';
 import Input from '../../Input';
-import Label from '../../Label';
+import Label from '../../Shared/Label';
 
 function toggleChange(updateWriter, toggleEdit, edit) {
   updateWriter();

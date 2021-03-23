@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -13,13 +14,23 @@ const App = () => (
   <Router>
     <div className="App">
       <Navigation />
-      <div className="App-main">
-        <Switch>
-          <Route exact path="/writers" component={Writer} />
-          <Route path="/writer/:id/:name/:surname" component={WriterListItemDetailContainer} />
-          <Route path="/book/:id/:title" component={BookListItemDetailContainer} />
-        </Switch>
-      </div>
+{/* 
+'lg' -> default
+| 'md'
+| 'sm'
+| 'xl'
+| 'xs'
+| false 
+*/}
+      <Container maxWidth="lg">
+        <div className="App-main">
+          <Switch>
+            <Route exact path="/writers" component={Writer} />
+            <Route path="/writer/:id/:name/:surname" component={WriterListItemDetailContainer} />
+            <Route path="/book/:id/:title" component={BookListItemDetailContainer} />
+          </Switch>
+        </div>
+      </Container>
       <Footer />
     </div>
   </Router>

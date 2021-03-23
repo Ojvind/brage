@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import FetchMore from '../../FetchMore';
 import DeleteWriterMutation from '../DeleteWriter';
@@ -12,17 +13,28 @@ const columns = [
     headerName: 'ID', 
     width: 50,
     renderCell: (params) => (
-      <Link to={`/writer/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}>{params.value}</Link>
+      <Tooltip 
+        title={params.value} 
+        placement="top"
+        arrow
+      >
+        <Link 
+          to={`/writer/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}
+        >
+          {params.value.substring(0, 3)}...
+        </Link>
+      </Tooltip>
     ), 
   },
   { field: 'name', headerName: 'First name', width: 130 },
   { field: 'surname', headerName: 'Last name', width: 130 },
   { 
     field: 'homepage', 
-    headerName: 'Heeeempage', 
+    headerName: 'Homepage', 
     width: 190,
     renderCell: (params) => (
-      <a 
+      <a
+        target="_new"
         href={params.value}
       >
         {params.value}

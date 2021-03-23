@@ -11,7 +11,7 @@ import { UPDATE_BOOK } from '../mutations';
 import Button from '../../Button';
 import Input from '../../Input';
 import ErrorMessage from '../../Error';
-import Label from '../../Label';
+import Label from '../../Shared/Label';
 
 function toggleChange(updateBook, toggleEdit, edit) {
   updateBook();
@@ -23,7 +23,7 @@ function BookListItemDetail(props) {
 
   const [edit, toggleEdit] = useState(false);
   const [title, onTitleChange] = useState(book.title);
-  const [url, onUrlChange] = useState(book.title);
+  const [url, onUrlChange] = useState(book.url);
   const [yearPublished, onYearPublishedChange] = useState(book.yearPublished);
   const [yearRead, onYearReadChange] = useState(book.yearRead);
 
@@ -32,26 +32,30 @@ function BookListItemDetail(props) {
   return (
     <div className="App-content_small-header">
       <div>
-        <h4>Book:</h4>
-        <Label>{book.id}</Label>
+          <Label variant="h2">Book</Label>
         {
           (!edit)
-            ? <Label>{title}</Label>
+            ? <Label variant="h4">{title}</Label>
             : <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
         }
         {
           (!edit)
-            ? <Label>{url}</Label>
+            ? <Label 
+                variant="h4" 
+                isLink
+              >
+                {url}
+              </Label>
             : <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
         }
         {
           (!edit)
-            ? <Label>{yearPublished}</Label>
+            ? <Label variant="h4">{yearPublished}</Label>
             : <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
         }
         {
           (!edit)
-            ? <Label>{yearRead}</Label>
+            ? <Label variant="h4">{yearRead}</Label>
             : <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
         }
         {
