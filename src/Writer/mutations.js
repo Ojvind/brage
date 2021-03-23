@@ -31,4 +31,3 @@ export const DELETE_WRITER = gql`
     ) 
   }
 `;
-

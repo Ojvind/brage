@@ -9,7 +9,7 @@ const Input = ({
   valid,
   shouldCustomValidate,
   customValid,
-  ...rest
+  ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => {
   const inputId = id || `input--${name || ''}--${inputLabel.replace(/\s/, '-')}`;
   const localValid = shouldCustomValidate ? customValid : valid;
@@ -34,7 +34,7 @@ const Input = ({
               id={inputId}
               name={name}
               className="c-field__input"
-              {...rest}
+              {...rest} // eslint-disable-line react/jsx-props-no-spreading
             />
             {validated && (
               <div className={`

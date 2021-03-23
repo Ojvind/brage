@@ -5,13 +5,13 @@ const Button = ({
   children,
   className,
   color = 'red',
-  ...props
+  ...props // eslint-disable-line react/jsx-props-no-spreading
 }) => (
   <div>
     <button
       className={`${className} Button Button_${color}`}
       type="button"
-      {...props}
+      {...props} // eslint-disable-line react/jsx-props-no-spreading
     >
       {children}
     </button>
@@ -26,7 +26,7 @@ const ButtonUnobtrusive = ({
   <button
     className={`${className} Button_unobtrusive`}
     type="button"
-    {...props}
+    {...props} // eslint-disable-line react/jsx-props-no-spreading
   >
     {children}
   </button>

@@ -35,7 +35,7 @@ const CreateBook = (props) => {
         <Mutation
           mutation={CREATE_BOOK}
           variables={{
-            writerId, title, url, yearPublished, yearRead
+            writerId, title, url, yearPublished, yearRead,
           }}
           refetchQueries={[
             {

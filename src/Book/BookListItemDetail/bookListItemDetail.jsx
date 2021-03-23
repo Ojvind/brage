@@ -32,7 +32,7 @@ function BookListItemDetail(props) {
   return (
     <div className="App-content_small-header">
       <div>
-          <Label variant="h2">Book</Label>
+        <Label variant="h2">Book</Label>
         {
           (!edit)
             ? <Label variant="h4">{title}</Label>
@@ -40,12 +40,7 @@ function BookListItemDetail(props) {
         }
         {
           (!edit)
-            ? <Label 
-                variant="h4" 
-                isLink
-              >
-                {url}
-              </Label>
+            ? <Label variant="h4" isLink>{url}</Label>
             : <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
         }
         {
@@ -122,6 +117,7 @@ BookListItemDetail.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
+    url: PropTypes.string,
     yearRead: PropTypes.string,
     yearPublished: PropTypes.string,
 

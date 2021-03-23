@@ -8,29 +8,30 @@ import FetchMore from '../../FetchMore';
 import DeleteWriterMutation from '../DeleteWriter';
 
 const columns = [
-  { 
-    field: 'id', 
-    headerName: 'ID', 
+  {
+    field: 'id',
+    headerName: 'ID',
     width: 50,
     renderCell: (params) => (
-      <Tooltip 
-        title={params.value} 
+      <Tooltip
+        title={params.value}
         placement="top"
         arrow
       >
-        <Link 
+        <Link
           to={`/writer/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}
         >
-          {params.value.substring(0, 3)}...
+          {params.value.substring(0, 3)}
+          ...
         </Link>
       </Tooltip>
-    ), 
+    ),
   },
   { field: 'name', headerName: 'First name', width: 130 },
   { field: 'surname', headerName: 'Last name', width: 130 },
-  { 
-    field: 'homepage', 
-    headerName: 'Homepage', 
+  {
+    field: 'homepage',
+    headerName: 'Homepage',
     width: 190,
     renderCell: (params) => (
       <a
@@ -47,12 +48,11 @@ const columns = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 160,
-    valueGetter: (params) =>
-      `${params.getValue('name') || ''} ${params.getValue('surname') || ''}`,
+    valueGetter: (params) => `${params.getValue('name') || ''} ${params.getValue('surname') || ''}`,
   },
-  { 
+  {
     field: 'delete',
-    headerName: ' ', 
+    headerName: ' ',
     width: 190,
     renderCell: (params) => (
       <DeleteWriterMutation
@@ -81,16 +81,17 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 };
 
 const WriterList = ({
-  match, writers, loading, fetchMore,
+  writers, loading, fetchMore,
 }) => (
   <div>
-    <DataGrid 
-      className="writer-list__datagrid" 
-      rows={writers.edges} 
-      columns={columns} 
+    <DataGrid
+      className="writer-list__datagrid"
+      rows={writers.edges}
+      columns={columns}
       pageSize={15}
       rowHeight={35}
-      checkboxSelection />
+      checkboxSelection
+    />
     <div>
       <FetchMore
         loading={loading}
@@ -102,7 +103,7 @@ const WriterList = ({
         fetchMore={fetchMore}
       >
         Writer
-      </FetchMore> 
+      </FetchMore>
     </div>
   </div>
 );

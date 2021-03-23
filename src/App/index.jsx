@@ -14,14 +14,7 @@ const App = () => (
   <Router>
     <div className="App">
       <Navigation />
-{/* 
-'lg' -> default
-| 'md'
-| 'sm'
-| 'xl'
-| 'xs'
-| false 
-*/}
+      {/* 'lg' -> default | 'md' | 'sm' | 'xl' | 'xs' | false */}
       <Container maxWidth="lg">
         <div className="App-main">
           <Switch>

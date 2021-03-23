@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import FetchMore from '../../FetchMore';
 import { DataGrid } from '@material-ui/data-grid';
 import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import FetchMore from '../../FetchMore';
 import DeleteBookMutation from '../DeleteBook';
 
 const HtmlTooltip = withStyles((theme) => ({
@@ -20,38 +20,41 @@ const HtmlTooltip = withStyles((theme) => ({
 }))(Tooltip);
 
 const columns = [
-  { 
-    field: 'id', 
-    headerName: 'ID', 
+  {
+    field: 'id',
+    headerName: 'ID',
     width: 70,
     renderCell: (params) => (
       <Tooltip
-        title={params.value} 
+        title={params.value}
         placement="top"
         arrow
       >
-        <Link 
+        <Link
           to={`/book/${params.getValue('id')}/${params.getValue('title')}`}
         >
-          {params.value.substring(0, 3)}...
+          {params.value.substring(0, 3)}
+          ...
         </Link>
       </Tooltip>
-    ), 
+    ),
   },
   { field: 'title', headerName: 'Title', width: 250 },
-  { 
-    field: 'url', 
-    headerName: 'url', 
+  {
+    field: 'url',
+    headerName: 'url',
     width: 250,
     renderCell: (params) => (
       <HtmlTooltip
-        title={
-          <React.Fragment>
+        title={(
+          <>
             <Typography color="inherit">{params.value}</Typography>
-            <em>{"opens in a new"}</em> <b>{'tab...'}</b> <u>{'amazing content'}</u>.{' '}
-            {"It's very engaging. Right?"}
-          </React.Fragment>
-        } 
+            <em>opens in a new</em>
+            <b> tab...</b>
+            <u>amazing content. </u>
+            It&apos;s very engaging. Right?
+          </>
+        )}
         placement="top"
         arrow
       >
@@ -62,13 +65,13 @@ const columns = [
           {params.value}
         </a>
       </HtmlTooltip>
-    ), 
+    ),
   },
   { field: 'yearPublished', headerName: 'Published (year)', width: 130 },
   { field: 'yearRead', headerName: 'Read (year)', width: 130 },
-  { 
+  {
     field: 'delete',
-    headerName: ' ', 
+    headerName: ' ',
     width: 190,
     renderCell: (params) => (
       <DeleteBookMutation
@@ -98,19 +101,19 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 };
 
 const BookList = ({
-  match,
   books,
   loading,
   fetchMore,
 }) => (
-  <div>    
-    <DataGrid 
+  <div>
+    <DataGrid
       className="book-list__datagrid"
-      rowHeight={35} 
-      rows={books.edges} 
-      columns={columns} 
-      pageSize={10} 
-      checkboxSelection />
+      rowHeight={35}
+      rows={books.edges}
+      columns={columns}
+      pageSize={10}
+      checkboxSelection
+    />
     <FetchMore
       loading={loading}
       hasNextPage={books.pageInfo.hasNextPage}

@@ -5,8 +5,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import PropTypes from 'prop-types';
+
 const ConfirmDialog = (props) => {
-  const { title, children, open, setOpen, onConfirm } = props;
+  const {
+    title,
+    children,
+    open,
+    setOpen,
+    onConfirm,
+  } = props;
+
   return (
     <Dialog
       open={open}
@@ -36,6 +45,18 @@ const ConfirmDialog = (props) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+ConfirmDialog.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.shape({}).isRequired,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+};
+
+ConfirmDialog.defaultProps = {
+  title: '',
 };
 
 export default ConfirmDialog;

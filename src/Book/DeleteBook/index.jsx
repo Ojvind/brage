@@ -23,41 +23,40 @@ const DeleteBookMutation = ({ bookId, writerId }) => {
         },
       ]}
     >
-    {(deleteBook, { data, loading, error }) => {
-      const button = (
-        <div>
-          <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
-            <DeleteIcon />
-          </IconButton>
-          <ConfirmDialog
-            title="Delete book?"
-            open={open}
-            setOpen={setConfirmOpen}
-            onConfirm={deleteBook}
-          >
-            Are you sure you want to delete this book?
-          </ConfirmDialog>
-        </div>
-      )
-
-      if (error) {
-        return (
+      {(deleteBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
+        const button = (
           <div>
-            <ErrorMessage error={error} />
-            { button }
+            <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
+              <DeleteIcon />
+            </IconButton>
+            <ConfirmDialog
+              title="Delete book?"
+              open={open}
+              setOpen={setConfirmOpen}
+              onConfirm={deleteBook}
+            >
+              Are you sure you want to delete this book?
+            </ConfirmDialog>
           </div>
         );
-      }
-      return (
-        <div>
-          {button}
-        </div>
-      );
 
-    }}
+        if (error) {
+          return (
+            <div>
+              <ErrorMessage error={error} />
+              { button }
+            </div>
+          );
+        }
+        return (
+          <div>
+            {button}
+          </div>
+        );
+      }}
     </Mutation>
   );
-}
+};
 
 DeleteBookMutation.propTypes = {
   bookId: PropTypes.string.isRequired,

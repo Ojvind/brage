@@ -8,15 +8,15 @@ const Label = ({
   children,
 }) => (
   isLink ? (
-    <Typography 
-      variant={variant} 
+    <Typography
+      variant={variant}
       gutterBottom
     >
       <a href={children}>{children}</a>
     </Typography>
   ) : (
-    <Typography 
-      variant={variant} 
+    <Typography
+      variant={variant}
       gutterBottom
     >
       {children}
@@ -26,13 +26,13 @@ const Label = ({
 
 Label.propTypes = {
   variant: PropTypes.string,
-  link: PropTypes.bool,
+  isLink: PropTypes.bool,
   children: PropTypes.string.isRequired,
 };
 
 Label.defaultProps = {
   variant: 'h1',
-  link: false
+  isLink: false,
 };
 
 export default Label;
