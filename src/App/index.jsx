@@ -8,15 +8,14 @@ import Footer from './Footer';
 import Writer from '../Writer';
 import WriterListItemDetailContainer from '../Writer/WriterListItemDetail';
 import BookListItemDetailContainer from '../Book/BookListItemDetail';
-import './style.css';
 
 const App = () => (
   <Router>
-    <div className="App">
+    <div className="app">
       <Navigation />
       {/* 'lg' -> default | 'md' | 'sm' | 'xl' | 'xs' | false */}
-      <Container maxWidth="lg">
-        <div className="App-main">
+      <Container maxWidth="md">
+        <div className="app-main">
           <Switch>
             <Route exact path="/writers" component={Writer} />
             <Route path="/writer/:id/:name/:surname" component={WriterListItemDetailContainer} />

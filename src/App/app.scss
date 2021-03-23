@@ -1,0 +1,25 @@
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &-main {
+    flex: 1;
+  }
+
+  &-content_large-header,
+  &-content_small-header {
+    margin-top: 54px;
+    padding: 40px;
+  }
+
+  @media only screen and (max-device-width: 480px) {
+    &-content_large-header {
+      margin-top: 123px;
+    }
+    &-content_small-header {
+      margin-top: 68px;
+    }
+  }  
+}
+

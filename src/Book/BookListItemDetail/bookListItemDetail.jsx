@@ -30,7 +30,7 @@ function BookListItemDetail(props) {
   const editIcon = <FontAwesomeIcon icon={faEdit} />;
 
   return (
-    <div className="App-content_small-header">
+    <div className="app-content_small-header">
       <div>
         <Label variant="h2">Book</Label>
         {

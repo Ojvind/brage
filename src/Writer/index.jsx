@@ -28,7 +28,7 @@ const WriterContainer = ({ match }) => (
       }
 
       return (
-        <div className="App-content_small-header">
+        <div className="app-content_small-header">
           <div>
             <WriterList
               match={match}

@@ -35,7 +35,7 @@ const WriterListItemDetailContainer = (props) => {
           }
 
           return (
-            <div className="App-content_small-header">
+            <div className="app-content_small-header">
               <div>
                 <WriterListItemDetail
                   writer={data.writer}
