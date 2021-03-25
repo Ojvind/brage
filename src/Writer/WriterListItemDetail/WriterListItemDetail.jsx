@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import UpdateWriter from '../UpdateWriter';
 
-import Input from '../../Input';
+import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 
 function WriterListItemDetail(props) {

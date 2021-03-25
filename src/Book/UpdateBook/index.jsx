@@ -2,8 +2,8 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import SaveButton from '../../Button/SaveButton';
-import EditButton from '../../Button/EditButton';
+import SaveButton from '../../Shared/Button/SaveButton';
+import EditButton from '../../Shared/Button/EditButton';
 
 import { UPDATE_BOOK } from '../mutations';
 import { GET_BOOK } from '../queries';

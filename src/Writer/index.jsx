@@ -5,7 +5,7 @@ import CreateWriter from './CreateWriter';
 
 import { GET_WRITERS } from './queries';
 
-import Loading from '../Loading';
+import Loading from '../Shared/Loading';
 import ErrorMessage from '../Error';
 
 const WriterContainer = () => (

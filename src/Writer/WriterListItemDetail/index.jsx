@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { GET_WRITER } from '../queries';
-import Loading from '../../Loading';
+import Loading from '../../Shared/Loading';
 import ErrorMessage from '../../Error';
 import BookContainer from '../../Book';
 import CreateBook from '../../Book/CreateBook';

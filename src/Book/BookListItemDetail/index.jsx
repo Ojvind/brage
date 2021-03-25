@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { GET_BOOK } from '../queries';
 
-import Loading from '../../Loading';
+import Loading from '../../Shared/Loading';
 import ErrorMessage from '../../Error';
 import BookListItemDetail from './bookListItemDetail';
 

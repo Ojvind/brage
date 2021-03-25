@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import UpdateBook from '../UpdateBook';
 
-import Input from '../../Input';
+import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 
 function BookListItemDetail(props) {
