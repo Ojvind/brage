@@ -18,8 +18,7 @@ function WriterListItemDetail(props) {
     <div>
       <div className="writer-list-item-detail">
         <Label variant="h2">
-          {writer.name}
-          {` ${writer.surname}`}
+          {`${writer.name} ${writer.surname}`}
         </Label>
         {
           (!edit)
