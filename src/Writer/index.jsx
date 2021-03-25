@@ -1,6 +1,5 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import PropTypes from 'prop-types';
 import WriterList from './WriterList';
 import CreateWriter from './CreateWriter';
 
@@ -9,7 +8,7 @@ import { GET_WRITERS } from './queries';
 import Loading from '../Loading';
 import ErrorMessage from '../Error';
 
-const WriterContainer = ({ match }) => (
+const WriterContainer = () => (
   <Query
     query={GET_WRITERS}
     notifyOnNetworkStatusChange
@@ -31,7 +30,6 @@ const WriterContainer = ({ match }) => (
         <div className="app-content_small-header">
           <div>
             <WriterList
-              match={match}
               writers={data.writers}
               loading={loading}
               fetchMore={fetchMore}
@@ -45,13 +43,5 @@ const WriterContainer = ({ match }) => (
     }}
   </Query>
 );
-
-WriterContainer.propTypes = {
-  match: PropTypes.shape({}),
-};
-
-WriterContainer.defaultProps = {
-  match: {},
-};
 
 export default WriterContainer;

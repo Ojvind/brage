@@ -83,7 +83,7 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 const WriterList = ({
   writers, loading, fetchMore,
 }) => (
-  <div>
+  <div className="writer-list">
     <DataGrid
       className="writer-list__datagrid"
       rows={writers.edges}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Loading from '../Loading';
-import { ButtonUnobtrusive } from '../Button';
+import Button from '../Button';
 
 const FetchMore = ({
   loading, hasNextPage, variables, updateQuery, fetchMore, children,
@@ -12,14 +12,14 @@ const FetchMore = ({
       <Loading />
     ) : (
       hasNextPage && (
-      <ButtonUnobtrusive
+      <Button
         className="FetchMore-button"
         onClick={() => fetchMore({ variables, updateQuery })}
       >
         More
         {' '}
         {children}
-      </ButtonUnobtrusive>
+      </Button>
       )
     )}
   </div>

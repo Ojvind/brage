@@ -1,15 +1,10 @@
-.writer-list-item-detail {
+.book-list-item-detail {
   border-color: $default-border-color;
   border-width: $default-border-width;
   border-radius: $default-border-radius;
   border-style: solid;
   padding: 2em 4em;
-  margin-bottom: 1em;
-
-  &__label {
-    padding-left: 0.8em;
-  }
-
+  
   &__button {
     margin-top: 0.8em;
   }

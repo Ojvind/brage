@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
-import { GET_BOOK } from '../queries';
-import { UPDATE_BOOK } from '../mutations';
+import UpdateBook from '../UpdateBook';
 
-import Button from '../../Button';
 import Input from '../../Input';
-import ErrorMessage from '../../Error';
 import Label from '../../Shared/Label';
-
-function toggleChange(updateBook, toggleEdit, edit) {
-  updateBook();
-  toggleEdit(!edit);
-}
 
 function BookListItemDetail(props) {
   const { book } = props;
@@ -27,84 +16,38 @@ function BookListItemDetail(props) {
   const [yearPublished, onYearPublishedChange] = useState(book.yearPublished);
   const [yearRead, onYearReadChange] = useState(book.yearRead);
 
-  const editIcon = <FontAwesomeIcon icon={faEdit} />;
-
   return (
     <div className="app-content_small-header">
-      <div>
-        <Label variant="h2">Book</Label>
-        {
-          (!edit)
-            ? <Label variant="h4">{title}</Label>
-            : <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
-        }
-        {
-          (!edit)
-            ? <Label variant="h4" isLink>{url}</Label>
-            : <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
-        }
-        {
-          (!edit)
-            ? <Label variant="h4">{yearPublished}</Label>
-            : <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
-        }
-        {
-          (!edit)
-            ? <Label variant="h4">{yearRead}</Label>
-            : <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
-        }
+      <div className="book-list-item-detail">
+        <Label variant="h2">En bild...</Label>
         {
           (!edit)
             ? (
-              <button
-                type="button"
-                onClick={() => toggleChange(() => {}, toggleEdit, edit)}
-              >
-                {editIcon}
-              </button>
+              <div>
+                <Label variant="h4">{title}</Label>
+                <Label variant="h4" isLink>{url}</Label>
+                This book was published
+                <Label variant="caption">{yearPublished}</Label>
+                and I read it
+                <Label variant="caption">{yearRead}</Label>
+              </div>
             )
             : (
-              <Mutation
-                mutation={UPDATE_BOOK}
-                variables={{
-                  id: book.id,
-                  title,
-                  yearRead,
-                  yearPublished,
-                }}
-                refetchQueries={[
-                  {
-                    query: GET_BOOK,
-                    variables: {
-                      id: book.id,
-                    },
-                  },
-                ]}
-              >
-                {(updateBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-                  const button = (
-                    <Button
-                      className="create-book__button"
-                      onClick={() => toggleChange(updateBook, toggleEdit, edit)}
-                      color="black"
-                    >
-                      Updatera book för 17
-                    </Button>
-                  );
-                  if (error) {
-                    return (
-                      <div>
-                        <ErrorMessage error={error} />
-                        { button }
-                      </div>
-                    );
-                  }
-
-                  return button;
-                }}
-              </Mutation>
+              <div>
+                <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
+                <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
+                <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
+                <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
+              </div>
             )
         }
+        <div className="book-list-item-detail__button">
+          <UpdateBook
+            book={book}
+            edit={edit}
+            toggleEdit={toggleEdit}
+          />
+        </div>
       </div>
       <h5>
         <Link to="/writers">Back to list of Writers</Link>
@@ -120,7 +63,6 @@ BookListItemDetail.propTypes = {
     url: PropTypes.string,
     yearRead: PropTypes.string,
     yearPublished: PropTypes.string,
-
   }).isRequired,
 };
 

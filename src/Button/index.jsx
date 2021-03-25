@@ -1,56 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({
-  children,
-  className,
-  color = 'red',
-  ...props // eslint-disable-line react/jsx-props-no-spreading
-}) => (
-  <div>
-    <button
-      className={`${className} Button Button_${color}`}
-      type="button"
-      {...props} // eslint-disable-line react/jsx-props-no-spreading
-    >
-      {children}
-    </button>
-  </div>
-);
+import Button from '@material-ui/core/Button';
 
-const ButtonUnobtrusive = ({
+const BaseButton = ({
   children,
-  className,
-  ...props
+  onClick,
+  ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => (
-  <button
-    className={`${className} Button_unobtrusive`}
-    type="button"
-    {...props} // eslint-disable-line react/jsx-props-no-spreading
+  <Button
+    variant="contained"
+    color="primary"
+    onClick={onClick}
+    {...rest} // eslint-disable-line react/jsx-props-no-spreading
   >
     {children}
-  </button>
+  </Button>
 );
 
-const propTypes = {
-  children: PropTypes.string,
-  className: PropTypes.string,
-  color: PropTypes.string,
-  type: PropTypes.string,
+BaseButton.propTypes = {
+  children: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
-const defaultProps = {
-  children: '',
-  className: 'Button_unobtrusive',
-  color: 'red',
-  type: 'button',
-};
-
-ButtonUnobtrusive.propTypes = propTypes;
-ButtonUnobtrusive.defaultProps = defaultProps;
-
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
-
-export { ButtonUnobtrusive };
-export default Button;
+export default BaseButton;
