@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { CREATE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 
-import Input from '../../Input';
-import Button from '../../Button';
+import Input from '../../Shared/Input';
+import Button from '../../Shared/Button';
 import ErrorMessage from '../../Error';
 
 const CreateBook = (props) => {

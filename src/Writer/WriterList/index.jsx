@@ -120,7 +120,6 @@ WriterList.propTypes = {
       endCursor: PropTypes.string,
     }),
   }).isRequired,
-  match: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
   fetchMore: PropTypes.func.isRequired,
 };

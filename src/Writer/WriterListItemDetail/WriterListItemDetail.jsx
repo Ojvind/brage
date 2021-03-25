@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Mutation } from 'react-apollo';
 
-import UpdateWriter from '../UpdateWriter';
-
-import Input from '../../Input';
+import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
+import EditButton from '../../Shared/Button/EditButton';
+import SaveButton from '../../Shared/Button/SaveButton';
+
+import { UPDATE_WRITER } from '../mutations';
+import { GET_WRITER } from '../queries';
+import ErrorMessage from '../../Error';
 
 function WriterListItemDetail(props) {
   const { writer } = props;
@@ -18,14 +23,20 @@ function WriterListItemDetail(props) {
     <div>
       <div className="writer-list-item-detail">
         <Label variant="h2">
-          {writer.name}
-          {` ${writer.surname}`}
+          {`${writer.name} ${writer.surname}`}
         </Label>
         {
           (!edit)
             ? (
-              <div className="writer-list-item-detail__label">
-                <Label variant="body" isLink>{homepage}</Label>
+              <div>
+                <div className="writer-list-item-detail__label">
+                  <Label variant="body" isLink>{homepage}</Label>
+                </div>
+                <EditButton
+                  onClick={() => toggleEdit(!edit)}
+                >
+                  Edit
+                </EditButton>
               </div>
             )
             : (
@@ -33,22 +44,53 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
+                <Mutation
+                  mutation={UPDATE_WRITER}
+                  variables={{
+                    id: writer.id,
+                    name,
+                    surname,
+                    homepage,
+                  }}
+                  refetchQueries={[
+                    {
+                      query: GET_WRITER,
+                      variables: {
+                        id: writer.id,
+                      },
+                    },
+                  ]}
+                >
+                  {(updateWriter, { data, loading, error }) => { // eslint-disable-line no-unused-vars
+                    const saveButton = (
+                      <SaveButton
+                        onClick={() => {
+                          updateWriter()
+                          .then(() => {
+                            toggleEdit(!edit);
+                          })
+                          .catch(e => {
+                            throw e;
+                          })
+                        }}
+                      >
+                        Save
+                      </SaveButton>
+                    );
+                    if (error) {
+                      return (
+                        <div>
+                          <ErrorMessage error={error} />
+                          { saveButton }
+                        </div>
+                      );
+                    }
+                    return saveButton;
+                  }}
+                </Mutation>
               </div>
             )
         }
-
-        <div className="writer-list-item-detail__button">
-          <UpdateWriter
-            writer={{
-              id: writer.id,
-              name,
-              surname,
-              homepage,
-            }}
-            edit={edit}
-            toggleEdit={toggleEdit}
-          />
-        </div>
       </div>
     </div>
   );
