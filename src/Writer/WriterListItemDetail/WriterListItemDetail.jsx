@@ -61,17 +61,17 @@ function WriterListItemDetail(props) {
                     },
                   ]}
                 >
-                  {(updateWriter, { data, loading, error }) => { // eslint-disable-line no-unused-vars
+                  {(updateWriter, { error }) => {
                     const saveButton = (
                       <SaveButton
                         onClick={() => {
                           updateWriter()
-                          .then(() => {
-                            toggleEdit(!edit);
-                          })
-                          .catch(e => {
-                            throw e;
-                          })
+                            .then(() => {
+                              toggleEdit(!edit);
+                            })
+                            .catch((e) => {
+                              throw e;
+                            });
                         }}
                       >
                         Save

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -6,61 +7,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import FetchMore from '../../FetchMore';
 import DeleteWriterMutation from '../DeleteWriter';
-
-const columns = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    width: 50,
-    renderCell: (params) => (
-      <Tooltip
-        title={params.value}
-        placement="top"
-        arrow
-      >
-        <Link
-          to={`/writer/${params.getValue('id')}/${params.getValue('name')}/${params.getValue('surname')}`}
-        >
-          {params.value.substring(0, 3)}
-          ...
-        </Link>
-      </Tooltip>
-    ),
-  },
-  { field: 'name', headerName: 'First name', width: 130 },
-  { field: 'surname', headerName: 'Last name', width: 130 },
-  {
-    field: 'homepage',
-    headerName: 'Homepage',
-    width: 190,
-    renderCell: (params) => (
-      <a
-        target="_new"
-        href={params.value}
-      >
-        {params.value}
-      </a>
-    ),
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) => `${params.getValue('name') || ''} ${params.getValue('surname') || ''}`,
-  },
-  {
-    field: 'delete',
-    headerName: ' ',
-    width: 190,
-    renderCell: (params) => (
-      <DeleteWriterMutation
-        writerId={`${params.getValue('id')}`}
-      />
-    ),
-  },
-];
 
 const updateQuery = (previousResult, { fetchMoreResult }) => {
   if (!fetchMoreResult) {
@@ -80,6 +26,52 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
   };
 };
 
+const columns = [
+  {
+    field: 'whatever',
+    headerName: 'ID',
+    width: 150,
+    renderCell: (params) => (
+      <Tooltip
+        title={params.row.id}
+        placement="top"
+        arrow
+      >
+        <Link
+          to={`/writer/${params.row.id}/${params.row.name}/${params.row.surname}`}
+        >
+          {params.row.id.substring(0, 5)}
+          ...
+        </Link>
+      </Tooltip>
+    ),
+  },
+  {
+    field: 'fullName',
+    headerName: 'Full name',
+    description: 'This column has a value getter and is not sortable.',
+    sortable: false,
+    width: 160,
+    valueGetter: (params) => `${params.row.name || ''} ${params.row.surname || ''}`,
+  },
+  {
+    field: 'homepage',
+    headerName: 'Web',
+    width: 210,
+    editable: true,
+  },
+  {
+    field: 'delete',
+    headerName: ' ',
+    width: 190,
+    renderCell: (params) => (
+      <DeleteWriterMutation
+        writerId={`${params.row.idid}`}
+      />
+    ),
+  },
+];
+
 const WriterList = ({
   writers, loading, fetchMore,
 }) => (
@@ -88,9 +80,10 @@ const WriterList = ({
       className="writer-list__datagrid"
       rows={writers.edges}
       columns={columns}
-      pageSize={15}
-      rowHeight={35}
-      checkboxSelection
+      pageSize={5}
+      rowsPerPageOptions={[5]}
+      // checkboxSelection
+      disableSelectionOnClick
     />
     <div>
       <FetchMore

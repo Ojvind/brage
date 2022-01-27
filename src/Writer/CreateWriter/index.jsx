@@ -38,7 +38,6 @@ function CreateWriter() {
               <Button
                 className="create-writer__button"
                 onClick={createWriter}
-                color="black"
               >
                 Create Writer för faaaan
               </Button>

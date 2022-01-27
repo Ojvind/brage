@@ -49,9 +49,8 @@ const CreateBook = (props) => {
               <Button
                 className="create-book__button"
                 onClick={createbook}
-                color="black"
               >
-                Create Bok och lovla K
+                Create Bok för 17 gubbar!
               </Button>
             );
             if (error) {

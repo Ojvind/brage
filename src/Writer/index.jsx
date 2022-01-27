@@ -9,23 +9,17 @@ import Loading from '../Shared/Loading';
 import ErrorMessage from '../Error';
 
 const WriterContainer = () => (
-  <Query
-    query={GET_WRITERS}
-    notifyOnNetworkStatusChange
-  >
+
+  <Query query={GET_WRITERS} notifyOnNetworkStatusChange>
     {({
-      data, loading, error, fetchMore,
+      loading, error, data, fetchMore,
     }) => {
+      if (loading) {
+        return <Loading />;
+      }
       if (error) {
         return <ErrorMessage error={error} />;
       }
-
-      const { viewer } = data;
-
-      if (loading && !viewer) {
-        return <Loading />;
-      }
-
       return (
         <div className="app-content_small-header">
           <div>
