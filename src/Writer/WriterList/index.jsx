@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { DataGrid } from '@material-ui/data-grid';
-import Tooltip from '@material-ui/core/Tooltip';
+import { DataGrid } from '@mui/x-data-grid';
+import Tooltip from '@mui/material/Tooltip';
 
 import FetchMore from '../../FetchMore';
 import DeleteWriterMutation from '../DeleteWriter';
@@ -66,7 +66,7 @@ const columns = [
     width: 190,
     renderCell: (params) => (
       <DeleteWriterMutation
-        writerId={`${params.row.idid}`}
+        writerId={`${params.row.id}`}
       />
     ),
   },

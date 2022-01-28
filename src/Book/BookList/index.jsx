@@ -2,10 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { DataGrid } from '@material-ui/data-grid';
-import { withStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
+import { DataGrid } from '@mui/x-data-grid'
+import Tooltip from '@mui/material/Tooltip';
+
+import { withStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
 
 import FetchMore from '../../FetchMore';
 import DeleteBookMutation from '../DeleteBook';
