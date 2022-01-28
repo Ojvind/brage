@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditIcon from '@material-ui/icons/Edit';
+
+import EditIcon from '@mui/icons-material/Edit';
 
 import BaseButton from './index';
 
