@@ -18,8 +18,8 @@ const App = () => (
         <div className="app-main">
           <Routes>
             <Route exact path="/writers" element={<Writer />} />
-            <Route path="/writer/:id/:name/:surname" element={WriterListItemDetailContainer} />
-            {/* <Route path="/book/:id/:title" element={BookListItemDetailContainer} /> */}
+            <Route path="/writer/:id/:name/:surname" element={<WriterListItemDetailContainer />} />
+            {/* <Route path="/book/:id/:title" element={<BookListItemDetailContainer />} /> */}
           </Routes>
         </div>
       </Container>

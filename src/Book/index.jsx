@@ -8,7 +8,7 @@ import { GET_BOOKS } from './queries';
 import Loading from '../Shared/Loading';
 import ErrorMessage from '../Error';
 
-const BookContainer = ({ match, location, writerId }) => (
+const BookContainer = ({ writerId }) => (
   <Query
     query={GET_BOOKS}
     variables={{ writerId }}
@@ -21,17 +21,13 @@ const BookContainer = ({ match, location, writerId }) => (
         return <ErrorMessage error={error} />;
       }
 
-      const { viewer } = data;
-
-      if (loading && !viewer) {
+      if (loading) {
         return <Loading />;
       }
 
       return (
         <div>
           <BookList
-            match={match}
-            location={location}
             books={data.books}
             loading={loading}
             fetchMore={fetchMore}
@@ -43,8 +39,6 @@ const BookContainer = ({ match, location, writerId }) => (
 );
 
 BookContainer.propTypes = {
-  match: PropTypes.shape({}).isRequired,
-  location: PropTypes.shape({}).isRequired,
   writerId: PropTypes.string.isRequired,
 };
 

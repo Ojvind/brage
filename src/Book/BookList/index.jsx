@@ -11,12 +11,11 @@ import Typography from '@mui/material/Typography';
 import FetchMore from '../../FetchMore';
 import DeleteBookMutation from '../DeleteBook';
 
-const HtmlTooltip = withStyles((theme) => ({
+const HtmlTooltip = withStyles(() => ({
   tooltip: {
     backgroundColor: '#f5f5f9',
     color: 'rgba(0, 0, 0, 0.87)',
     maxWidth: 250,
-    fontSize: theme.typography.pxToRem(12),
     border: '1px solid #dadde9',
   },
 }))(Tooltip);
@@ -28,14 +27,14 @@ const columns = [
     width: 70,
     renderCell: (params) => (
       <Tooltip
-        title={params.value}
+        title={params.row.id}
         placement="top"
         arrow
       >
         <Link
-          to={`/book/${params.getValue('id')}/${params.getValue('title')}`}
+          to={`/book/${params.row.id}/${params.row.title}`}
         >
-          {params.value.substring(0, 3)}
+          {params.row.id.substring(0, 3)}
           ...
         </Link>
       </Tooltip>
@@ -77,8 +76,8 @@ const columns = [
     width: 190,
     renderCell: (params) => (
       <DeleteBookMutation
-        bookId={`${params.getValue('id')}`}
-        writerId={`${params.getValue('writer').id}`}
+        bookId={`${params.row.id}`}
+        writerId={`${params.row.writer.id}`}
       />
     ),
   },
@@ -138,7 +137,6 @@ BookList.propTypes = {
       endCursor: PropTypes.string,
     }),
   }).isRequired,
-  match: PropTypes.shape({}).isRequired,
   loading: PropTypes.bool.isRequired,
   fetchMore: PropTypes.func.isRequired,
 };
