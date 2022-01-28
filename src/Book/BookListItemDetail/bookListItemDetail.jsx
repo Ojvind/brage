@@ -39,7 +39,7 @@ function BookListItemDetail(props) {
                 </div>
                 <EditButton
                   onClick={() => toggleEdit(!edit)}
-                  >
+                >
                   Edit
                 </EditButton>
               </div>
@@ -75,12 +75,12 @@ function BookListItemDetail(props) {
                       <SaveButton
                         onClick={() => {
                           updateBook()
-                          .then(() => {
-                            toggleEdit(!edit);
-                          })
-                          .catch(e => {
-                            throw e;
-                          })
+                            .then(() => {
+                              toggleEdit(!edit);
+                            })
+                            .catch((e) => {
+                              throw e;
+                            });
                         }}
                       >
                         Saveeeee

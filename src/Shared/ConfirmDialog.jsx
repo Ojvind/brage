@@ -49,7 +49,7 @@ const ConfirmDialog = (props) => {
 
 ConfirmDialog.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.shape({}).isRequired,
+  children: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
