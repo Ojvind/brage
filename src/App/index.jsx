@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+import Container from '@mui/material/Container';
 
 import Navigation from './Navigation';
 import Footer from './Footer';

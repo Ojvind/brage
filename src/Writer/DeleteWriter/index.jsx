@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import { DELETE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 import ErrorMessage from '../../Error';
