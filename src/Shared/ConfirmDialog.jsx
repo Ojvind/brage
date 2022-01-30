@@ -29,7 +29,6 @@ const ConfirmDialog = (props) => {
         <Button
           variant="contained"
           onClick={() => setOpen(false)}
-          color="secondary"
         >
           No
         </Button>
@@ -39,7 +38,6 @@ const ConfirmDialog = (props) => {
             setOpen(false);
             onConfirm();
           }}
-          color="default"
         >
           Yes
         </Button>
