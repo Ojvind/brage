@@ -4,9 +4,20 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
+import { withStyles } from '@mui/styles';
 import FetchMore from '../../FetchMore';
 import DeleteWriterMutation from '../DeleteWriter';
+
+const HtmlTooltip = withStyles(() => ({
+  tooltip: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 250,
+    border: '1px solid #dadde9',
+  },
+}))(Tooltip);
 
 const updateQuery = (previousResult, { fetchMoreResult }) => {
   if (!fetchMoreResult) {
@@ -26,25 +37,56 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
   };
 };
 
+const getWriterRoute = (params) => (
+  <Tooltip
+    title={params.row.id}
+    placement="top"
+    arrow
+  >
+    <Link
+      to={`/writer/${params.row.id}/${params.row.name}/${params.row.surname}`}
+    >
+      {params.value.substring(0, 5)}
+      ...
+    </Link>
+  </Tooltip>
+);
+
+const getWriterUrl = (params) => (
+  <HtmlTooltip
+    title={(
+      <>
+        <Typography color="inherit">{params.value}</Typography>
+        <em>opens in a new</em>
+        <b> tab...</b>
+        <u>amazing content. </u>
+        It&apos;s very engaging. Right?
+      </>
+    )}
+    placement="top"
+    arrow
+  >
+    <a
+      target="_new"
+      href={params.value}
+    >
+      {params.value}
+    </a>
+  </HtmlTooltip>
+);
+
+const getDeleteWriterMutation = (params) => (
+  <DeleteWriterMutation
+    writerId={`${params.row.id}`}
+  />
+);
+
 const columns = [
   {
-    field: 'whatever',
+    field: 'id',
     headerName: 'ID',
     width: 150,
-    renderCell: (params) => (
-      <Tooltip
-        title={params.row.id}
-        placement="top"
-        arrow
-      >
-        <Link
-          to={`/writer/${params.row.id}/${params.row.name}/${params.row.surname}`}
-        >
-          {params.row.id.substring(0, 5)}
-          ...
-        </Link>
-      </Tooltip>
-    ),
+    renderCell: getWriterRoute,
   },
   {
     field: 'fullName',
@@ -56,19 +98,15 @@ const columns = [
   },
   {
     field: 'homepage',
-    headerName: 'Web',
-    width: 210,
-    editable: true,
+    headerName: 'Homepage',
+    width: 250,
+    renderCell: getWriterUrl,
   },
   {
     field: 'delete',
     headerName: ' ',
     width: 190,
-    renderCell: (params) => (
-      <DeleteWriterMutation
-        writerId={`${params.row.id}`}
-      />
-    ),
+    renderCell: getDeleteWriterMutation,
   },
 ];
 
