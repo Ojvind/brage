@@ -6,7 +6,7 @@ import { CREATE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 
 import Input from '../../Shared/Input';
-import Button from '../../Shared/Button';
+import SaveButton from '../../Shared/Button/SaveButton';
 import ErrorMessage from '../../Error';
 
 const CreateBook = (props) => {
@@ -46,12 +46,11 @@ const CreateBook = (props) => {
         >
           {(createbook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
             const button = (
-              <Button
-                className="create-book__button"
+              <SaveButton
                 onClick={createbook}
               >
-                Create Bok för 17 gubbar!
-              </Button>
+                Create
+              </SaveButton>
             );
             if (error) {
               return (

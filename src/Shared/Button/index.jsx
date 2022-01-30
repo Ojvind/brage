@@ -10,7 +10,6 @@ const BaseButton = ({
 }) => (
   <Button
     variant="contained"
-    color="primary"
     onClick={onClick}
     {...rest} // eslint-disable-line react/jsx-props-no-spreading
   >

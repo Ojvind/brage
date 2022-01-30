@@ -22,7 +22,9 @@ function WriterListItemDetail(props) {
   return (
     <div>
       <div className="writer-list-item-detail">
-        <Label variant="h2">
+        <Label
+          variant="h2"
+        >
           {`${writer.name} ${writer.surname}`}
         </Label>
         {
@@ -32,11 +34,13 @@ function WriterListItemDetail(props) {
                 <div className="writer-list-item-detail__label">
                   <Label variant="body" isLink>{homepage}</Label>
                 </div>
-                <EditButton
-                  onClick={() => toggleEdit(!edit)}
-                >
-                  Edit
-                </EditButton>
+                <div className="writer-list-item-detail__button">
+                  <EditButton
+                    onClick={() => toggleEdit(!edit)}
+                  >
+                    Edit
+                  </EditButton>
+                </div>
               </div>
             )
             : (

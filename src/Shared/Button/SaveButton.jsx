@@ -5,8 +5,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import BaseButton from './index';
 
 const SaveButton = ({
-  children,
   onClick,
+  children,
 }) => (
   <BaseButton
     onClick={onClick}
@@ -17,8 +17,8 @@ const SaveButton = ({
 );
 
 SaveButton.propTypes = {
-  children: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 export default SaveButton;

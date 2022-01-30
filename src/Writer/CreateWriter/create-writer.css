@@ -2,12 +2,18 @@
   margin-top: 1em;
   background-color: silver;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .create-writer__input {
   padding: 0.6em 0.2em 0.6em 0.4em;
+  margin-right: .5em;
 }
 
 .create-writer__button {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: .5em;
   padding: 0.6em 0.2em 0.6em 0.4em;
 }

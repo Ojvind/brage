@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import Input from '../../Shared/Input';
-import Button from '../../Shared/Button';
+import SaveButton from '../../Shared/Button/SaveButton';
 import { CREATE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 
@@ -35,12 +35,11 @@ function CreateWriter() {
         >
           {(createWriter, { data, loading, error }) => { // eslint-disable-line no-unused-vars
             const button = (
-              <Button
-                className="create-writer__button"
+              <SaveButton
                 onClick={createWriter}
               >
-                Create Writer för faaaan
-              </Button>
+                Create new writer
+              </SaveButton>
             );
             if (error) {
               return (
