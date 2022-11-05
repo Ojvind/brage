@@ -52,54 +52,6 @@ const WriterListItemDetailContainer = () => {
   );
 };
 
-// const WriterListItemDetailContainer = (props) => {
-//   const { match, location } = props;
-//   return (
-//     <div>
-//       <Query
-//         query={GET_WRITER}
-//         notifyOnNetworkStatusChange
-//         variables={{
-//           id: match.params.id,
-//         }}
-//       >
-//         {({
-//           data, loading, error,
-//         }) => {
-//           if (error) {
-//             return <ErrorMessage error={error} />;
-//           }
-
-//           const { viewer } = data;
-
-//           if (loading && !viewer) {
-//             return <Loading />;
-//           }
-
-//           return (
-//             <div className="app-content_small-header">
-//               <div>
-//                 <WriterListItemDetail
-//                   writer={data.writer}
-//                 />
-//                 <BookContainer
-//                   writerId={data.writer.id}
-//                   match={match}
-//                   location={location}
-//                 />
-//                 <CreateBook writerId={data.writer.id} />
-//               </div>
-//               <h5>
-//                 <Link to="/writers">Back to list of Writers</Link>
-//               </h5>
-//             </div>
-//           );
-//         }}
-//       </Query>
-//     </div>
-//   );
-// };
-
 // WriterListItemDetailContainer.propTypes = {
 //   match: PropTypes.shape({ params: { id: PropTypes.string } }).isRequired,
 //   location: PropTypes.shape({}).isRequired,

@@ -1,25 +1,25 @@
 import React from 'react';
-// import { Query } from 'react-apollo';
-import PropTypes from 'prop-types';
-// import { GET_BOOK } from '../queries';
+import { Query } from 'react-apollo';
+import { useParams, Link } from 'react-router-dom';
 
-// import Loading from '../../Shared/Loading';
-// import ErrorMessage from '../../Error';
-// import BookListItemDetail from './bookListItemDetail';
+// import PropTypes from 'prop-types';
 
-const BookListItemDetailContainter = (props) => {
-  const { match } = props;
+import { GET_BOOK } from '../queries';
+
+import Loading from '../../Shared/Loading';
+import ErrorMessage from '../../Error';
+import BookListItemDetail from './bookListItemDetail';
+
+const BookListItemDetailContainter = () => {
+  const { id } = useParams();
   return (
     <div>
-      {
-        match
-      }
       wekljrklwejr
-      {/* <Query
+      <Query
         query={GET_BOOK}
         notifyOnNetworkStatusChange
         variables={{
-          id: match.params.id,
+          id,
         }}
       >
         {({
@@ -28,29 +28,31 @@ const BookListItemDetailContainter = (props) => {
           if (error) {
             return <ErrorMessage error={error} />;
           }
-
-          const { viewer } = data;
-
-          if (loading && !viewer) {
+          if (loading) {
             return <Loading />;
           }
           return (
-            <BookListItemDetail
-              book={data.book}
-            />
+            <div>
+              <BookListItemDetail
+                book={data.book}
+              />
+              <h5>
+                <Link to="/writers">Back to list of Writers</Link>
+              </h5>
+            </div>
           );
         }}
-      </Query> */}
+      </Query>
     </div>
   );
 };
 
-BookListItemDetailContainter.propTypes = {
-  match: PropTypes.shape({ params: { id: PropTypes.string } }),
-};
+// BookListItemDetailContainter.propTypes = {
+//   match: PropTypes.shape({ params: { id: PropTypes.string } }),
+// };
 
-BookListItemDetailContainter.defaultProps = {
-  match: {},
-};
+// BookListItemDetailContainter.defaultProps = {
+//   match: {},
+// };
 
 export default BookListItemDetailContainter;
