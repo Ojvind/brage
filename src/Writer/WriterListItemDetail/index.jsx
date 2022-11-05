@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { GET_WRITER } from '../queries';
 import Loading from '../../Shared/Loading';
@@ -31,18 +31,13 @@ const WriterListItemDetailContainer = () => {
           }
           return (
             <div className="app-content_small-header">
-              <div>
-                <WriterListItemDetail
-                  writer={data.writer}
-                />
-                <BookContainer
-                  writerId={data.writer.id}
-                />
-                <CreateBook writerId={data.writer.id} />
-              </div>
-              <h5>
-                <Link to="/writers">Back to list of Writers</Link>
-              </h5>
+              <WriterListItemDetail
+                writer={data.writer}
+              />
+              <BookContainer
+                writerId={data.writer.id}
+              />
+              <CreateBook writerId={data.writer.id} />
             </div>
           );
         }}

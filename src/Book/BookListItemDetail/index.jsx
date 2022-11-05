@@ -29,9 +29,11 @@ const BookListItemDetailContainter = () => {
             return <Loading />;
           }
           return (
-            <BookListItemDetail
-              book={data.book}
-            />
+            <div className="app-content_small-header">
+              <BookListItemDetail
+                book={data.book}
+              />
+            </div>
           );
         }}
       </Query>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
@@ -11,6 +11,8 @@ import EditButton from '../../Shared/Button/EditButton';
 import { UPDATE_BOOK } from '../mutations';
 import { GET_BOOK } from '../queries';
 import ErrorMessage from '../../Error';
+
+import Link from '../../Shared/Link';
 
 function BookListItemDetail(props) {
   const { book } = props;
@@ -22,29 +24,40 @@ function BookListItemDetail(props) {
   const [yearRead, onYearReadChange] = useState(book.yearRead);
 
   return (
-    <div className="app-content_small-header">
+    <div>
       <div className="book-list-item-detail">
         <Label variant="h2">En bild...</Label>
         {
           (!edit)
             ? (
               <div>
-                <div>
-                  <Label variant="h4">{title}</Label>
-                  <Label variant="h4" isLink>{url}</Label>
+                <div className="book-list-item-detail__label">
+                  Title:
+                  <Link
+                    href={url}
+                    toolTip="Open offical book site in a new tab"
+                  >
+                    {title}
+                  </Link>
+                  <br />
+                  Author:
+                  <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
+                    {`${book.writer.name} ${book.writer.surname}`}
+                  </RouterLink>
+                  <br />
+                  <br />
                   This book was published
                   <Label variant="caption">{yearPublished}</Label>
                   and I read it
                   <Label variant="caption">{yearRead}</Label>
                 </div>
-                <EditButton
-                  onClick={() => toggleEdit(!edit)}
-                >
-                  Edit
-                </EditButton>
-                Go to
-                <Link to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}> writer </Link>
-                of the book
+                <div className="book-list-item-detail__button">
+                  <EditButton
+                    onClick={() => toggleEdit(!edit)}
+                  >
+                    Edit
+                  </EditButton>
+                </div>
               </div>
             )
             : (
@@ -75,19 +88,21 @@ function BookListItemDetail(props) {
                 >
                   {(updateBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
                     const button = (
-                      <SaveButton
-                        onClick={() => {
-                          updateBook()
-                            .then(() => {
-                              toggleEdit(!edit);
-                            })
-                            .catch((e) => {
-                              throw e;
-                            });
-                        }}
-                      >
-                        Save
-                      </SaveButton>
+                      <div className="book-list-item-detail__button">
+                        <SaveButton
+                          onClick={() => {
+                            updateBook()
+                              .then(() => {
+                                toggleEdit(!edit);
+                              })
+                              .catch((e) => {
+                                throw e;
+                              });
+                          }}
+                        >
+                          Save
+                        </SaveButton>
+                      </div>
                     );
                     if (error) {
                       return (
