@@ -1,25 +1,22 @@
 import React from 'react';
-// import { Query } from 'react-apollo';
-import PropTypes from 'prop-types';
-// import { GET_BOOK } from '../queries';
+import { Query } from 'react-apollo';
+import { useParams } from 'react-router-dom';
 
-// import Loading from '../../Shared/Loading';
-// import ErrorMessage from '../../Error';
-// import BookListItemDetail from './bookListItemDetail';
+import { GET_BOOK } from '../queries';
 
-const BookListItemDetailContainter = (props) => {
-  const { match } = props;
+import Loading from '../../Shared/Loading';
+import ErrorMessage from '../../Error';
+import BookListItemDetail from './bookListItemDetail';
+
+const BookListItemDetailContainter = () => {
+  const { id } = useParams();
   return (
     <div>
-      {
-        match
-      }
-      wekljrklwejr
-      {/* <Query
+      <Query
         query={GET_BOOK}
         notifyOnNetworkStatusChange
         variables={{
-          id: match.params.id,
+          id,
         }}
       >
         {({
@@ -28,10 +25,7 @@ const BookListItemDetailContainter = (props) => {
           if (error) {
             return <ErrorMessage error={error} />;
           }
-
-          const { viewer } = data;
-
-          if (loading && !viewer) {
+          if (loading) {
             return <Loading />;
           }
           return (
@@ -40,17 +34,9 @@ const BookListItemDetailContainter = (props) => {
             />
           );
         }}
-      </Query> */}
+      </Query>
     </div>
   );
-};
-
-BookListItemDetailContainter.propTypes = {
-  match: PropTypes.shape({ params: { id: PropTypes.string } }),
-};
-
-BookListItemDetailContainter.defaultProps = {
-  match: {},
 };
 
 export default BookListItemDetailContainter;

@@ -42,6 +42,9 @@ function BookListItemDetail(props) {
                 >
                   Edit
                 </EditButton>
+                Go to
+                <Link to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}> writer </Link>
+                of the book
               </div>
             )
             : (
@@ -83,7 +86,7 @@ function BookListItemDetail(props) {
                             });
                         }}
                       >
-                        Saveeeee
+                        Save
                       </SaveButton>
                     );
                     if (error) {
@@ -101,9 +104,6 @@ function BookListItemDetail(props) {
             )
         }
       </div>
-      <h5>
-        <Link to="/writers">Back to list of Writers</Link>
-      </h5>
     </div>
   );
 }
@@ -115,6 +115,11 @@ BookListItemDetail.propTypes = {
     url: PropTypes.string,
     yearRead: PropTypes.string,
     yearPublished: PropTypes.string,
+    writer: PropTypes.objectOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      surname: PropTypes.string,
+    })),
   }).isRequired,
 };
 
