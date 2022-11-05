@@ -19,7 +19,7 @@ const App = () => (
           <Routes>
             <Route exact path="/writers" element={<Writer />} />
             <Route path="/writer/:id/:name/:surname" element={<WriterListItemDetailContainer />} />
-            <Route path="/book/:id/:title" element={<BookListItemDetailContainer />} />
+            <Route path="/book/:bookId/:title" element={<BookListItemDetailContainer />} />
           </Routes>
         </div>
       </Container>

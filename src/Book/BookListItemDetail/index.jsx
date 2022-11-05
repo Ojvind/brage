@@ -9,14 +9,14 @@ import ErrorMessage from '../../Error';
 import BookListItemDetail from './bookListItemDetail';
 
 const BookListItemDetailContainter = () => {
-  const { id } = useParams();
+  const { bookId } = useParams();
   return (
     <div>
       <Query
         query={GET_BOOK}
         notifyOnNetworkStatusChange
         variables={{
-          id,
+          bookId,
         }}
       >
         {({
