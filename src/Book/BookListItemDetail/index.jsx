@@ -1,17 +1,21 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+// import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { GET_BOOK } from '../queries';
+// import { GET_BOOK } from '../queries';
 
-import Loading from '../../Shared/Loading';
-import ErrorMessage from '../../Error';
-import BookListItemDetail from './bookListItemDetail';
+// import Loading from '../../Shared/Loading';
+// import ErrorMessage from '../../Error';
+// import BookListItemDetail from './bookListItemDetail';
 
 const BookListItemDetailContainter = (props) => {
   const { match } = props;
   return (
     <div>
-      <Query
+      {
+        match
+      }
+      wekljrklwejr
+      {/* <Query
         query={GET_BOOK}
         notifyOnNetworkStatusChange
         variables={{
@@ -36,7 +40,7 @@ const BookListItemDetailContainter = (props) => {
             />
           );
         }}
-      </Query>
+      </Query> */}
     </div>
   );
 };
