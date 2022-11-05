@@ -6,16 +6,16 @@ const Footer = () => (
   <div className="Footer">
     <div>
       <small>
-        <span className="Footer-text">Built by</span>
+        <span className="Footer-text">&copy; Built by</span>
         {' '}
         <Link
           className="Footer-link"
-          href="https://www.robinwieruch.de"
+          href="https://ojvind.otterbjork.com"
         >
-          Robin Wieruch
+          Öjvind Otterbjörk
         </Link>
         {' '}
-        <span className="Footer-text">with &hearts;</span>
+        <span className="Footer-text">with Blod, svett and tårar</span>
       </small>
     </div>
     <div>
