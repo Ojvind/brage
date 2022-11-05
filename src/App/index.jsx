@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 import Writer from '../Writer';
 import WriterListItemDetailContainer from '../Writer/WriterListItemDetail';
-// import BookListItemDetailContainer from '../Book/BookListItemDetail';
+import BookListItemDetailContainer from '../Book/BookListItemDetail';
 
 const App = () => (
   <Router>
@@ -19,7 +19,7 @@ const App = () => (
           <Routes>
             <Route exact path="/writers" element={<Writer />} />
             <Route path="/writer/:id/:name/:surname" element={<WriterListItemDetailContainer />} />
-            {/* <Route path="/book/:id/:title" element={<BookListItemDetailContainer />} /> */}
+            <Route path="/book/:id/:title" element={<BookListItemDetailContainer />} />
           </Routes>
         </div>
       </Container>
