@@ -1,7 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { useParams, Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 
 import { GET_WRITER } from '../queries';
 import Loading from '../../Shared/Loading';
@@ -51,10 +50,5 @@ const WriterListItemDetailContainer = () => {
     </div>
   );
 };
-
-// WriterListItemDetailContainer.propTypes = {
-//   match: PropTypes.shape({ params: { id: PropTypes.string } }).isRequired,
-//   location: PropTypes.shape({}).isRequired,
-// };
 
 export default WriterListItemDetailContainer;

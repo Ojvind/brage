@@ -1,8 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { useParams, Link } from 'react-router-dom';
-
-// import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 
 import { GET_BOOK } from '../queries';
 
@@ -14,7 +12,6 @@ const BookListItemDetailContainter = () => {
   const { id } = useParams();
   return (
     <div>
-      wekljrklwejr
       <Query
         query={GET_BOOK}
         notifyOnNetworkStatusChange
@@ -32,29 +29,14 @@ const BookListItemDetailContainter = () => {
             return <Loading />;
           }
           return (
-            <div>
-              <BookListItemDetail
-                book={data.book}
-              />
-              <h5>
-                Go to
-                <Link to={`/writer/${data.book.writer.id}/${data.book.writer.name}/${data.book.writer.surname}`}> writer </Link>
-                of the book
-              </h5>
-            </div>
+            <BookListItemDetail
+              book={data.book}
+            />
           );
         }}
       </Query>
     </div>
   );
 };
-
-// BookListItemDetailContainter.propTypes = {
-//   match: PropTypes.shape({ params: { id: PropTypes.string } }),
-// };
-
-// BookListItemDetailContainter.defaultProps = {
-//   match: {},
-// };
 
 export default BookListItemDetailContainter;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
+import { Link } from 'react-router-dom';
 
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
@@ -41,6 +42,9 @@ function BookListItemDetail(props) {
                 >
                   Edit
                 </EditButton>
+                Go to
+                <Link to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}> writer </Link>
+                of the book
               </div>
             )
             : (
@@ -82,7 +86,7 @@ function BookListItemDetail(props) {
                             });
                         }}
                       >
-                        Saveeeee
+                        Save
                       </SaveButton>
                     );
                     if (error) {
@@ -111,6 +115,11 @@ BookListItemDetail.propTypes = {
     url: PropTypes.string,
     yearRead: PropTypes.string,
     yearPublished: PropTypes.string,
+    writer: PropTypes.objectOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      surname: PropTypes.string,
+    })),
   }).isRequired,
 };
 
