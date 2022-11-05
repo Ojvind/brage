@@ -115,11 +115,11 @@ BookListItemDetail.propTypes = {
     url: PropTypes.string,
     yearRead: PropTypes.string,
     yearPublished: PropTypes.string,
-    writer: PropTypes.objectOf(PropTypes.shape({
+    writer: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
       surname: PropTypes.string,
-    })),
+    }),
   }).isRequired,
 };
 

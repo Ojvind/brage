@@ -23,8 +23,8 @@ query($writerId: ID, $cursor: String) {
 `;
 
 export const GET_BOOK = gql`
-  query($id: ID!) {
-    book(id: $id) {
+  query($bookId: ID!) {
+    book(bookId: $bookId) {
       id
       title
       url
