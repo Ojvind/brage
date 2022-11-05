@@ -31,6 +31,11 @@ export const GET_BOOK = gql`
       yearPublished
       yearRead
       createdAt
+      writer {
+        id
+        name
+        surname
+      }
     }
   }
 `;

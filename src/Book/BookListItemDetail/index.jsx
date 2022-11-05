@@ -37,7 +37,9 @@ const BookListItemDetailContainter = () => {
                 book={data.book}
               />
               <h5>
-                <Link to="/writers">Back to list of Writers</Link>
+                Go to
+                <Link to={`/writer/${data.book.writer.id}/${data.book.writer.name}/${data.book.writer.surname}`}> writer </Link>
+                of the book
               </h5>
             </div>
           );

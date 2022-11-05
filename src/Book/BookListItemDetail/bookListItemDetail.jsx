@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
-import { Link } from 'react-router-dom';
 
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
@@ -101,9 +100,6 @@ function BookListItemDetail(props) {
             )
         }
       </div>
-      <h5>
-        <Link to="/writers">Back to list of Writers</Link>
-      </h5>
     </div>
   );
 }
