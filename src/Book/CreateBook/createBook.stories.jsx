@@ -28,6 +28,7 @@ type Writer {
   name: String!
   surname: String!
   homepage: String
+  nationality: String
   books: [Book!]
 }
 

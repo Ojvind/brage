@@ -75,6 +75,12 @@ const getWriterUrl = (params) => (
   </HtmlTooltip>
 );
 
+const getWriterNationality = (params) => (
+  <div>
+    {params.row.nationality}
+  </div>
+);
+
 const getDeleteWriterMutation = (params) => (
   <DeleteWriterMutation
     writerId={`${params.row.id}`}
@@ -103,6 +109,12 @@ const columns = [
     renderCell: getWriterUrl,
   },
   {
+    field: 'nationality',
+    headerName: 'Nationality',
+    width: 250,
+    renderCell: getWriterNationality,
+  },
+  {
     field: 'delete',
     headerName: ' ',
     width: 190,
@@ -118,7 +130,7 @@ const WriterList = ({
       className="writer-list__datagrid"
       rows={writers.edges}
       columns={columns}
-      pageSize={5}
+      pageSize={6}
       rowsPerPageOptions={[5]}
       // checkboxSelection
       disableSelectionOnClick
@@ -145,6 +157,7 @@ WriterList.propTypes = {
       name: PropTypes.string,
       surname: PropTypes.string,
       homepage: PropTypes.string,
+      nationality: PropTypes.string,
     })),
     pageInfo: PropTypes.PropTypes.shape({
       hasNextPage: PropTypes.bool,

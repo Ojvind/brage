@@ -11,7 +11,7 @@ type Query {
 }
 
 type Mutation {
-  createWriter(name: String!, surname: String!, homepage: String): Writer!
+  createWriter(name: String!, surname: String!, homepage: String, nationality: String): Writer!
 }
 
 type Writer {
@@ -19,6 +19,7 @@ type Writer {
   name: String!
   surname: String!
   homepage: String
+  nationality: String
 }
 
 schema {
@@ -34,6 +35,7 @@ const mocks = {
     name: 'Öjvind',
     surname: 'Otterbjörk',
     homepage: 'ojvind.otterbjork.com',
+    nationality: 'Svensk'
   }),
 };
 

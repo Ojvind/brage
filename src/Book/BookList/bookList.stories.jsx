@@ -27,6 +27,7 @@ const typeDefs = `
     name: String!
     surname: String!
     homepage: String
+    nationality: String
     books: [Book!]
   }
   

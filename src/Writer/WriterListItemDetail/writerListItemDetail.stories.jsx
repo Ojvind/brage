@@ -13,7 +13,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    createWriter(name: String!, surname: String!, homepage: String): Writer!
+    createWriter(name: String!, surname: String!, homepage: String, nationality: String): Writer!
   }
 
   type Writer {
@@ -21,6 +21,7 @@ const typeDefs = `
     name: String!
     surname: String!
     homepage: String
+    nationality: String    
   }
 
   schema {
@@ -34,6 +35,7 @@ export const writer = { // eslint-disable-line import/prefer-default-export
   name: 'Öjvind',
   surname: 'Otterbjörk',
   homepage: 'http://ojvind.otterbjork.com',
+  nationality: 'Svensk',
 };
 
 storiesOf('WriterListItemDetail', module)

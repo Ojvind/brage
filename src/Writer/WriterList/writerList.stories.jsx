@@ -13,7 +13,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    createWriter(name: String!, surname: String!, homepage: String): Writer!
+    createWriter(name: String!, surname: String!, homepage: String, nationality: String): Writer!
   }
 
   type Writer {
@@ -21,6 +21,7 @@ const typeDefs = `
     name: String!
     surname: String!
     homepage: String
+    nationality: String
   }
 
   schema {
@@ -41,11 +42,13 @@ export const writersData = {
     name: 'Öjvind',
     surname: 'Otterbjörk',
     homepage: 'http://ojvind.otterbjork.com',
+    nationality: 'Svensk',
   }, {
     id: '999-123',
     name: 'Andrew',
     surname: 'Eldrich',
     homepage: 'http://www.the-sisters-of-mercy.com/',
+    nationality: 'Britt',
   }],
   pageInfo: {
     hasNextPage: false,

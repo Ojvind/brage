@@ -13,6 +13,7 @@ function CreateWriter() {
   const [name, onNameChange] = useState('');
   const [surname, onSurnameChange] = useState('');
   const [homepage, onHomepageChange] = useState('');
+  const [nationality, onNationalityChange] = useState('');
 
   return (
     <div>
@@ -26,9 +27,17 @@ function CreateWriter() {
         <div className="create-writer__input">
           <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" />
         </div>
+        <div className="create-writer__input">
+          <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" />
+        </div>
         <Mutation
           mutation={CREATE_WRITER}
-          variables={{ name, surname, homepage }}
+          variables={{
+            name,
+            surname,
+            homepage,
+            nationality,
+          }}
           refetchQueries={[
             { query: GET_WRITERS },
           ]}

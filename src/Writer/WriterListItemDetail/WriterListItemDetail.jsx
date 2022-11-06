@@ -18,6 +18,7 @@ function WriterListItemDetail(props) {
   const [name, onNameChange] = useState(writer.name);
   const [surname, onSurnameChange] = useState(writer.surname);
   const [homepage, onHomepageChange] = useState(writer.homepage);
+  const [nationality, onNationalityChange] = useState(writer.nationality);
 
   return (
     <div>
@@ -31,6 +32,9 @@ function WriterListItemDetail(props) {
           (!edit)
             ? (
               <div>
+                <div className="writer-list-item-detail__label">
+                  <Label variant="h5">{nationality}</Label>
+                </div>
                 <div className="writer-list-item-detail__label">
                   <Label variant="body" isLink>{homepage}</Label>
                 </div>
@@ -48,6 +52,7 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
+                <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
                 <Mutation
                   mutation={UPDATE_WRITER}
                   variables={{
@@ -55,6 +60,7 @@ function WriterListItemDetail(props) {
                     name,
                     surname,
                     homepage,
+                    nationality,
                   }}
                   refetchQueries={[
                     {
@@ -67,19 +73,21 @@ function WriterListItemDetail(props) {
                 >
                   {(updateWriter, { error }) => {
                     const saveButton = (
-                      <SaveButton
-                        onClick={() => {
-                          updateWriter()
-                            .then(() => {
-                              toggleEdit(!edit);
-                            })
-                            .catch((e) => {
-                              throw e;
-                            });
-                        }}
-                      >
-                        Save
-                      </SaveButton>
+                      <div className="writer-list-item-detail__button">
+                        <SaveButton
+                          onClick={() => {
+                            updateWriter()
+                              .then(() => {
+                                toggleEdit(!edit);
+                              })
+                              .catch((e) => {
+                                throw e;
+                              });
+                          }}
+                        >
+                          Save
+                        </SaveButton>
+                      </div>
                     );
                     if (error) {
                       return (
@@ -106,6 +114,7 @@ WriterListItemDetail.propTypes = {
     name: PropTypes.string,
     surname: PropTypes.string,
     homepage: PropTypes.string,
+    nationality: PropTypes.string,
   }).isRequired,
 };
 
