@@ -40,20 +40,20 @@ const columns = [
       </Tooltip>
     ),
   },
-  { field: 'title', headerName: 'Title', width: 250 },
+  { field: 'title', headerName: 'Title', width: 200 },
   {
     field: 'url',
-    headerName: 'url',
-    width: 250,
+    headerName: 'URL',
+    width: 100,
     renderCell: (params) => (
       <HtmlTooltip
         title={(
           <>
-            <Typography color="inherit">{params.value}</Typography>
+            <Typography color="inherit">
+              {params.value}
+            </Typography>
             <em>opens in a new</em>
             <b> tab...</b>
-            <u>amazing content. </u>
-            It&apos;s very engaging. Right?
           </>
         )}
         placement="top"
@@ -63,13 +63,14 @@ const columns = [
           target="_new"
           href={params.value}
         >
-          {params.value}
+          {params.value.substring(0, 8)}
+          ...
         </a>
       </HtmlTooltip>
     ),
   },
-  { field: 'yearPublished', headerName: 'Published (year)', width: 130 },
-  { field: 'yearRead', headerName: 'Read (year)', width: 130 },
+  { field: 'yearPublished', headerName: 'Published', width: 130 },
+  { field: 'yearRead', headerName: 'Read', width: 130 },
   {
     field: 'delete',
     headerName: ' ',

@@ -59,8 +59,6 @@ const getWriterUrl = (params) => (
         <Typography color="inherit">{params.value}</Typography>
         <em>opens in a new</em>
         <b> tab...</b>
-        <u>amazing content. </u>
-        It&apos;s very engaging. Right?
       </>
     )}
     placement="top"
