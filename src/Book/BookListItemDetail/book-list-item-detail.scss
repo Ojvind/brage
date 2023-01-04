@@ -8,11 +8,17 @@
   display: flex;
   flex-direction: column;
 
-  &__label {
+  &__labelwrapper {
     padding: 0.8em 0 0 0;
     margin: 0;
-    border: red solid 0px;
-    white-space: pre-wrap;
+    border: red dashed 0px;
+    &--prewrap {
+      white-space: pre-wrap;
+    }
+    &__label {
+      padding: 0.9em 0.5em 0.9em 0.5em;
+      border: lightgrey dashed 1px;
+    }
   }
 
   &__button {

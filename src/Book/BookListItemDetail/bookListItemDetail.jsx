@@ -32,36 +32,40 @@ function BookListItemDetail(props) {
           (!edit)
             ? (
               <div>
-                <div className="book-list-item-detail__label">
+                <div className="book-list-item-detail__labelwrapper">
                   <Label variant="subtitle2">
                     Title:
                   </Label>
-                  <Link
-                    href={url}
-                    toolTip="Open offical book site in a new tab"
-                  >
-                    {title}
-                  </Link>
+                  <div className="book-list-item-detail__labelwrapper__label">
+                    <Link
+                      href={url}
+                      toolTip="Open offical book site in a new tab"
+                    >
+                      {title}
+                    </Link>
+                  </div>
                 </div>
-                <div className="book-list-item-detail__label">
+                <div className="book-list-item-detail__labelwrapper">
                   <Label variant="subtitle2">
                     Author:
                   </Label>
-                  <div>
+                  <div className="book-list-item-detail__labelwrapper__label">
                     <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
                       {`${book.writer.name} ${book.writer.surname}`}
                     </RouterLink>
                   </div>
                 </div>
-                <div className="book-list-item-detail__label">
+                <div className="book-list-item-detail__labelwrapper">
                   <Label variant="subtitle2">
                     Description:
                   </Label>
-                  <div>
+                  <div
+                    className="book-list-item-detail__labelwrapper--prewrap book-list-item-detail__labelwrapper__label"
+                  >
                     {description}
                   </div>
                 </div>
-                <div className="book-list-item-detail__label">
+                <div className="book-list-item-detail__labelwrapper">
                   <Label variant="caption">
                     {`This book was published ${yearPublished} and I read it ${yearRead}`}
                   </Label>
