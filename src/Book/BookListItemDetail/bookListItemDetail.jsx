@@ -22,6 +22,7 @@ function BookListItemDetail(props) {
   const [url, onUrlChange] = useState(book.url);
   const [yearPublished, onYearPublishedChange] = useState(book.yearPublished);
   const [yearRead, onYearReadChange] = useState(book.yearRead);
+  const [description, onDescriptionChange] = useState(book.description);
 
   return (
     <div>
@@ -32,24 +33,38 @@ function BookListItemDetail(props) {
             ? (
               <div>
                 <div className="book-list-item-detail__label">
-                  Title:
+                  <Label variant="subtitle2">
+                    Title:
+                  </Label>
                   <Link
                     href={url}
                     toolTip="Open offical book site in a new tab"
                   >
                     {title}
                   </Link>
-                  <br />
-                  Author:
-                  <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
-                    {`${book.writer.name} ${book.writer.surname}`}
-                  </RouterLink>
-                  <br />
-                  <br />
-                  This book was published
-                  <Label variant="caption">{yearPublished}</Label>
-                  and I read it
-                  <Label variant="caption">{yearRead}</Label>
+                </div>
+                <div className="book-list-item-detail__label">
+                  <Label variant="subtitle2">
+                    Author:
+                  </Label>
+                  <div>
+                    <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
+                      {`${book.writer.name} ${book.writer.surname}`}
+                    </RouterLink>
+                  </div>
+                </div>
+                <div className="book-list-item-detail__label">
+                  <Label variant="subtitle2">
+                    Description:
+                  </Label>
+                  <div>
+                    {description}
+                  </div>
+                </div>
+                <div className="book-list-item-detail__label">
+                  <Label variant="caption">
+                    {`This book was published ${yearPublished} and I read it ${yearRead}`}
+                  </Label>
                 </div>
                 <div className="book-list-item-detail__button">
                   <EditButton
@@ -67,6 +82,7 @@ function BookListItemDetail(props) {
                   <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
                   <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
                   <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
+                  <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Description" textarea value={description} />
                 </div>
                 <Mutation
                   mutation={UPDATE_BOOK}
@@ -76,6 +92,7 @@ function BookListItemDetail(props) {
                     url,
                     yearPublished,
                     yearRead,
+                    description,
                   }}
                   refetchQueries={[
                     {
@@ -130,6 +147,7 @@ BookListItemDetail.propTypes = {
     url: PropTypes.string,
     yearRead: PropTypes.string,
     yearPublished: PropTypes.string,
+    description: PropTypes.string,
     writer: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,

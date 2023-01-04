@@ -2,10 +2,12 @@
   $field-root: &;
   $input-button-width-mobile: 52px;
   $input-height: 3em;
+  $textarea-height: 10em;
   $input-height-mobile: 2.5em;
   $input-h-padding: .5rem;
   $label-v-padding: .5rem;
   $shield-size: 1em;
+  padding: 1.3em 0 0 0;
 
   display: flex;
   position: relative;
@@ -47,7 +49,7 @@
     overflow: hidden;
     padding: $label-v-padding $input-h-padding 0;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
 
     @include use-one(form-large, media desktop) {
       padding: 0 0 $label-v-padding;
@@ -107,6 +109,10 @@
 
     &--initial-height {
       height: initial;
+    }
+
+    &--textarea {
+      height: $textarea-height;
     }
   }
 

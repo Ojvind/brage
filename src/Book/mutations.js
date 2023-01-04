@@ -6,7 +6,8 @@ export const CREATE_BOOK = gql`
     $title: String!,
     $url: String!,
     $yearPublished: String,
-    $yearRead: String!
+    $yearRead: String!,
+    $description: String,
   ) {
     createBook(
       writerId: $writerId,
@@ -14,12 +15,14 @@ export const CREATE_BOOK = gql`
       url: $url
       yearRead: $yearRead, 
       yearPublished: $yearPublished,
-    ) {
+      description: $description,
+      ) {
       id
       title
       url
       yearPublished
       yearRead
+      description
     }
   }
 `;
@@ -40,20 +43,23 @@ export const UPDATE_BOOK = gql`
     $title: String!,
     $url: String!,
     $yearPublished: String,
-    $yearRead: String!
+    $yearRead: String!,
+    $description: String,
   ) {
     updateBook(
       id: $id,
       title: $title,
       url: $url,
       yearPublished: $yearPublished,
-      yearRead: $yearRead
+      yearRead: $yearRead,
+      description: $description,
     ) {
       id
       title
       url
       yearPublished
       yearRead
+      description
     }
   }
 `;

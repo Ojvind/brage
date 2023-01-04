@@ -7,6 +7,7 @@ const Input = ({
   inputLabel,
   validated,
   valid,
+  textarea,
   shouldCustomValidate,
   customValid,
   ...rest // eslint-disable-line react/jsx-props-no-spreading
@@ -29,24 +30,40 @@ const Input = ({
               {inputLabel}
             </div>
           )}
-          <div className="c-field__input-wrapper">
-            <input
-              id={inputId}
-              name={name}
-              className="c-field__input"
-              {...rest} // eslint-disable-line react/jsx-props-no-spreading
-            />
-            {validated && (
-              <div className={`
-                c-input-with-button__suffix-icon
-                c-input-with-button__icon
-                c-input-with-button__icon--small
-                ${localValid === true ? 'c-input-with-button__icon--valid' : ''}
-                ${localValid === false ? 'c-input-with-button__icon--invalid' : ''}
-              `}
+          {textarea && (
+            <div className="c-field__input-wrapper c-field__input-wrapper--textarea">
+              <textarea
+                id={inputId}
+                name={name}
+                rows="4"
+                cols="50"
+                className="c-field__input"
+                {...rest} // eslint-disable-line react/jsx-props-no-spreading
               />
-            )}
-          </div>
+            </div>
+          )}
+          {!textarea && (
+            <div className="c-field__input-wrapper">
+              {textarea && (
+                <textarea
+                  id={inputId}
+                  name={name}
+                  rows="4"
+                  cols="50"
+                  className="c-field__input"
+                  {...rest} // eslint-disable-line react/jsx-props-no-spreading
+                />
+              )}
+              {!textarea && (
+                <input
+                  id={inputId}
+                  name={name}
+                  className="c-field__input"
+                  {...rest} // eslint-disable-line react/jsx-props-no-spreading
+                />
+              )}
+            </div>
+          )}
         </label>
       </div>
     </>
@@ -59,6 +76,7 @@ Input.propTypes = {
   inputLabel: PropTypes.string,
   validated: PropTypes.bool,
   valid: PropTypes.bool,
+  textarea: PropTypes.bool,
   shouldCustomValidate: PropTypes.bool,
   customValid: PropTypes.bool,
 };
@@ -69,6 +87,7 @@ Input.defaultProps = {
   inputLabel: '',
   validated: false,
   valid: null,
+  textarea: false,
   shouldCustomValidate: false,
   customValid: undefined,
 };
