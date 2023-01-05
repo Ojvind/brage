@@ -26,17 +26,17 @@ function BookListItemDetail(props) {
 
   return (
     <div>
-      <div className="book-list-item-detail">
+      <div className="list-item-detail">
         <Label variant="h2">En bild...</Label>
         {
           (!edit)
             ? (
               <div>
-                <div className="book-list-item-detail__labelwrapper">
+                <div className="list-item-detail__labelwrapper">
                   <Label variant="subtitle2">
                     Title:
                   </Label>
-                  <div className="book-list-item-detail__labelwrapper__label">
+                  <div className="list-item-detail__labelwrapper__label">
                     <Link
                       href={url}
                       toolTip="Open offical book site in a new tab"
@@ -45,32 +45,32 @@ function BookListItemDetail(props) {
                     </Link>
                   </div>
                 </div>
-                <div className="book-list-item-detail__labelwrapper">
+                <div className="list-item-detail__labelwrapper">
                   <Label variant="subtitle2">
                     Author:
                   </Label>
-                  <div className="book-list-item-detail__labelwrapper__label">
+                  <div className="list-item-detail__labelwrapper__label">
                     <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
                       {`${book.writer.name} ${book.writer.surname}`}
                     </RouterLink>
                   </div>
                 </div>
-                <div className="book-list-item-detail__labelwrapper">
+                <div className="list-item-detail__labelwrapper">
                   <Label variant="subtitle2">
                     Description:
                   </Label>
                   <div
-                    className="book-list-item-detail__labelwrapper--prewrap book-list-item-detail__labelwrapper__label"
+                    className="list-item-detail__labelwrapper--prewrap list-item-detail__labelwrapper__label"
                   >
                     {description}
                   </div>
                 </div>
-                <div className="book-list-item-detail__labelwrapper">
+                <div className="list-item-detail__labelwrapper">
                   <Label variant="caption">
                     {`This book was published ${yearPublished} and I read it ${yearRead}`}
                   </Label>
                 </div>
-                <div className="book-list-item-detail__button">
+                <div className="list-item-detail__button">
                   <EditButton
                     onClick={() => toggleEdit(!edit)}
                   >
@@ -109,7 +109,7 @@ function BookListItemDetail(props) {
                 >
                   {(updateBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
                     const button = (
-                      <div className="book-list-item-detail__button">
+                      <div className="list-item-detail__button">
                         <SaveButton
                           onClick={() => {
                             updateBook()

@@ -22,23 +22,29 @@ function WriterListItemDetail(props) {
 
   return (
     <div>
-      <div className="writer-list-item-detail">
+      <div className="list-item-detail">
         <Label
           variant="h2"
         >
           {`${writer.name} ${writer.surname}`}
         </Label>
+        <img
+          alt={nationality}
+          src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
+        />
         {
           (!edit)
             ? (
               <div>
-                <div className="writer-list-item-detail__label">
-                  <Label variant="h5">{nationality}</Label>
+                <div className="list-item-detail__labelwrapper">
+                  <Label variant="subtitle2">
+                    URL:
+                  </Label>
+                  <div className="list-item-detail__labelwrapper__label">
+                    <Label variant="body" isLink>{homepage}</Label>
+                  </div>
                 </div>
-                <div className="writer-list-item-detail__label">
-                  <Label variant="body" isLink>{homepage}</Label>
-                </div>
-                <div className="writer-list-item-detail__button">
+                <div className="list-item-detail__button">
                   <EditButton
                     onClick={() => toggleEdit(!edit)}
                   >
@@ -73,7 +79,7 @@ function WriterListItemDetail(props) {
                 >
                   {(updateWriter, { error }) => {
                     const saveButton = (
-                      <div className="writer-list-item-detail__button">
+                      <div className="list-item-detail__button">
                         <SaveButton
                           onClick={() => {
                             updateWriter()

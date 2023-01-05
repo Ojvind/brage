@@ -14,6 +14,7 @@
 @import './mixins/_responsive';
 @import './variables/all';
 @import './global/all';
+@import './list-item-detail';
 
 // @import './components/list';
 // @import './components/page-section';
@@ -29,9 +30,7 @@
 
 @import '../App/app';
 @import '../Writer/WriterList/writer-list';
-@import '../Writer/WriterListItemDetail/writer-list-item-detail';
 @import '../Book/BookList/book-list';
-@import '../Book/BookListItemDetail/book-list-item-detail';
 @import '../Shared/Link/link';
 @import '../FetchMore/fetchMore';
 @import '../Error/error';
