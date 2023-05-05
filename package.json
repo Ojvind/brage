@@ -16,6 +16,7 @@
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
     "apollo-storybook-react": "^0.2.4",
+    "autosuggest-highlight": "^3.3.4",
     "country-flag-icons": "^1.5.5",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",

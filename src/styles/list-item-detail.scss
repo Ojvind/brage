@@ -6,12 +6,17 @@
   padding: 2em 4em;
   margin-bottom: 1em;
   display: flex;
-  flex-direction: column;
+  border: silver dashed 1px;
+  
+  &__wrapper {
+    width: 100%;
+  }
 
   &__labelwrapper {
     padding: 0.8em 0 0 0;
     margin: 0;
     border: red dashed 0px;
+    width: 100%;
     &--prewrap {
       white-space: pre-wrap;
     }
@@ -19,11 +24,24 @@
       padding: 0.9em 0.5em 0.9em 0.5em;
       border: lightgrey dashed 1px;
     }
+    &__column {
+      display: flex;
+      flex-direction: column;
+    }
+    &__row {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__icon {
+    padding-left: 1em;
+    width: 5em;
   }
 
   &__button {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row-reverse;
     margin-right: .5em;
     padding: 0.6em 0.2em 0.6em 0.4em;
     border: cyan solid 0px;
