@@ -24,7 +24,7 @@ const columns = [
   {
     field: 'id',
     headerName: 'ID',
-    width: 70,
+    width: 50,
     renderCell: (params) => (
       <Tooltip
         title={params.row.id}
@@ -40,11 +40,11 @@ const columns = [
       </Tooltip>
     ),
   },
-  { field: 'title', headerName: 'Title', width: 200 },
+  { field: 'title', headerName: 'Title', width: 400 },
   {
     field: 'url',
     headerName: 'URL',
-    width: 100,
+    width: 200,
     renderCell: (params) => (
       <HtmlTooltip
         title={(

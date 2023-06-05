@@ -30,9 +30,6 @@ function CreateWriter() {
         <div className="create-writer__input">
           <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" />
         </div>
-        <div>
-          What the fuck!!
-        </div>
         <Mutation
           mutation={CREATE_WRITER}
           variables={{

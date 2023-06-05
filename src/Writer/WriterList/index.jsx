@@ -89,7 +89,7 @@ const columns = [
   {
     field: 'id',
     headerName: 'ID',
-    width: 150,
+    width: 100,
     renderCell: getWriterRoute,
   },
   {
@@ -97,25 +97,25 @@ const columns = [
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 160,
+    width: 200,
     valueGetter: (params) => `${params.row.name || ''} ${params.row.surname || ''}`,
   },
   {
     field: 'homepage',
     headerName: 'Homepage',
-    width: 250,
+    width: 450,
     renderCell: getWriterUrl,
   },
   {
     field: 'nationality',
     headerName: 'Nationality',
-    width: 250,
+    width: 100,
     renderCell: getWriterNationality,
   },
   {
     field: 'delete',
     headerName: ' ',
-    width: 190,
+    width: 100,
     renderCell: getDeleteWriterMutation,
   },
 ];
@@ -128,8 +128,8 @@ const WriterList = ({
       className="writer-list__datagrid"
       rows={writers.edges}
       columns={columns}
-      pageSize={6}
-      rowsPerPageOptions={[5]}
+      pageSize={60}
+      rowsPerPageOptions={[50]}
       // checkboxSelection
       disableSelectionOnClick
     />

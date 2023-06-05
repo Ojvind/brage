@@ -86,7 +86,7 @@ function BookListItemDetail(props) {
                   <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
                   <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
                   <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
-                  <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Description" textarea value={description} />
+                  <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Description" multiline value={description} />
                 </div>
                 <Mutation
                   mutation={UPDATE_BOOK}

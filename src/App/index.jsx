@@ -14,8 +14,8 @@ const App = () => (
     <div className="app">
       <Navigation />
       {/* 'lg' -> default | 'md' | 'sm' | 'xl' | 'xs' | false */}
-      <Container maxWidth="md">
-        <div className="app-main">
+      <Container maxWidth="lg">
+        <div>
           <Routes>
             <Route exact path="/writers" element={<Writer />} />
             <Route path="/writer/:id/:name/:surname" element={<WriterListItemDetailContainer />} />
