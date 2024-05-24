@@ -44,7 +44,7 @@ const WriterListItemDetailContainer = () => {
               <BookContainer
                 writerId={data.writer.id}
               />
-              <Button onClick={handleOpen}>Lägg till bok</Button>
+              <Button onClick={handleOpen}>Aggiungi nuovo libro</Button>
               <Modal
                 open={open}
                 onClose={handleClose}

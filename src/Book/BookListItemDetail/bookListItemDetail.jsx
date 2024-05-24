@@ -31,46 +31,40 @@ function BookListItemDetail(props) {
         {
           (!edit)
             ? (
-              <div>
-                <div className="list-item-detail__labelwrapper">
+              <div className="full-width">
+                <div className="list-item-detail__row">
                   <Label variant="subtitle2">
-                    Title:
+                    Titolo:
                   </Label>
-                  <div className="list-item-detail__labelwrapper__label">
-                    <Link
-                      href={url}
-                      toolTip="Open offical book site in a new tab"
-                    >
-                      {title}
-                    </Link>
-                  </div>
+                  <Link
+                    href={url}
+                    toolTip="Open offical book site in a new tab"
+                  >
+                    {title}
+                  </Link>
                 </div>
-                <div className="list-item-detail__labelwrapper">
+                <div className="list-item-detail__row">
                   <Label variant="subtitle2">
-                    Author:
+                    Autore:
                   </Label>
-                  <div className="list-item-detail__labelwrapper__label">
+                  <div className="list-item-detail__row__label">
                     <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
                       {`${book.writer.name} ${book.writer.surname}`}
                     </RouterLink>
                   </div>
                 </div>
-                <div className="list-item-detail__labelwrapper">
+                <div className="list-item-detail__row">
                   <Label variant="subtitle2">
-                    Description:
+                    Descrizione:
                   </Label>
-                  <div
-                    className="list-item-detail__labelwrapper--prewrap list-item-detail__labelwrapper__label"
-                  >
-                    {description}
-                  </div>
+                  {description}
                 </div>
-                <div className="list-item-detail__labelwrapper">
-                  <Label variant="caption">
-                    {`This book was published ${yearPublished} and I read it ${yearRead}`}
+                <div className="list-item-detail__row">
+                  <Label variant="h6">
+                    {` Questo libro è stato pubblicato nel ${yearPublished} e l'ho letto nel ${yearRead}`}
                   </Label>
                 </div>
-                <div className="list-item-detail__button">
+                <div className="list-item-detail__row list-item-detail__row__button">
                   <EditButton
                     onClick={() => toggleEdit(!edit)}
                   >
@@ -81,20 +75,20 @@ function BookListItemDetail(props) {
             )
             : (
               <div>
-                <div>
-                  <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Title" value={title} />
-                  <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="Url" value={url} />
-                  <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Published year" value={yearPublished} />
-                  <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Read year" value={yearRead} />
-                  <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Description" multiline value={description} />
+                <div className="list-item-detail__row">
+                  <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Titolo" value={title} />
+                  <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="URL" value={url} />
+                  <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Descrizione" multiline value={description} />
+                  <Input onChange={(e) => onYearPublishedChange(e.target.value)} inputLabel="Anno di pubblicazione" value={yearPublished} />
+                  <Input onChange={(e) => onYearReadChange(e.target.value)} inputLabel="Ho letto il libro nel" value={yearRead} />
                 </div>
                 <Mutation
                   mutation={UPDATE_BOOK}
                   variables={{
                     id: book.id,
-                    title,
                     url,
                     yearPublished,
+                    title,
                     yearRead,
                     description,
                   }}
@@ -109,7 +103,7 @@ function BookListItemDetail(props) {
                 >
                   {(updateBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
                     const button = (
-                      <div className="list-item-detail__button">
+                      <div className="list-item-detail__row list-item-detail__row__button">
                         <SaveButton
                           onClick={() => {
                             updateBook()
@@ -121,7 +115,7 @@ function BookListItemDetail(props) {
                               });
                           }}
                         >
-                          Save
+                          Salva
                         </SaveButton>
                       </div>
                     );

@@ -40,7 +40,7 @@ const columns = [
       </Tooltip>
     ),
   },
-  { field: 'title', headerName: 'Title', width: 400 },
+  { field: 'title', headerName: 'Titolo', width: 200 },
   {
     field: 'url',
     headerName: 'URL',
@@ -63,14 +63,14 @@ const columns = [
           target="_new"
           href={params.value}
         >
-          {params.value.substring(0, 8)}
+          {params.value.substring(0, 25)}
           ...
         </a>
       </HtmlTooltip>
     ),
   },
-  { field: 'yearPublished', headerName: 'Published', width: 130 },
-  { field: 'yearRead', headerName: 'Read', width: 130 },
+  { field: 'yearPublished', headerName: 'Anno di pubblicazione', width: 150 },
+  { field: 'yearRead', headerName: 'Ho letto il libro nel', width: 150 },
   {
     field: 'delete',
     headerName: ' ',
