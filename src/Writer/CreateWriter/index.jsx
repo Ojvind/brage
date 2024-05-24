@@ -47,7 +47,7 @@ function CreateWriter() {
               <SaveButton
                 onClick={createWriter}
               >
-                Create new writer
+                Create
               </SaveButton>
             );
             if (error) {

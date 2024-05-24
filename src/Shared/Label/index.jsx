@@ -1,4 +1,5 @@
 import React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
@@ -21,6 +22,14 @@ import PropTypes from 'prop-types';
 | 'inherit'
 */
 
+const theme = createTheme({
+  typography: {
+    h4: {
+      color: 'dimgray',
+    },
+  },
+});
+
 const Label = ({
   variant,
   isLink,
@@ -28,25 +37,29 @@ const Label = ({
   ...rest // eslint-disable-line react/jsx-props-no-spreading
 }) => (
   isLink ? (
-    <Typography
-      variant={variant}
-      {...rest} // eslint-disable-line react/jsx-props-no-spreading
-    >
-      <a
-        href={children}
-        rel="noopener noreferrer"
-        target="_new"
+    <ThemeProvider theme={theme}>
+      <Typography
+        variant={variant}
+        {...rest} // eslint-disable-line react/jsx-props-no-spreading
+      >
+        <a
+          href={children}
+          rel="noopener noreferrer"
+          target="_new"
+        >
+          {` ${children} `}
+        </a>
+      </Typography>
+    </ThemeProvider>
+  ) : (
+    <ThemeProvider theme={theme}>
+      <Typography
+        variant={variant}
+        {...rest} // eslint-disable-line react/jsx-props-no-spreading
       >
         {` ${children} `}
-      </a>
-    </Typography>
-  ) : (
-    <Typography
-      variant={variant}
-      {...rest} // eslint-disable-line react/jsx-props-no-spreading
-    >
-      {` ${children} `}
-    </Typography>
+      </Typography>
+    </ThemeProvider>
   )
 );
 

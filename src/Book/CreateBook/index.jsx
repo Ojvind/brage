@@ -6,6 +6,7 @@ import { CREATE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 
 import Input from '../../Shared/Input';
+import Label from '../../Shared/Label';
 import SaveButton from '../../Shared/Button/SaveButton';
 import ErrorMessage from '../../Error';
 
@@ -19,18 +20,21 @@ const CreateBook = (props) => {
 
   return (
     <div>
+      <Label variant="h4">
+        Nuovo libro
+      </Label>
       <div className="create-book">
         <div className="create-book__input">
-          <Input onChange={(e) => onTitleChange(e.target.value)} id="title" inputLabel="Title" />
+          <Input onChange={(e) => onTitleChange(e.target.value)} id="titolo" inputLabel="Titolo" />
         </div>
         <div className="create-book__input">
           <Input onChange={(e) => onUrlChange(e.target.value)} id="url" inputLabel="Url" />
         </div>
         <div className="create-book__input">
-          <Input onChange={(e) => onYearPublishedChange(e.target.value)} id="yearpublished" inputLabel="YearPublished" />
+          <Input onChange={(e) => onYearPublishedChange(e.target.value)} id="anno_di_pubblicazione" inputLabel="Anno di pubblicazione" />
         </div>
         <div className="create-book__input">
-          <Input onChange={(e) => onReadChange(e.target.value)} id="read" inputLabel="Read" />
+          <Input onChange={(e) => onReadChange(e.target.value)} id="ho_letto_il_libro_nel" inputLabel="Ho letto il libro nel" />
         </div>
         <Mutation
           mutation={CREATE_BOOK}
@@ -49,7 +53,7 @@ const CreateBook = (props) => {
               <SaveButton
                 onClick={createbook}
               >
-                Create
+                Salva
               </SaveButton>
             );
             if (error) {

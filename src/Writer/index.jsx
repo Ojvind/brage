@@ -1,9 +1,9 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
+import Container from '../Shared/Container';
 import WriterList from './WriterList';
 import CreateWriter from './CreateWriter';
 
@@ -11,18 +11,6 @@ import { GET_WRITERS } from './queries';
 
 import Loading from '../Shared/Loading';
 import ErrorMessage from '../Error';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '80%',
-  transform: 'translate(-50%, -50%)',
-  width: 250,
-  bgcolor: 'background.paper',
-  border: '2px solid red',
-  boxShadow: 24,
-  p: 4,
-};
 
 const WriterContainer = () => {
   const [open, setOpen] = React.useState(false);
@@ -49,9 +37,9 @@ const WriterContainer = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style}>
+                <Container>
                   <CreateWriter />
-                </Box>
+                </Container>
               </Modal>
             </div>
             <div>

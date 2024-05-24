@@ -19,6 +19,7 @@ const Input = ({
         id="outlined-basic"
         label={inputLabel}
         variant="outlined"
+        sx={{ m: 1, width: '100%' }}
         {...rest} // eslint-disable-line react/jsx-props-no-spreading
       >
         {name}
@@ -31,6 +32,7 @@ const Input = ({
         id="outlined-basic"
         label={inputLabel}
         variant="outlined"
+        sx={{ m: 1, width: '100%' }}
         {...rest} // eslint-disable-line react/jsx-props-no-spreading
       >
         {name}
