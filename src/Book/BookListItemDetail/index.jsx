@@ -6,7 +6,7 @@ import { GET_BOOK } from '../queries';
 
 import Loading from '../../Shared/Loading';
 import ErrorMessage from '../../Error';
-import BookListItemDetail from './bookListItemDetail';
+import BookListItemDetail from './BookListItemDetail';
 
 const BookListItemDetailContainter = () => {
   const { bookId } = useParams();

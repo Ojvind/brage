@@ -22,14 +22,17 @@ function WriterListItemDetail(props) {
 
   return (
     <div className="list-item-detail">
+      <Label variant="h2">En bild...</Label>
       {
         (!edit)
           ? (
-            <div className="list-item-detail__wrapper">
-              <div className="list-item-detail__labelwrapper list-item-detail__labelwrapper__row">
+            <div className="full-width">
+              <div className="list-item-detail__row">
                 <div>
                   <Label
-                    variant="h2"
+                    variant="h3"
+                    isLink
+                    url={homepage}
                   >
                     {`${writer.name} ${writer.surname}`}
                   </Label>
@@ -42,22 +45,12 @@ function WriterListItemDetail(props) {
                   />
                 </div>
               </div>
-              <div className="list-item-detail__labelwrapper list-item-detail__labelwrapper__column">
-                <div>
-                  <Label variant="subtitle2">
-                    URL:
-                  </Label>
-                  <div className="list-item-detail__labelwrapper__label">
-                    <Label variant="body" isLink>{homepage}</Label>
-                  </div>
-                </div>
-                <div className="list-item-detail__button">
-                  <EditButton
-                    onClick={() => toggleEdit(!edit)}
-                  >
-                    Edit
-                  </EditButton>
-                </div>
+              <div className="list-item-detail__row list-item-detail__row__button">
+                <EditButton
+                  onClick={() => toggleEdit(!edit)}
+                >
+                  Edit
+                </EditButton>
               </div>
             </div>
           )

@@ -12,8 +12,6 @@ import { UPDATE_BOOK } from '../mutations';
 import { GET_BOOK } from '../queries';
 import ErrorMessage from '../../Error';
 
-import Link from '../../Shared/Link';
-
 function BookListItemDetail(props) {
   const { book } = props;
 
@@ -33,31 +31,37 @@ function BookListItemDetail(props) {
             ? (
               <div className="full-width">
                 <div className="list-item-detail__row">
-                  <Label variant="subtitle2">
-                    Titolo:
-                  </Label>
-                  <Link
-                    href={url}
-                    toolTip="Open offical book site in a new tab"
+                  <Label
+                    variant="h3"
+                    isLink
+                    url={url}
                   >
                     {title}
-                  </Link>
+                  </Label>
                 </div>
                 <div className="list-item-detail__row">
-                  <Label variant="subtitle2">
-                    Autore:
-                  </Label>
-                  <div className="list-item-detail__row__label">
+                  <div>
+                    <Label variant="subtitle2">
+                      Autore:
+                    </Label>
+                  </div>
+                  <div className="break" />
+                  <div>
                     <RouterLink to={`/writer/${book.writer.id}/${book.writer.name}/${book.writer.surname}`}>
                       {`${book.writer.name} ${book.writer.surname}`}
                     </RouterLink>
                   </div>
                 </div>
                 <div className="list-item-detail__row">
-                  <Label variant="subtitle2">
-                    Descrizione:
-                  </Label>
-                  {description}
+                  <div>
+                    <Label variant="subtitle2">
+                      Descrizione:
+                    </Label>
+                  </div>
+                  <div className="break" />
+                  <div>
+                    {description}
+                  </div>
                 </div>
                 <div className="list-item-detail__row">
                   <Label variant="h6">
