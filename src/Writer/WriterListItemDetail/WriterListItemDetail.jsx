@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 
+import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
-import EditButton from '../../Shared/Button/EditButton';
 import SaveButton from '../../Shared/Button/SaveButton';
 
 import { UPDATE_WRITER } from '../mutations';
@@ -21,95 +21,97 @@ function WriterListItemDetail(props) {
   const [nationality, onNationalityChange] = useState(writer.nationality);
 
   return (
-    <div className="list-item-detail">
-      <Label variant="h2">En bild...</Label>
-      {
-        (!edit)
-          ? (
-            <div className="full-width">
-              <div className="list-item-detail__row">
-                <div>
-                  <Label
-                    variant="h3"
-                    isLink
-                    url={homepage}
-                  >
-                    {`${writer.name} ${writer.surname}`}
-                  </Label>
-                </div>
-                <div>
-                  <img
-                    className="list-item-detail__icon"
-                    alt={nationality}
-                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
-                  />
+    <div>
+      <div className="list-item-detail">
+        <Label variant="h2">En bild...</Label>
+        {
+          (!edit)
+            ? (
+              <div className="full-width">
+                <div className="list-item-detail__row">
+                  <div>
+                    <Label
+                      variant="h3"
+                      isLink
+                      url={homepage}
+                    >
+                      {`${writer.name} ${writer.surname}`}
+                    </Label>
+                  </div>
+                  <div>
+                    <img
+                      className="list-item-detail__icon"
+                      alt={nationality}
+                      src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality}.svg`}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="list-item-detail__row list-item-detail__row__button">
-                <EditButton
-                  onClick={() => toggleEdit(!edit)}
-                >
-                  Edit
-                </EditButton>
-              </div>
-            </div>
-          )
-          : (
-            <div className="list-item-detail__wrapper">
-              <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
-              <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
-              <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
-              <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
-              <Mutation
-                mutation={UPDATE_WRITER}
-                variables={{
-                  id: writer.id,
-                  name,
-                  surname,
-                  homepage,
-                  nationality,
-                }}
-                refetchQueries={[
-                  {
-                    query: GET_WRITER,
-                    variables: {
-                      id: writer.id,
+            )
+            : (
+              <div className="list-item-detail__wrapper">
+                <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
+                <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
+                <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
+                <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
+                <Mutation
+                  mutation={UPDATE_WRITER}
+                  variables={{
+                    id: writer.id,
+                    name,
+                    surname,
+                    homepage,
+                    nationality,
+                  }}
+                  refetchQueries={[
+                    {
+                      query: GET_WRITER,
+                      variables: {
+                        id: writer.id,
+                      },
                     },
-                  },
-                ]}
-              >
-                {(updateWriter, { error }) => {
-                  const saveButton = (
-                    <div className="list-item-detail__button">
-                      <SaveButton
-                        onClick={() => {
-                          updateWriter()
-                            .then(() => {
-                              toggleEdit(!edit);
-                            })
-                            .catch((e) => {
-                              throw e;
-                            });
-                        }}
-                      >
-                        Save
-                      </SaveButton>
-                    </div>
-                  );
-                  if (error) {
-                    return (
-                      <div>
-                        <ErrorMessage error={error} />
-                        { saveButton }
+                  ]}
+                >
+                  {(updateWriter, { error }) => {
+                    const saveButton = (
+                      <div className="list-item-detail__button">
+                        <SaveButton
+                          onClick={() => {
+                            updateWriter()
+                              .then(() => {
+                                toggleEdit(!edit);
+                              })
+                              .catch((e) => {
+                                throw e;
+                              });
+                          }}
+                        >
+                          Save
+                        </SaveButton>
                       </div>
                     );
-                  }
-                  return saveButton;
-                }}
-              </Mutation>
-            </div>
-          )
-      }
+                    if (error) {
+                      return (
+                        <div>
+                          <ErrorMessage error={error} />
+                          { saveButton }
+                        </div>
+                      );
+                    }
+                    return saveButton;
+                  }}
+                </Mutation>
+              </div>
+            )
+        }
+      </div>
+      <div>
+        <Button
+          onClick={() => toggleEdit(!edit)}
+        >
+          Modificare Autore
+        </Button>
+      </div>
     </div>
   );
 }
