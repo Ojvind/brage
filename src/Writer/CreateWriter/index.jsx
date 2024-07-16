@@ -19,16 +19,16 @@ function CreateWriter() {
     <div>
       <div className="create-writer">
         <div className="create-writer__input">
-          <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" />
+          <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Nome" />
         </div>
         <div className="create-writer__input">
-          <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" />
+          <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Cognome" />
         </div>
         <div className="create-writer__input">
           <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" />
         </div>
         <div className="create-writer__input">
-          <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" />
+          <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" />
         </div>
         <Mutation
           mutation={CREATE_WRITER}
@@ -47,7 +47,7 @@ function CreateWriter() {
               <SaveButton
                 onClick={createWriter}
               >
-                Create
+                Salva
               </SaveButton>
             );
             if (error) {

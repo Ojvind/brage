@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 const Navigation = () => (
   <header className="Navigation">
     <div className="Navigation-link">
-      <Link to="/writers"> Writers</Link>
-      <Link to="/books"> Books</Link>
+      <Link to="/writers">Scrittori e Scrittrici</Link>
+      |
+      <Link to="/libri">Libri</Link>
     </div>
   </header>
 );

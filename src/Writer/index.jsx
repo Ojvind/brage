@@ -30,7 +30,8 @@ const WriterContainer = () => {
         return (
           <div className="app-content_small-header">
             <div>
-              <Button onClick={handleOpen}>Create new Writer</Button>
+              <h1>Scrittori e Scrittrici</h1>
+              <Button onClick={handleOpen}>Crea nuovo scrittore</Button>
               <Modal
                 open={open}
                 onClose={handleClose}
