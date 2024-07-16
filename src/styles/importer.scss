@@ -1,9 +1,8 @@
 @import './mixins/all';
 @import './mixins/_responsive';
 @import './variables/all';
-@import './global/all';
+@import './global/typography';
 @import './list-item-detail';
-
 
 @import '../App/app';
 @import '../Writer/WriterList/writer-list';
