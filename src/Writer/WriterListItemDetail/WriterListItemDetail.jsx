@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 
@@ -6,6 +7,8 @@ import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 import SaveButton from '../../Shared/Button/SaveButton';
+import DefaultImage from '../../assets/upload-photo-here.png';
+import EditIcon from '../../assets/edit.svg';
 
 import { UPDATE_WRITER } from '../mutations';
 import { GET_WRITER } from '../queries';
@@ -13,6 +16,21 @@ import ErrorMessage from '../../Error';
 
 function WriterListItemDetail(props) {
   const { writer } = props;
+
+  const [avatarURL, setAvatarURL] = useState(DefaultImage); // eslint-disable-line no-unused-vars
+
+  const fileUploadRef = useRef();
+
+  const handleImageUpload = (event) => {
+    event.preventDefault();
+    fileUploadRef.current.click();
+  };
+
+  const uploadImageDisplay = async () => {
+    const uploadedFile = fileUploadRef.current.files[0];
+    const cachedURL = URL.createObjectURL(uploadedFile);
+    setAvatarURL(cachedURL);
+  };
 
   const [edit, toggleEdit] = useState(false);
   const [name, onNameChange] = useState(writer.name);
@@ -23,11 +41,16 @@ function WriterListItemDetail(props) {
   return (
     <div>
       <div className="list-item-detail">
-        <Label variant="h2">En bild...</Label>
         {
           (!edit)
             ? (
               <div className="full-width">
+                <img
+                  src={avatarURL}
+                  alt="Avatar"
+                  width="20%"
+                />
+
                 <div className="list-item-detail__row">
                   <div>
                     <Label
@@ -50,6 +73,31 @@ function WriterListItemDetail(props) {
             )
             : (
               <div className="list-item-detail__wrapper">
+                <img
+                  src={avatarURL}
+                  alt="Avatar"
+                  width="20%"
+                />
+                <form id="form" encType="multipart/form-data">
+                  <button
+                    type="submit"
+                    onClick={handleImageUpload}
+                  >
+                    <img
+                      src={EditIcon}
+                      alt="Edit"
+                      className="object-cover"
+                    />
+                  </button>
+                  <input
+                    type="file"
+                    id="file"
+                    ref={fileUploadRef}
+                    onChange={uploadImageDisplay}
+                    hidden
+                  />
+                </form>
+
                 <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
