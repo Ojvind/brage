@@ -3,6 +3,9 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+// import fs from 'fs';
+
 import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
@@ -18,6 +21,12 @@ function WriterListItemDetail(props) {
   const { writer } = props;
 
   const [avatarURL, setAvatarURL] = useState(DefaultImage); // eslint-disable-line no-unused-vars
+  const [edit, toggleEdit] = useState(false);
+  const [name, onNameChange] = useState(writer.name);
+  const [surname, onSurnameChange] = useState(writer.surname);
+  const [homepage, onHomepageChange] = useState(writer.homepage);
+  const [nationality, onNationalityChange] = useState(writer.nationality);
+  const [imageurl, onImageUrlChange] = useState(writer.imageurl);
 
   const fileUploadRef = useRef();
 
@@ -26,17 +35,46 @@ function WriterListItemDetail(props) {
     fileUploadRef.current.click();
   };
 
+  const s3Client = new S3Client({
+    endpoint: 'http://localhost:9000', // MinIO server address
+    region: 'eu-north-1', // MinIO doesn't require a specific region
+    credentials: {
+      accessKeyId: 'ojvind.otterbjork', // Replace with your access key
+      secretAccessKey: 'Pp30s3n56dl', // Replace with your secret key
+    },
+    forcePathStyle: true, // Required for MinIO
+  });
+
+  async function uploadFile(bucketName, key, fileContent) {
+    // const fileContent = fs.readFileSync(filePath);
+    const command = new PutObjectCommand({
+      Bucket: bucketName,
+      Key: key,
+      Body: fileContent,
+    });
+
+    try {
+      const response = await s3Client.send(command);
+      console.log('File uploaded successfully', response);
+    } catch (err) {
+      console.error('Error uploading file', err);
+    }
+  }
+
   const uploadImageDisplay = async () => {
     const uploadedFile = fileUploadRef.current.files[0];
     const cachedURL = URL.createObjectURL(uploadedFile);
     setAvatarURL(cachedURL);
-  };
 
-  const [edit, toggleEdit] = useState(false);
-  const [name, onNameChange] = useState(writer.name);
-  const [surname, onSurnameChange] = useState(writer.surname);
-  const [homepage, onHomepageChange] = useState(writer.homepage);
-  const [nationality, onNationalityChange] = useState(writer.nationality);
+    const result = `http://localhost:9000/ojvind.otterbjork.minio/${uploadedFile.name}`;
+
+    const response = await fetch(cachedURL);
+    const data = await response.arrayBuffer();
+    onImageUrlChange(result);
+
+    const bucketName = 'ojvind.otterbjork.minio';
+    uploadFile(bucketName, uploadedFile.name, data);
+  };
 
   return (
     <div>
@@ -102,6 +140,7 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
+                <Input onChange={(e) => onImageUrlChange(e.target.value)} id="imageurl" inputLabel="ImageUrl" value={imageurl} />
                 <Mutation
                   mutation={UPDATE_WRITER}
                   variables={{
@@ -171,6 +210,7 @@ WriterListItemDetail.propTypes = {
     surname: PropTypes.string,
     homepage: PropTypes.string,
     nationality: PropTypes.string,
+    imageurl: PropTypes.string,
   }).isRequired,
 };
 
