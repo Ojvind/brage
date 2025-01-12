@@ -9,8 +9,9 @@ import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 import SaveButton from '../../Shared/Button/SaveButton';
+import EditButton from '../../Shared/Button/EditButton';
 import DefaultImage from '../../assets/upload-photo-here.png';
-import EditIcon from '../../assets/edit.svg';
+// import EditIcon from '../../assets/edit.svg';
 
 import { UPDATE_WRITER } from '../mutations';
 import { GET_WRITER } from '../queries';
@@ -29,24 +30,29 @@ function WriterListItemDetail(props) {
 
   const fileUploadRef = useRef();
 
+  const minioEndpoint = 'http://localhost:9000';
+  const minioUserName = 'ojvind.otterbjork';
+  const minioPassword = 'Pp30s3n56dl';
+  const minioBucketName = 'ojvind.otterbjork.minio';
+
   const handleImageUpload = (event) => {
     event.preventDefault();
     fileUploadRef.current.click();
   };
 
   const s3Client = new S3Client({
-    endpoint: 'http://localhost:9000', // MinIO server address
-    region: 'eu-north-1', // MinIO doesn't require a specific region
+    endpoint: minioEndpoint,
+    region: 'eu-north-1',
     credentials: {
-      accessKeyId: 'ojvind.otterbjork', // Replace with your access key
-      secretAccessKey: 'Pp30s3n56dl', // Replace with your secret key
+      accessKeyId: minioUserName,
+      secretAccessKey: minioPassword,
     },
     forcePathStyle: true, // Required for MinIO
   });
 
-  async function uploadFile(bucketName, key, fileContent) {
+  async function uploadFile(key, fileContent) {
     const command = new PutObjectCommand({
-      Bucket: bucketName,
+      Bucket: minioBucketName,
       Key: key,
       Body: fileContent,
     });
@@ -66,10 +72,9 @@ function WriterListItemDetail(props) {
 
     const response = await fetch(cachedURL);
     const data = await response.arrayBuffer();
-    setPortraitImageUrl(`http://localhost:9000/ojvind.otterbjork.minio/${uploadedFile.name}`);
+    setPortraitImageUrl(`${minioEndpoint}/${minioBucketName}/${uploadedFile.name}`);
 
-    const bucketName = 'ojvind.otterbjork.minio';
-    uploadFile(bucketName, uploadedFile.name, data);
+    uploadFile(uploadedFile.name, data);
   };
 
   return (
@@ -94,11 +99,6 @@ function WriterListItemDetail(props) {
                     >
                       {`${writer.name} ${writer.surname}`}
                     </Label>
-                    <Label
-                      variant="h3"
-                    >
-                      {`${writer.portraitimageurl}`}
-                    </Label>
                   </div>
                   <div>
                     <img
@@ -118,16 +118,9 @@ function WriterListItemDetail(props) {
                   width="20%"
                 />
                 <form id="form" encType="multipart/form-data">
-                  <button
-                    type="submit"
+                  <EditButton
                     onClick={handleImageUpload}
-                  >
-                    <img
-                      src={EditIcon}
-                      alt="Edit"
-                      className="object-cover"
-                    />
-                  </button>
+                  />
                   <input
                     type="file"
                     id="file"
@@ -141,11 +134,6 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
-                <Label
-                  variant="h7"
-                >
-                  {portraitimageurl}
-                </Label>
                 <Mutation
                   mutation={UPDATE_WRITER}
                   variables={{
