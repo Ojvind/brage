@@ -6,6 +6,7 @@ export const WRITER_FRAGMENT = gql`
     name
     surname
     homepage
+    portraitimageurl
     nationality
   }
 `;

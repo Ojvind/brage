@@ -7,17 +7,19 @@ export const CREATE_WRITER = gql`
       name
       surname
       homepage
+      portraitimageurl
       nationality
     }
   }
 `;
 
 export const UPDATE_WRITER = gql`
-mutation ($id: ID!, $name: String!, $surname: String!, $homepage: String, $nationality: String ) {
-  updateWriter (id: $id, name: $name, surname: $surname, homepage: $homepage nationality: $nationality) {
+mutation ($id: ID!, $name: String!, $surname: String!, $homepage: String, $portraitimageurl: String, $nationality: String ) {
+  updateWriter (id: $id, name: $name, surname: $surname, homepage: $homepage, portraitimageurl: $portraitimageurl, nationality: $nationality) {
       name
       surname
       homepage
+      portraitimageurl
       nationality
     }
   }

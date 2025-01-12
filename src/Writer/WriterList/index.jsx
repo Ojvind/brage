@@ -73,6 +73,27 @@ const getWriterUrl = (params) => (
   </HtmlTooltip>
 );
 
+const getPortraitImageUrl = (params) => (
+  <HtmlTooltip
+    title={(
+      <>
+        <Typography color="inherit">{params.value}</Typography>
+        <em>opens in a new</em>
+        <b> tab...</b>
+      </>
+    )}
+    placement="top"
+    arrow
+  >
+    <a
+      target="_new"
+      href={params.value}
+    >
+      {params.value}
+    </a>
+  </HtmlTooltip>
+);
+
 const getWriterNationality = (params) => (
   <div>
     {params.row.nationality}
@@ -105,6 +126,12 @@ const columns = [
     headerName: 'Homepage',
     width: 450,
     renderCell: getWriterUrl,
+  },
+  {
+    field: 'portraitimageurl',
+    headerName: 'portraitimageurl',
+    width: 450,
+    renderCell: getPortraitImageUrl,
   },
   {
     field: 'nationality',
@@ -155,6 +182,7 @@ WriterList.propTypes = {
       name: PropTypes.string,
       surname: PropTypes.string,
       homepage: PropTypes.string,
+      portraitimageurl: PropTypes.string,
       nationality: PropTypes.string,
     })),
     pageInfo: PropTypes.PropTypes.shape({

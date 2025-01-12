@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-// import fs from 'fs';
 
 import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
@@ -20,13 +19,13 @@ import ErrorMessage from '../../Error';
 function WriterListItemDetail(props) {
   const { writer } = props;
 
-  const [avatarURL, setAvatarURL] = useState(DefaultImage); // eslint-disable-line no-unused-vars
+  const [avatarURL, setAvatarURL] = useState(writer.portraitimageurl ?? DefaultImage); // eslint-disable-line max-len
   const [edit, toggleEdit] = useState(false);
   const [name, onNameChange] = useState(writer.name);
   const [surname, onSurnameChange] = useState(writer.surname);
   const [homepage, onHomepageChange] = useState(writer.homepage);
   const [nationality, onNationalityChange] = useState(writer.nationality);
-  const [imageurl, onImageUrlChange] = useState(writer.imageurl);
+  const [portraitimageurl, setPortraitImageUrl] = useState(writer.portraitimageurl);
 
   const fileUploadRef = useRef();
 
@@ -46,7 +45,6 @@ function WriterListItemDetail(props) {
   });
 
   async function uploadFile(bucketName, key, fileContent) {
-    // const fileContent = fs.readFileSync(filePath);
     const command = new PutObjectCommand({
       Bucket: bucketName,
       Key: key,
@@ -66,11 +64,9 @@ function WriterListItemDetail(props) {
     const cachedURL = URL.createObjectURL(uploadedFile);
     setAvatarURL(cachedURL);
 
-    const result = `http://localhost:9000/ojvind.otterbjork.minio/${uploadedFile.name}`;
-
     const response = await fetch(cachedURL);
     const data = await response.arrayBuffer();
-    onImageUrlChange(result);
+    setPortraitImageUrl(`http://localhost:9000/ojvind.otterbjork.minio/${uploadedFile.name}`);
 
     const bucketName = 'ojvind.otterbjork.minio';
     uploadFile(bucketName, uploadedFile.name, data);
@@ -97,6 +93,11 @@ function WriterListItemDetail(props) {
                       url={homepage}
                     >
                       {`${writer.name} ${writer.surname}`}
+                    </Label>
+                    <Label
+                      variant="h3"
+                    >
+                      {`${writer.portraitimageurl}`}
                     </Label>
                   </div>
                   <div>
@@ -140,7 +141,11 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
-                <Input onChange={(e) => onImageUrlChange(e.target.value)} id="imageurl" inputLabel="ImageUrl" value={imageurl} />
+                <Label
+                  variant="h7"
+                >
+                  {portraitimageurl}
+                </Label>
                 <Mutation
                   mutation={UPDATE_WRITER}
                   variables={{
@@ -148,6 +153,7 @@ function WriterListItemDetail(props) {
                     name,
                     surname,
                     homepage,
+                    portraitimageurl,
                     nationality,
                   }}
                   refetchQueries={[
@@ -210,7 +216,7 @@ WriterListItemDetail.propTypes = {
     surname: PropTypes.string,
     homepage: PropTypes.string,
     nationality: PropTypes.string,
-    imageurl: PropTypes.string,
+    portraitimageurl: PropTypes.string,
   }).isRequired,
 };
 
