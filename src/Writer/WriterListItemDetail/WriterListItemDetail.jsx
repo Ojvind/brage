@@ -8,6 +8,7 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
+import Link from '../../Shared/Link';
 import SaveButton from '../../Shared/Button/SaveButton';
 import EditButton from '../../Shared/Button/EditButton';
 import DefaultImage from '../../assets/upload-photo-here.png';
@@ -84,23 +85,29 @@ function WriterListItemDetail(props) {
           (!edit)
             ? (
               <div className="full-width">
-                <img
-                  src={avatarURL}
-                  alt="Avatar"
-                  width="20%"
-                />
-
                 <div className="list-item-detail__row">
-                  <div>
+                  <div className="list-item-detail__row__column">
+                    <img
+                      src={avatarURL}
+                      alt="Avatar"
+                      width="200px"
+                    />
+                  </div>
+                  <div className="list-item-detail__row__column">
                     <Label
                       variant="h3"
-                      isLink
-                      url={homepage}
                     >
                       {`${writer.name} ${writer.surname}`}
                     </Label>
-                  </div>
-                  <div>
+                    <span className="Footer-text">Leggi di più sull&apos;autore</span>
+                    {' '}
+                    <Link
+                      href={writer.homepage}
+                    >
+                      qui
+                    </Link>
+                    <br />
+                    <br />
                     <img
                       className="list-item-detail__icon"
                       alt={nationality}
