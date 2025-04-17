@@ -4,10 +4,11 @@ export const CREATE_BOOK = gql`
   mutation (
     $writerId: ID!,
     $title: String!,
-    $url: String!,
+    $url: String,
     $yearPublished: String,
     $yearRead: String!,
     $description: String,
+    $portraitimageurl: String,
   ) {
     createBook(
       writerId: $writerId,
@@ -16,6 +17,7 @@ export const CREATE_BOOK = gql`
       yearRead: $yearRead, 
       yearPublished: $yearPublished,
       description: $description,
+      portraitimageurl: $portraitimageurl,
       ) {
       id
       title
@@ -23,6 +25,7 @@ export const CREATE_BOOK = gql`
       yearPublished
       yearRead
       description
+      portraitimageurl  
     }
   }
 `;
@@ -41,10 +44,11 @@ export const UPDATE_BOOK = gql`
   mutation (
     $id: ID!,
     $title: String!,
-    $url: String!,
+    $url: String,
     $yearPublished: String,
     $yearRead: String!,
     $description: String,
+    $portraitimageurl: String,
   ) {
     updateBook(
       id: $id,
@@ -53,6 +57,7 @@ export const UPDATE_BOOK = gql`
       yearPublished: $yearPublished,
       yearRead: $yearRead,
       description: $description,
+      portraitimageurl: $portraitimageurl,
     ) {
       id
       title
@@ -60,6 +65,7 @@ export const UPDATE_BOOK = gql`
       yearPublished
       yearRead
       description
+      portraitimageurl
     }
   }
 `;

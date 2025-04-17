@@ -153,9 +153,9 @@ function BookListItemDetail(props) {
                   mutation={UPDATE_BOOK}
                   variables={{
                     id: book.id,
+                    title,
                     url,
                     yearPublished,
-                    title,
                     yearRead,
                     description,
                     portraitimageurl,
