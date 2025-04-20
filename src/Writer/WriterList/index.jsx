@@ -74,24 +74,13 @@ const getWriterUrl = (params) => (
 );
 
 const getPortraitImageUrl = (params) => (
-  <HtmlTooltip
-    title={(
-      <>
-        <Typography color="inherit">{params.value}</Typography>
-        <em>opens in a new</em>
-        <b> tab...</b>
-      </>
-    )}
-    placement="top"
-    arrow
-  >
-    <a
-      target="_new"
-      href={params.value}
-    >
-      {params.value}
-    </a>
-  </HtmlTooltip>
+  <div>
+    <img
+      src={params.value}
+      alt="Avatar"
+      width="75px"
+    />
+  </div>
 );
 
 const getWriterNationality = (params) => (
@@ -115,7 +104,7 @@ const columns = [
   },
   {
     field: 'fullName',
-    headerName: 'Full name',
+    headerName: 'Nome e cognome',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 200,
@@ -123,19 +112,19 @@ const columns = [
   },
   {
     field: 'homepage',
-    headerName: 'Homepage',
+    headerName: 'Pagina iniziale',
     width: 450,
     renderCell: getWriterUrl,
   },
   {
     field: 'portraitimageurl',
-    headerName: 'portraitimageurl',
+    headerName: 'Ritratto',
     width: 450,
     renderCell: getPortraitImageUrl,
   },
   {
     field: 'nationality',
-    headerName: 'Nationality',
+    headerName: 'Nazionalità',
     width: 100,
     renderCell: getWriterNationality,
   },
@@ -155,7 +144,7 @@ const WriterList = ({
       className="writer-list__datagrid"
       rows={writers.edges}
       columns={columns}
-      pageSize={60}
+      pageSize={100}
       rowsPerPageOptions={[50]}
       // checkboxSelection
       disableSelectionOnClick

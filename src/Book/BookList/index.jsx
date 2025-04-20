@@ -21,24 +21,13 @@ const HtmlTooltip = withStyles(() => ({
 }))(Tooltip);
 
 const getPortraitImageUrl = (params) => (
-  <HtmlTooltip
-    title={(
-      <>
-        <Typography color="inherit">{params.value}</Typography>
-        <em>opens in a new</em>
-        <b> tab...</b>
-      </>
-    )}
-    placement="top"
-    arrow
-  >
-    <a
-      target="_new"
-      href={params.value}
-    >
-      {params.value}
-    </a>
-  </HtmlTooltip>
+  <div>
+    <img
+      src={params.value}
+      alt="Avatar"
+      width="75px"
+    />
+  </div>
 );
 
 const columns = [
@@ -94,7 +83,7 @@ const columns = [
   { field: 'yearRead', headerName: 'Ho letto il libro nel', width: 150 },
   {
     field: 'portraitimageurl',
-    headerName: 'portraitimageurl',
+    headerName: 'Copertina del libro',
     width: 450,
     renderCell: getPortraitImageUrl,
   },
