@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 import SaveButton from '../../Shared/Button/SaveButton';
-import EditButton from '../../Shared/Button/EditButton';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
 import { UPDATE_BOOK } from '../mutations';
@@ -133,9 +132,11 @@ function BookListItemDetail(props) {
                   width="20%"
                 />
                 <form id="form" encType="multipart/form-data">
-                  <EditButton
+                  <Button
                     onClick={handleImageUpload}
-                  />
+                  >
+                    Imposta immagine
+                  </Button>
                   <input
                     type="file"
                     id="file"
@@ -144,6 +145,7 @@ function BookListItemDetail(props) {
                     hidden
                   />
                 </form>
+                <br />
                 <Input onChange={(e) => onTitleChange(e.target.value)} inputLabel="Titolo" value={title} />
                 <Input onChange={(e) => onUrlChange(e.target.value)} inputLabel="URL" value={url} />
                 <Input onChange={(e) => onDescriptionChange(e.target.value)} inputLabel="Descrizione" multiline value={description} />
@@ -203,11 +205,24 @@ function BookListItemDetail(props) {
         }
       </div>
       <div>
-        <Button
-          onClick={() => toggleEdit(!edit)}
-        >
-          Modificare Autore
-        </Button>
+        {
+          (!edit)
+            ? (
+              <Button
+                onClick={() => toggleEdit(!edit)}
+              >
+                Modifica Libro
+              </Button>
+            )
+            : (
+              <div />
+              // <Button
+              //   onClick={() => toggleEdit(!edit)}
+              // >
+              //   Annulla
+              // </Button>
+            )
+        }
       </div>
     </div>
   );

@@ -10,9 +10,7 @@ import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 import Link from '../../Shared/Link';
 import SaveButton from '../../Shared/Button/SaveButton';
-import EditButton from '../../Shared/Button/EditButton';
 import DefaultImage from '../../assets/upload-photo-here.png';
-// import EditIcon from '../../assets/edit.svg';
 
 import { UPDATE_WRITER } from '../mutations';
 import { GET_WRITER } from '../queries';
@@ -125,9 +123,11 @@ function WriterListItemDetail(props) {
                   width="20%"
                 />
                 <form id="form" encType="multipart/form-data">
-                  <EditButton
+                  <Button
                     onClick={handleImageUpload}
-                  />
+                  >
+                    Imposta immagine
+                  </Button>
                   <input
                     type="file"
                     id="file"
@@ -136,7 +136,7 @@ function WriterListItemDetail(props) {
                     hidden
                   />
                 </form>
-
+                <br />
                 <Input onChange={(e) => onNameChange(e.target.value)} id="name" inputLabel="Name" value={name} />
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
@@ -162,7 +162,7 @@ function WriterListItemDetail(props) {
                 >
                   {(updateWriter, { error }) => {
                     const saveButton = (
-                      <div className="list-item-detail__button">
+                      <div className="list-item-detail__row list-item-detail__row__button">
                         <SaveButton
                           onClick={() => {
                             updateWriter()
@@ -174,7 +174,7 @@ function WriterListItemDetail(props) {
                               });
                           }}
                         >
-                          Save
+                          Salva
                         </SaveButton>
                       </div>
                     );
@@ -194,11 +194,21 @@ function WriterListItemDetail(props) {
         }
       </div>
       <div>
-        <Button
-          onClick={() => toggleEdit(!edit)}
-        >
-          Modificare Autore
-        </Button>
+        {
+          (!edit)
+            ? (
+              <Button
+                onClick={() => toggleEdit(!edit)}
+              >
+                Modificare Autore
+              </Button>
+            )
+            : (
+              <div>
+                <br />
+              </div>
+            )
+        }
       </div>
     </div>
   );
