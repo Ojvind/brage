@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { withStyles } from '@mui/styles';
 import FetchMore from '../../FetchMore';
 import DeleteWriterMutation from '../DeleteWriter';
+import DefaultImage from '../../assets/upload-photo-here.png';
 
 const HtmlTooltip = withStyles(() => ({
   tooltip: {
@@ -76,7 +77,7 @@ const getWriterUrl = (params) => (
 const getPortraitImageUrl = (params) => (
   <div>
     <img
-      src={params.value}
+      src={params.value ? params.value : DefaultImage}
       alt="Avatar"
       width="75px"
     />
