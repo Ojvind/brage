@@ -93,7 +93,7 @@ function WriterListItemDetail(props) {
                   </div>
                   <div className="list-item-detail__row__column">
                     <Label
-                      variant="h3"
+                      variant="h5"
                     >
                       {`${writer.name} ${writer.surname}`}
                     </Label>
