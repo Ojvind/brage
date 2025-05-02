@@ -197,11 +197,14 @@ function WriterListItemDetail(props) {
         {
           (!edit)
             ? (
-              <Button
-                onClick={() => toggleEdit(!edit)}
-              >
-                Modificare Autore
-              </Button>
+              <div>
+                <Button
+                  onClick={() => toggleEdit(!edit)}
+                >
+                  Modificare Autore
+                </Button>
+                <br />
+              </div>
             )
             : (
               <div>

@@ -41,6 +41,7 @@ const WriterListItemDetailContainer = () => {
               <WriterListItemDetail
                 writer={data.writer}
               />
+              <br />
               <BookContainer
                 writerId={data.writer.id}
               />
