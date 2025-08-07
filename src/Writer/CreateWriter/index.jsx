@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/client';
 import Input from '../../Shared/Input';
 import SaveButton from '../../Shared/Button/SaveButton';
 import { CREATE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 
 import './create-writer.css';
-
 import ErrorMessage from '../../Error';
 
 function CreateWriter() {
@@ -14,6 +13,28 @@ function CreateWriter() {
   const [surname, onSurnameChange] = useState('');
   const [homepage, onHomepageChange] = useState('');
   const [nationality, onNationalityChange] = useState('');
+
+  const [createWriter, { loading, error }] = useMutation(CREATE_WRITER, {
+    variables: {
+      name,
+      surname,
+      homepage,
+      portraitimageurl: '',
+      nationality,
+    },
+    refetchQueries: [
+      { query: GET_WRITERS },
+    ],
+  });
+
+  const handleSave = async () => {
+    try {
+      await createWriter();
+      // Optionally reset form or show success
+    } catch (e) {
+      // Error will be shown by error prop
+    }
+  };
 
   return (
     <div>
@@ -30,42 +51,16 @@ function CreateWriter() {
         <div className="create-writer__input">
           <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nazionalità" />
         </div>
-        <Mutation
-          mutation={CREATE_WRITER}
-          variables={{
-            name,
-            surname,
-            homepage,
-            portraitimageurl: '',
-            nationality,
-          }}
-          refetchQueries={[
-            { query: GET_WRITERS },
-          ]}
-        >
-          {(createWriter, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-            const button = (
-              <SaveButton
-                onClick={createWriter}
-              >
-                Salva
-              </SaveButton>
-            );
-            if (error) {
-              return (
-                <div>
-                  <ErrorMessage error={error} />
-                  { button }
-                </div>
-              );
-            }
-            return (
-              <div className="create-writer__button">
-                {button}
-              </div>
-            );
-          }}
-        </Mutation>
+        <div className="create-writer__button">
+          <SaveButton onClick={handleSave} disabled={loading}>
+            Salva
+          </SaveButton>
+        </div>
+        {error && (
+          <div>
+            <ErrorMessage error={error} />
+          </div>
+        )}
       </div>
     </div>
   );

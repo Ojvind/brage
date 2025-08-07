@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 import BookListItemDetailView from './BookListItemDetailView';
 import BookListItemDetailEdit from './BookListItemDetailEdit';
-import { useBookImageUpload } from './useBookImageUpload';
+import useBookImageUpload from './useBookImageUpload';
 
 function BookListItemDetail(props) {
   const { book } = props;
@@ -18,9 +18,7 @@ function BookListItemDetail(props) {
 
   const {
     avatarURL,
-    setAvatarURL,
     portraitimageurl,
-    setPortraitImageUrl,
     fileUploadRef,
     handleImageUpload,
     uploadImageDisplay,
@@ -46,7 +44,6 @@ function BookListItemDetail(props) {
               <BookListItemDetailEdit
                 book={book}
                 avatarURL={avatarURL}
-                setAvatarURL={setAvatarURL}
                 title={title}
                 onTitleChange={onTitleChange}
                 url={url}
@@ -58,7 +55,6 @@ function BookListItemDetail(props) {
                 description={description}
                 onDescriptionChange={onDescriptionChange}
                 portraitimageurl={portraitimageurl}
-                setPortraitImageUrl={setPortraitImageUrl}
                 fileUploadRef={fileUploadRef}
                 handleImageUpload={handleImageUpload}
                 uploadImageDisplay={uploadImageDisplay}

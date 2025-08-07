@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
-
 import PropTypes from 'prop-types';
-import { Mutation } from 'react-apollo';
-
+import { useMutation } from '@apollo/client';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 import Button from '@mui/material/Button';
@@ -55,7 +53,6 @@ function WriterListItemDetail(props) {
       Key: key,
       Body: fileContent,
     });
-
     try {
       const response = await s3Client.send(command);
       console.log('File uploaded successfully', response);
@@ -75,6 +72,17 @@ function WriterListItemDetail(props) {
 
     uploadFile(uploadedFile.name, data);
   };
+
+  const [updateWriter, { error: mutationError }] = useMutation(UPDATE_WRITER, {
+    refetchQueries: [
+      {
+        query: GET_WRITER,
+        variables: {
+          id: writer.id,
+        },
+      },
+    ],
+  });
 
   return (
     <div>
@@ -141,54 +149,34 @@ function WriterListItemDetail(props) {
                 <Input onChange={(e) => onSurnameChange(e.target.value)} id="surname" inputLabel="Surname" value={surname} />
                 <Input onChange={(e) => onHomepageChange(e.target.value)} id="homepage" inputLabel="Homepage" value={homepage} />
                 <Input onChange={(e) => onNationalityChange(e.target.value)} id="nationality" inputLabel="Nationality" value={nationality} />
-                <Mutation
-                  mutation={UPDATE_WRITER}
-                  variables={{
-                    id: writer.id,
-                    name,
-                    surname,
-                    homepage,
-                    portraitimageurl,
-                    nationality,
-                  }}
-                  refetchQueries={[
-                    {
-                      query: GET_WRITER,
-                      variables: {
-                        id: writer.id,
-                      },
-                    },
-                  ]}
-                >
-                  {(updateWriter, { error }) => {
-                    const saveButton = (
-                      <div className="list-item-detail__row list-item-detail__row__button">
-                        <SaveButton
-                          onClick={() => {
-                            updateWriter()
-                              .then(() => {
-                                toggleEdit(!edit);
-                              })
-                              .catch((e) => {
-                                throw e;
-                              });
-                          }}
-                        >
-                          Salva
-                        </SaveButton>
-                      </div>
-                    );
-                    if (error) {
-                      return (
-                        <div>
-                          <ErrorMessage error={error} />
-                          { saveButton }
-                        </div>
-                      );
-                    }
-                    return saveButton;
-                  }}
-                </Mutation>
+                <div className="list-item-detail__row list-item-detail__row__button">
+                  <SaveButton
+                    onClick={async () => {
+                      try {
+                        await updateWriter({
+                          variables: {
+                            id: writer.id,
+                            name,
+                            surname,
+                            homepage,
+                            portraitimageurl,
+                            nationality,
+                          },
+                        });
+                        toggleEdit(!edit);
+                      } catch (e) {
+                        // Error will be shown by mutationError
+                      }
+                    }}
+                  >
+                    Salva
+                  </SaveButton>
+                </div>
+                {mutationError && (
+                  <div>
+                    <ErrorMessage error={mutationError} />
+                  </div>
+                )}
               </div>
             )
         }
