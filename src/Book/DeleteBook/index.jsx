@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/client';
 import PropTypes from 'prop-types';
 
 import IconButton from '@mui/material/IconButton';
@@ -12,51 +12,41 @@ import ConfirmDialog from '../../Shared/ConfirmDialog';
 
 const DeleteBookMutation = ({ bookId, writerId }) => {
   const [open, setConfirmOpen] = useState(false);
+  const [deleteBook, { error }] = useMutation(DELETE_BOOK, {
+    variables: { bookId },
+    refetchQueries: [
+      {
+        query: GET_BOOKS,
+        variables: { writerId },
+      },
+    ],
+  });
 
-  return (
-    <Mutation
-      mutation={DELETE_BOOK}
-      variables={{ bookId }}
-      refetchQueries={[
-        {
-          query: GET_BOOKS,
-          variables: { writerId },
-        },
-      ]}
-    >
-      {(deleteBook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-        const button = (
-          <div>
-            <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
-              <DeleteIcon />
-            </IconButton>
-            <ConfirmDialog
-              title="Delete book?"
-              open={open}
-              setOpen={setConfirmOpen}
-              onConfirm={deleteBook}
-            >
-              Are you sure you want to delete this book?
-            </ConfirmDialog>
-          </div>
-        );
-
-        if (error) {
-          return (
-            <div>
-              <ErrorMessage error={error} />
-              { button }
-            </div>
-          );
-        }
-        return (
-          <div>
-            {button}
-          </div>
-        );
-      }}
-    </Mutation>
+  const button = (
+    <div>
+      <IconButton aria-label="delete" onClick={() => setConfirmOpen(true)}>
+        <DeleteIcon />
+      </IconButton>
+      <ConfirmDialog
+        title="Delete book?"
+        open={open}
+        setOpen={setConfirmOpen}
+        onConfirm={deleteBook}
+      >
+        Are you sure you want to delete this book?
+      </ConfirmDialog>
+    </div>
   );
+
+  if (error) {
+    return (
+      <div>
+        <ErrorMessage error={error} />
+        {button}
+      </div>
+    );
+  }
+  return <div>{button}</div>;
 };
 
 DeleteBookMutation.propTypes = {

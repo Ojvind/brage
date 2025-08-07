@@ -4,7 +4,15 @@ import { Link as RouterLink } from 'react-router-dom';
 import Label from '../../Shared/Label';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
-function BookListItemDetailView({ book, avatarURL, description, yearPublished, yearRead, url, title }) {
+function BookListItemDetailView({
+  book,
+  avatarURL,
+  description,
+  yearPublished,
+  yearRead,
+  url,
+  title,
+}) {
   return (
     <div className="full-width">
       <div className="list-item-detail__row">
@@ -52,13 +60,35 @@ function BookListItemDetailView({ book, avatarURL, description, yearPublished, y
 }
 
 BookListItemDetailView.propTypes = {
-  book: PropTypes.object.isRequired,
+  book: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
+    yearRead: PropTypes.string,
+    yearPublished: PropTypes.string,
+    description: PropTypes.string,
+    portraitimageurl: PropTypes.string,
+    writer: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      surname: PropTypes.string,
+    }),
+  }).isRequired,
   avatarURL: PropTypes.string,
   description: PropTypes.string,
   yearPublished: PropTypes.string,
   yearRead: PropTypes.string,
   url: PropTypes.string,
   title: PropTypes.string,
+};
+
+BookListItemDetailView.defaultProps = {
+  avatarURL: '',
+  description: '',
+  yearPublished: '',
+  yearRead: '',
+  url: '',
+  title: '',
 };
 
 export default BookListItemDetailView;

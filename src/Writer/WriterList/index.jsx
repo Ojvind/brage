@@ -30,7 +30,7 @@ const WriterList = ({ writers, loading, fetchMore }) => (
       rows={writers.edges}
       columns={columns}
       pageSize={100}
-      rowsPerPageOptions={[50]}
+      rowsPerPageOptions={[50, 100]}
       disableSelectionOnClick
     />
     <FetchMore

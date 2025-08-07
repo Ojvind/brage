@@ -12,7 +12,6 @@ import { GET_BOOK } from '../queries';
 function BookListItemDetailEdit({
   book,
   avatarURL,
-  setAvatarURL,
   title,
   onTitleChange,
   url,
@@ -24,12 +23,11 @@ function BookListItemDetailEdit({
   description,
   onDescriptionChange,
   portraitimageurl,
-  setPortraitImageUrl,
   fileUploadRef,
   handleImageUpload,
   uploadImageDisplay,
   toggleEdit,
-  edit
+  edit,
 }) {
   const [updateBook, { loading, error }] = useMutation(UPDATE_BOOK, {
     refetchQueries: [
@@ -104,9 +102,21 @@ function BookListItemDetailEdit({
 }
 
 BookListItemDetailEdit.propTypes = {
-  book: PropTypes.object.isRequired,
+  book: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
+    yearRead: PropTypes.string,
+    yearPublished: PropTypes.string,
+    description: PropTypes.string,
+    portraitimageurl: PropTypes.string,
+    writer: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      surname: PropTypes.string,
+    }),
+  }).isRequired,
   avatarURL: PropTypes.string,
-  setAvatarURL: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   onTitleChange: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
@@ -118,12 +128,21 @@ BookListItemDetailEdit.propTypes = {
   description: PropTypes.string.isRequired,
   onDescriptionChange: PropTypes.func.isRequired,
   portraitimageurl: PropTypes.string,
-  setPortraitImageUrl: PropTypes.func.isRequired,
-  fileUploadRef: PropTypes.object.isRequired,
+  fileUploadRef: PropTypes.shape({
+    current: PropTypes.oneOfType([
+      PropTypes.instanceOf(HTMLInputElement),
+      PropTypes.oneOf([null]),
+    ]),
+  }).isRequired,
   handleImageUpload: PropTypes.func.isRequired,
   uploadImageDisplay: PropTypes.func.isRequired,
   toggleEdit: PropTypes.func.isRequired,
   edit: PropTypes.bool.isRequired,
+};
+
+BookListItemDetailEdit.defaultProps = {
+  avatarURL: '',
+  portraitimageurl: '',
 };
 
 export default BookListItemDetailEdit;

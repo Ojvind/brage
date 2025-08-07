@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
+import {
+  useMutation,
+} from '@apollo/client';
 import PropTypes from 'prop-types';
 
 import { CREATE_BOOK } from '../mutations';
@@ -18,6 +20,32 @@ const CreateBook = (props) => {
   const [yearPublished, onYearPublishedChange] = useState('');
   const [yearRead, onReadChange] = useState('');
   const [description, onDecriptionChange] = useState('');
+
+  const [createBook, { loading, error }] = useMutation(CREATE_BOOK, {
+    variables: {
+      writerId,
+      title,
+      url,
+      yearPublished,
+      yearRead,
+      description,
+    },
+    refetchQueries: [
+      {
+        query: GET_BOOKS,
+        variables: { writerId },
+      },
+    ],
+  });
+
+  const handleSave = async () => {
+    try {
+      await createBook();
+      // Optionally reset form or show success
+    } catch (e) {
+      // Error will be shown by error prop
+    }
+  };
 
   return (
     <div>
@@ -40,41 +68,16 @@ const CreateBook = (props) => {
         <div className="create-book__input">
           <Input onChange={(e) => onDecriptionChange(e.target.value)} id="descrizione" inputLabel="Descrizione" />
         </div>
-        <Mutation
-          mutation={CREATE_BOOK}
-          variables={{
-            writerId, title, url, yearPublished, yearRead, description,
-          }}
-          refetchQueries={[
-            {
-              query: GET_BOOKS,
-              variables: { writerId },
-            },
-          ]}
-        >
-          {(createbook, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-            const button = (
-              <SaveButton
-                onClick={createbook}
-              >
-                Salva
-              </SaveButton>
-            );
-            if (error) {
-              return (
-                <div>
-                  <ErrorMessage error={error} />
-                  { button }
-                </div>
-              );
-            }
-            return (
-              <div className="create-book__button">
-                {button}
-              </div>
-            );
-          }}
-        </Mutation>
+        <div className="create-book__button">
+          <SaveButton onClick={handleSave} disabled={loading}>
+            Salva
+          </SaveButton>
+        </div>
+        {error && (
+          <div>
+            <ErrorMessage error={error} />
+          </div>
+        )}
       </div>
     </div>
   );

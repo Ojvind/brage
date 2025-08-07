@@ -25,7 +25,7 @@ const Container = ({
 );
 
 Container.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Container;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -18,48 +18,39 @@ const WriterListItemDetailContainer = () => {
   const handleClose = () => setOpen(false);
 
   const { id } = useParams();
+  const { data, loading, error } = useQuery(GET_WRITER, {
+    variables: { id },
+    notifyOnNetworkStatusChange: true,
+  });
+
+  if (error) {
+    return <ErrorMessage error={error} />;
+  }
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div>
-      <Query
-        query={GET_WRITER}
-        notifyOnNetworkStatusChange
-        variables={{
-          id,
-        }}
-      >
-        {({
-          data, loading, error,
-        }) => {
-          if (error) {
-            return <ErrorMessage error={error} />;
-          }
-          if (loading) {
-            return <Loading />;
-          }
-          return (
-            <div className="app-content_small-header">
-              <WriterListItemDetail
-                writer={data.writer}
-              />
-              <br />
-              <BookContainer
-                writerId={data.writer.id}
-              />
-              <Button onClick={handleOpen}>Aggiungi nuovo libro</Button>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Container>
-                  <CreateBook writerId={data.writer.id} />
-                </Container>
-              </Modal>
-            </div>
-          );
-        }}
-      </Query>
+      <div className="app-content_small-header">
+        <WriterListItemDetail
+          writer={data.writer}
+        />
+        <br />
+        <BookContainer
+          writerId={data.writer.id}
+        />
+        <Button onClick={handleOpen}>Aggiungi nuovo libro</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Container>
+            <CreateBook writerId={data.writer.id} />
+          </Container>
+        </Modal>
+      </div>
     </div>
   );
 };
