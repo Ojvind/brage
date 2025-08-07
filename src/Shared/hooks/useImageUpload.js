@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
-function useBookImageUpload(initialPortraitImageUrl) {
+export function useImageUpload(initialPortraitImageUrl) {
   const [avatarURL, setAvatarURL] = useState(initialPortraitImageUrl ?? DefaultImage);
   const [portraitimageurl, setPortraitImageUrl] = useState(initialPortraitImageUrl);
   const fileUploadRef = useRef();
@@ -53,11 +53,13 @@ function useBookImageUpload(initialPortraitImageUrl) {
 
   return {
     avatarURL,
+    setAvatarURL,
     portraitimageurl,
+    setPortraitImageUrl,
     fileUploadRef,
     handleImageUpload,
     uploadImageDisplay,
   };
 }
 
-export default useBookImageUpload;
+export default useImageUpload;

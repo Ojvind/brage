@@ -54,6 +54,7 @@ const columns = [
         arrow
       >
         <a target="_new" href={params.value} rel="noopener noreferrer">
+          kukuxklan
           {params.value}
         </a>
       </HtmlTooltip>
