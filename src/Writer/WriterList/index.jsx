@@ -1,50 +1,23 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DataGrid } from '@mui/x-data-grid';
-import FetchMore from '../../FetchMore';
+import EntityList from '../../Shared/components/EntityList';
 import columns from './config/columns';
 
-const updateQuery = (previousResult, { fetchMoreResult }) => {
-  if (!fetchMoreResult) {
-    return previousResult;
-  }
-
-  return {
-    ...previousResult,
-    writers: {
-      ...previousResult.writers,
-      ...fetchMoreResult.writers,
-      edges: [
-        ...previousResult.writers.edges,
-        ...fetchMoreResult.writers.edges,
-      ],
-    },
-  };
-};
-
 const WriterList = ({ writers, loading, fetchMore }) => (
-  <div className="writer-list">
-    <DataGrid
-      className="writer-list__datagrid"
-      rows={writers.edges}
-      columns={columns}
-      pageSize={100}
-      rowsPerPageOptions={[50, 100]}
-      disableSelectionOnClick
-    />
-    <FetchMore
-      loading={loading}
-      hasNextPage={writers.pageInfo.hasNextPage}
-      variables={{
-        cursor: writers.pageInfo.endCursor,
-      }}
-      updateQuery={updateQuery}
-      fetchMore={fetchMore}
-    >
-      Writer
-    </FetchMore>
-  </div>
+  <EntityList
+    entities={writers}
+    loading={loading}
+    fetchMore={fetchMore}
+    columns={columns}
+    entityName="writers"
+    className="writer-list"
+    pageSize={100}
+    rowsPerPageOptions={[50, 100]}
+    disableSelectionOnClick
+  >
+    Writer
+  </EntityList>
 );
 
 WriterList.propTypes = {

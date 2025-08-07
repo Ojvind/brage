@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import Input from '../../Shared/Input';
-import SaveButton from '../../Shared/Button/SaveButton';
+import Input from '../../Shared/components/Input';
+import SaveButton from '../../Shared/components/SaveButton';
 import { CREATE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 

@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Container from '../../Shared/Container';
 
 import { GET_WRITER } from '../queries';
-import Loading from '../../Shared/Loading';
+import Loading from '../../Shared/components/Loading';
 import ErrorMessage from '../../Error';
 import BookContainer from '../../Book';
 import CreateBook from '../../Book/CreateBook';

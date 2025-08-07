@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SaveIcon from '@mui/icons-material/Save';
 
-import BaseButton from './index';
+import BaseButton from './BaseButton';
 
 const SaveButton = ({
   onClick,

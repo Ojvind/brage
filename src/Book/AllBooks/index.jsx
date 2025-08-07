@@ -5,7 +5,7 @@ import BookList from '../BookList';
 
 import { GET_ALL_BOOKS } from '../queries';
 
-import Loading from '../../Shared/Loading';
+import Loading from '../../Shared/components/Loading';
 import ErrorMessage from '../../Error';
 
 const AllBooksContainer = () => {

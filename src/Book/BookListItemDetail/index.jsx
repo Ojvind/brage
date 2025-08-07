@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { GET_BOOK } from '../queries';
 
-import Loading from '../../Shared/Loading';
+import Loading from '../../Shared/components/Loading';
 import ErrorMessage from '../../Error';
 import BookListItemDetail from './BookListItemDetail';
 
