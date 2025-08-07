@@ -1,14 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 import Button from '@mui/material/Button';
 import Input from '../../Shared/Input';
 import Label from '../../Shared/Label';
 import Link from '../../Shared/Link';
 import SaveButton from '../../Shared/Button/SaveButton';
-import DefaultImage from '../../assets/upload-photo-here.png';
+import { useImageUpload } from '../../Shared/hooks/useImageUpload';
 
 import { UPDATE_WRITER } from '../mutations';
 import { GET_WRITER } from '../queries';
@@ -17,61 +16,19 @@ import ErrorMessage from '../../Error';
 function WriterListItemDetail(props) {
   const { writer } = props;
 
-  const [avatarURL, setAvatarURL] = useState(writer.portraitimageurl ?? DefaultImage); // eslint-disable-line max-len
   const [edit, toggleEdit] = useState(false);
   const [name, onNameChange] = useState(writer.name);
   const [surname, onSurnameChange] = useState(writer.surname);
   const [homepage, onHomepageChange] = useState(writer.homepage);
   const [nationality, onNationalityChange] = useState(writer.nationality);
-  const [portraitimageurl, setPortraitImageUrl] = useState(writer.portraitimageurl);
 
-  const fileUploadRef = useRef();
-
-  const minioEndpoint = 'http://localhost:9000';
-  const minioUserName = 'ojvind.otterbjork';
-  const minioPassword = 'Pp30s3n56dl';
-  const minioBucketName = 'ojvind.otterbjork.minio';
-
-  const handleImageUpload = (event) => {
-    event.preventDefault();
-    fileUploadRef.current.click();
-  };
-
-  const s3Client = new S3Client({
-    endpoint: minioEndpoint,
-    region: 'eu-north-1',
-    credentials: {
-      accessKeyId: minioUserName,
-      secretAccessKey: minioPassword,
-    },
-    forcePathStyle: true, // Required for MinIO
-  });
-
-  async function uploadFile(key, fileContent) {
-    const command = new PutObjectCommand({
-      Bucket: minioBucketName,
-      Key: key,
-      Body: fileContent,
-    });
-    try {
-      const response = await s3Client.send(command);
-      console.log('File uploaded successfully', response);
-    } catch (err) {
-      console.error('Error uploading file', err);
-    }
-  }
-
-  const uploadImageDisplay = async () => {
-    const uploadedFile = fileUploadRef.current.files[0];
-    const cachedURL = URL.createObjectURL(uploadedFile);
-    setAvatarURL(cachedURL);
-
-    const response = await fetch(cachedURL);
-    const data = await response.arrayBuffer();
-    setPortraitImageUrl(`${minioEndpoint}/${minioBucketName}/${uploadedFile.name}`);
-
-    uploadFile(uploadedFile.name, data);
-  };
+  const {
+    avatarURL,
+    portraitimageurl,
+    fileUploadRef,
+    handleImageUpload,
+    uploadImageDisplay,
+  } = useImageUpload(writer.portraitimageurl);
 
   const [updateWriter, { error: mutationError }] = useMutation(UPDATE_WRITER, {
     refetchQueries: [
