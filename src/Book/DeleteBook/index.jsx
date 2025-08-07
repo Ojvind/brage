@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { DELETE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 import ErrorMessage from '../../Error';
-import ConfirmDialog from '../../Shared/ConfirmDialog';
+import ConfirmDialog from '../../Shared/components/ConfirmDialog';
 
 const DeleteBookMutation = ({ bookId, writerId }) => {
   const [open, setConfirmOpen] = useState(false);

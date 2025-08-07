@@ -9,7 +9,7 @@ import CreateWriter from './CreateWriter';
 
 import { GET_WRITERS } from './queries';
 
-import Loading from '../Shared/Loading';
+import Loading from '../Shared/components/Loading';
 import ErrorMessage from '../Error';
 
 const WriterContainer = () => {

@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { DELETE_WRITER } from '../mutations';
 import { GET_WRITERS } from '../queries';
 import ErrorMessage from '../../Error';
-import ConfirmDialog from '../../Shared/ConfirmDialog';
+import ConfirmDialog from '../../Shared/components/ConfirmDialog';
 
 const DeleteWriterMutation = ({ writerId }) => {
   const [open, setConfirmOpen] = useState(false);

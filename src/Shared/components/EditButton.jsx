@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EditIcon from '@mui/icons-material/Edit';
 
-import BaseButton from './index';
+import BaseButton from './BaseButton';
 
 const EditButton = ({
   children,

@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 import { CREATE_BOOK } from '../mutations';
 import { GET_BOOKS } from '../queries';
 
-import Input from '../../Shared/Input';
-import Label from '../../Shared/Label';
-import SaveButton from '../../Shared/Button/SaveButton';
+import Input from '../../Shared/components/Input';
+import Label from '../../Shared/components/Label';
+import SaveButton from '../../Shared/components/SaveButton';
 import ErrorMessage from '../../Error';
 
 const CreateBook = (props) => {

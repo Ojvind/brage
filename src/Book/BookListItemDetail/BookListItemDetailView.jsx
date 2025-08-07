@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-import Label from '../../Shared/Label';
+import Label from '../../Shared/components/Label';
 import DefaultImage from '../../assets/upload-photo-here.png';
 
 function BookListItemDetailView({

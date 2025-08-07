@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from '../../Shared/Link';
+import Link from '../../Shared/components/Link';
 
 const Footer = () => (
   <div className="Footer">

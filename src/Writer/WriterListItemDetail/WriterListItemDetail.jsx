@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/client';
 
 import Button from '@mui/material/Button';
-import Input from '../../Shared/Input';
-import Label from '../../Shared/Label';
-import Link from '../../Shared/Link';
-import SaveButton from '../../Shared/Button/SaveButton';
+import Input from '../../Shared/components/Input';
+import Label from '../../Shared/components/Label';
+import Link from '../../Shared/components/Link';
+import SaveButton from '../../Shared/components/SaveButton';
 import { useImageUpload } from '../../Shared/hooks/useImageUpload';
 
 import { UPDATE_WRITER } from '../mutations';

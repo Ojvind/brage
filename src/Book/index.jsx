@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import BookList from './BookList';
 import { GET_BOOKS } from './queries';
 
-import Loading from '../Shared/Loading';
+import Loading from '../Shared/components/Loading';
 import ErrorMessage from '../Error';
 
 const BookContainer = ({ writerId }) => {

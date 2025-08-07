@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Loading from '../Shared/Loading';
-import Button from '../Shared/Button';
+import Loading from '../Shared/components/Loading';
+import Button from '../Shared/components/BaseButton';
 
 const FetchMore = ({
   loading, hasNextPage, variables, updateQuery, fetchMore, children,
