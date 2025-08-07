@@ -18,4 +18,4 @@ BookImageCell.propTypes = {
   }).isRequired,
 };
 
-export default BookImageCell; 
+export default BookImageCell;

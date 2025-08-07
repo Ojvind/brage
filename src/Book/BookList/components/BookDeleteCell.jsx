@@ -20,4 +20,4 @@ BookDeleteCell.propTypes = {
   }).isRequired,
 };
 
-export default BookDeleteCell; 
+export default BookDeleteCell;
