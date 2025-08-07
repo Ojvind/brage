@@ -26,7 +26,8 @@ const BookUrlCell = ({ params }) => (
     arrow
   >
     <a target="_new" href={params.value} rel="noopener noreferrer">
-      {params.value.substring(0, 25)}...
+      {params.value.substring(0, 25)}
+      ...
     </a>
   </HtmlTooltip>
 );
@@ -37,4 +38,4 @@ BookUrlCell.propTypes = {
   }).isRequired,
 };
 
-export default BookUrlCell; 
+export default BookUrlCell;
