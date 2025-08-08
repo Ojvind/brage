@@ -12,7 +12,7 @@ const WriterList = ({ writers, loading, fetchMore }) => (
     columns={columns}
     entityName="writers"
     className="writer-list"
-    pageSize={100}
+    pageSize={50}
     rowsPerPageOptions={[50, 100]}
     disableSelectionOnClick
   >

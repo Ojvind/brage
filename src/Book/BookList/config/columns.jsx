@@ -19,25 +19,25 @@ const columns = [
       </Tooltip>
     ),
   },
-  { field: 'title', headerName: 'Titolo', width: 200 },
+  { field: 'title', headerName: 'Titolo', width: 300 },
   {
     field: 'url',
-    headerName: 'URL',
-    width: 200,
+    headerName: 'WWW',
+    width: 100,
     renderCell: (params) => <BookUrlCell params={params} />,
   },
-  { field: 'yearPublished', headerName: 'Anno di pubblicazione', width: 150 },
-  { field: 'yearRead', headerName: 'Ho letto il libro nel', width: 150 },
+  { field: 'yearPublished', headerName: 'Anno di pubblicazione', width: 100 },
+  { field: 'yearRead', headerName: 'Ho letto il libro nel', width: 100 },
   {
     field: 'portraitimageurl',
     headerName: 'Copertina del libro',
-    width: 450,
+    width: 100,
     renderCell: (params) => <BookImageCell params={params} />,
   },
   {
     field: 'delete',
     headerName: ' ',
-    width: 190,
+    width: 100,
     renderCell: (params) => <BookDeleteCell params={params} />,
   },
 ];
