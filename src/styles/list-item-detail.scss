@@ -12,10 +12,11 @@
   border-width: $default-border-width;
   border-radius: $default-border-radius;
   border-style: solid;
-  padding: 2em 4em;
+  padding: 20px 20px;
   display: flex;
   border: silver dashed 2px;
   margin: 0em 0em 0em 0em;
+  width: 770px;
   
   &__row {
     display: flex;

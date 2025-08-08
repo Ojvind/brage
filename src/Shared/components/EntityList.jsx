@@ -10,7 +10,7 @@ const EntityList = ({
   columns,
   entityName,
   className,
-  pageSize = 100,
+  pageSize,
   rowsPerPageOptions = [50, 100],
   checkboxSelection = false,
   disableSelectionOnClick = false,

@@ -13,9 +13,8 @@ const BookList = ({ books, loading, fetchMore }) => (
     entityName="books"
     className="book-list"
     pageSize={100}
-    checkboxSelection
   >
-    Boooooks
+    Books
   </EntityList>
 );
 

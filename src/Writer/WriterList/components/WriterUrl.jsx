@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import { withStyles } from '@mui/styles';
 import Tooltip from '@mui/material/Tooltip';
+import linkImage from '../../../assets/www.white.png';
 
 const HtmlTooltip = withStyles(() => ({
   tooltip: {
@@ -29,7 +30,11 @@ const WriterUrl = ({ params }) => (
       target="_new"
       href={params.value}
     >
-      {params.value}
+      <img
+        src={linkImage}
+        alt="URL to homepage"
+        width="20px"
+      />
     </a>
   </HtmlTooltip>
 );

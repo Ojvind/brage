@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { withStyles } from '@mui/styles';
+import linkImage from '../../../assets/www.white.png';
 
 const HtmlTooltip = withStyles(() => ({
   tooltip: {
@@ -26,8 +27,11 @@ const BookUrlCell = ({ params }) => (
     arrow
   >
     <a target="_new" href={params.value} rel="noopener noreferrer">
-      {params.value.substring(0, 25)}
-      ...
+      <img
+        src={linkImage}
+        alt="URL to homepage"
+        width="20px"
+      />
     </a>
   </HtmlTooltip>
 );
