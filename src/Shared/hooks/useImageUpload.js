@@ -14,7 +14,7 @@ export function useImageUpload(initialPortraitImageUrl) {
 
   const s3Client = new S3Client({
     endpoint: minioEndpoint,
-    region: 'eu-north-1',
+    region: 'us-east-1',
     credentials: {
       accessKeyId: minioUserName,
       secretAccessKey: minioPassword,
