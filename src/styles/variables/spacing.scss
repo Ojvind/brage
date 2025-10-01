@@ -1,0 +1,53 @@
+// ===========================================
+// Brage App Spacing System
+// ===========================================
+
+// Base spacing unit (8px)
+$spacing-unit: 0.5rem; // 8px
+
+// Spacing scale
+$spacing-0: 0;
+$spacing-1: $spacing-unit * 0.25;  // 2px
+$spacing-2: $spacing-unit * 0.5;   // 4px
+$spacing-3: $spacing-unit * 0.75;  // 6px
+$spacing-4: $spacing-unit;         // 8px
+$spacing-5: $spacing-unit * 1.25;  // 10px
+$spacing-6: $spacing-unit * 1.5;   // 12px
+$spacing-8: $spacing-unit * 2;     // 16px
+$spacing-10: $spacing-unit * 2.5;  // 20px
+$spacing-12: $spacing-unit * 3;    // 24px
+$spacing-16: $spacing-unit * 4;    // 32px
+$spacing-20: $spacing-unit * 5;    // 40px
+$spacing-24: $spacing-unit * 6;    // 48px
+$spacing-32: $spacing-unit * 8;    // 64px
+$spacing-40: $spacing-unit * 10;   // 80px
+$spacing-48: $spacing-unit * 12;   // 96px
+$spacing-56: $spacing-unit * 14;   // 112px
+$spacing-64: $spacing-unit * 16;   // 128px
+
+// Semantic spacing
+$spacing-xs: $spacing-2;   // 4px
+$spacing-sm: $spacing-4;   // 8px
+$spacing-md: $spacing-8;   // 16px
+$spacing-lg: $spacing-16;  // 32px
+$spacing-xl: $spacing-24;  // 48px
+$spacing-2xl: $spacing-32; // 64px
+$spacing-3xl: $spacing-48; // 96px
+
+// Component specific spacing
+$component-padding: $spacing-6;
+$component-margin: $spacing-4;
+$section-padding: $spacing-16;
+$container-padding: $spacing-8;
+
+// Border radius
+$border-radius-sm: 0.25rem;   // 4px
+$border-radius-md: 0.5rem;    // 8px
+$border-radius-lg: 0.75rem;   // 12px
+$border-radius-xl: 1rem;      // 16px
+$border-radius-2xl: 1.5rem;   // 24px
+$border-radius-full: 9999px;  // Fully rounded
+
+// Legacy border radius (for backward compatibility)
+$default-border-radius: $border-radius-xl;
+

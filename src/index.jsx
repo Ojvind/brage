@@ -11,6 +11,7 @@ import {
 import { onError } from '@apollo/client/link/error';
 
 import App from './App';
+import ThemeProvider from './Shared/ThemeProvider';
 
 import './style.scss';
 
@@ -41,7 +42,9 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ApolloProvider client={client}>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </ApolloProvider>,
 );
 

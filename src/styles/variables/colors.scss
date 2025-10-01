@@ -1,25 +1,78 @@
-// Generic colors
-$black: #000;
-$white: #fff;
+// ===========================================
+// Brage App Color Palette
+// ===========================================
 
-// Brand colors
-$blue: #58b0c3;
-$green: #63cc6c;
-$orange: #f9aa55;
-$red: #f74e1c;
-$dark-grey: #313246;
-$light-grey: #cacbd3;
-$lighter-grey: #edf0f2;
-$lightest-grey: #f5f7f8;
+// Base colors
+$black: #000000;
+$white: #ffffff;
 
-// Common
-$link-color: darken($blue, 15%);
+// Primary brand colors
+$primary: #58b0c3; // Main blue
+$primary-dark: darken($primary, 15%);
+$primary-light: lighten($primary, 15%);
+$primary-lighter: lighten($primary, 25%);
 
-// Supporting colors
+// Secondary colors
+$secondary: #63cc6c; // Green
+$secondary-dark: darken($secondary, 15%);
+$secondary-light: lighten($secondary, 15%);
+
+// Accent colors
+$accent: #f9aa55; // Orange
+$accent-dark: darken($accent, 15%);
+$accent-light: lighten($accent, 15%);
+
+// Status colors
+$success: #63cc6c;
+$warning: #f9aa55;
+$error: #f74e1c;
+$info: #58b0c3;
+
+// Neutral grays
+$gray-900: #313246; // Darkest
+$gray-800: darken($gray-900, 5%);
+$gray-700: darken($gray-900, 10%);
+$gray-600: #6b7280;
+$gray-500: #9ca3af;
+$gray-400: #cacbd3; // Light grey
+$gray-300: #edf0f2; // Lighter grey
+$gray-200: #f5f7f8; // Lightest grey
+$gray-100: #f9fafb;
+
+// Semantic color aliases
+$text-primary: $gray-900;
+$text-secondary: $gray-600;
+$text-disabled: $gray-400;
+$text-hint: $gray-500;
+
+$background-default: $white;
+$background-paper: $white;
+$background-elevated: $gray-100;
+
+$border-light: $gray-300;
+$border-medium: $gray-400;
+$border-dark: $gray-500;
+
+// Interactive colors
+$link-color: $primary-dark;
+$link-hover: $primary;
+$link-active: $primary-light;
+
+// Legacy color mappings (for backward compatibility)
+$blue: $primary;
+$green: $secondary;
+$orange: $accent;
+$red: $error;
+$dark-grey: $gray-900;
+$light-grey: $gray-400;
+$lighter-grey: $gray-300;
+$lightest-grey: $gray-200;
+
+// Supporting colors (keeping for existing components)
 $yellow: #f7e51c;
 $chestnut-rose: #d36262;
 $fuzzy-wuzzy-brown: #c15454;
 
-// Variations
+// Color variations
 $darken-light-grey-20: darken($light-grey, 20%);
 $darken-light-grey-40: darken($light-grey, 40%);
