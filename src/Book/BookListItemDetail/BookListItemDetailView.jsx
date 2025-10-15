@@ -24,6 +24,9 @@ function BookListItemDetailView({
           />
         </div>
         <div className="list-item-detail__row__column">
+          <Label variant="subtitle2">
+            Titolo:
+          </Label>
           <Label
             variant="h5"
             isLink
@@ -31,6 +34,7 @@ function BookListItemDetailView({
           >
             {title}
           </Label>
+          <br />
           <div>
             <Label variant="subtitle2">
               Autore:

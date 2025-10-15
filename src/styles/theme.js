@@ -195,6 +195,40 @@ const theme = createTheme({
         },
       },
     },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          border: 'none',
+          '& .MuiDataGrid-row:nth-of-type(even)': {
+            backgroundColor: '#f9fafb', // $gray-100 - varannan rad
+            '&:hover': {
+              backgroundColor: '#f3f4f6', // Ljusare grå vid hover
+            },
+          },
+          '& .MuiDataGrid-row:nth-of-type(odd)': {
+            backgroundColor: 'transparent',
+            '&:hover': {
+              backgroundColor: '#f3f4f6', // Samma hover-färg för båda
+            },
+          },
+          '& .MuiDataGrid-cell': {
+            borderBottom: '1px solid #edf0f2', // $border-light
+          },
+          '& .MuiDataGrid-columnHeaders': {
+            backgroundColor: '#f5f7f8', // $gray-200 - ljusare än zebra-striping
+            borderBottom: '2px solid #cacbd3', // $border-medium
+          },
+          '& .MuiDataGrid-columnHeader': {
+            fontWeight: 600,
+            color: '#313246', // $text-primary
+          },
+          '& .MuiDataGrid-footerContainer': {
+            borderTop: '1px solid #edf0f2', // $border-light
+            backgroundColor: '#f5f7f8', // $gray-200
+          },
+        },
+      },
+    },
   },
 });
 
