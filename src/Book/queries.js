@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const GET_ALL_BOOKS = gql`
 query($cursor: String) {
-  allBooks(limit:10, cursor: $cursor) {
+  allBooks(limit: 10000, cursor: $cursor) {
     edges {
       id
       title
