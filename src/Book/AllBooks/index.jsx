@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 import BookList from '../BookList';
@@ -15,11 +15,47 @@ const AllBooksContainer = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  if (loading) {
+  // Automatically load all books to make them searchable
+  useEffect(() => {
+    if (data?.allBooks?.pageInfo?.hasNextPage && !loading) {
+      const updateQuery = (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return previousResult;
+        }
+
+        return {
+          ...previousResult,
+          allBooks: {
+            ...previousResult.allBooks,
+            ...fetchMoreResult.allBooks,
+            edges: [
+              ...previousResult.allBooks.edges,
+              ...fetchMoreResult.allBooks.edges,
+            ],
+          },
+        };
+      };
+
+      fetchMore({
+        variables: {
+          cursor: data.allBooks.pageInfo.endCursor,
+        },
+        updateQuery,
+      });
+    }
+  }, [data?.allBooks?.pageInfo?.hasNextPage,
+    data?.allBooks?.pageInfo?.endCursor,
+    loading,
+    fetchMore]);
+
+  if (loading && !data) {
     return <Loading />;
   }
   if (error) {
     return <ErrorMessage error={error} />;
+  }
+  if (!data) {
+    return <Loading />;
   }
   return (
     <div className="app-content_small-header">
