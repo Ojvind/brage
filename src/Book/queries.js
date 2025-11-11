@@ -61,6 +61,8 @@ export const GET_BOOK = gql`
       createdAt
       writer {
         id
+        name
+        surname
       }
     }
   }
