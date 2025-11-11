@@ -1,6 +1,6 @@
 .book-list {
   &__datagrid {
-    min-height: 60em;
+    /* Allow EntityList to control height dynamically */
     width: 810px;
   }  
 }

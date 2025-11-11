@@ -13,7 +13,7 @@ export const GET_WRITER = gql`
 export const GET_WRITERS = gql`
   query($cursor: String) {
     writers(
-      limit: 100
+      limit: 10000
       cursor: $cursor
     ) {
       edges {

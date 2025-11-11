@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DataGrid } from '@mui/x-data-grid';
+import { Box } from '@mui/material';
 import FetchMore from '../../FetchMore';
 
 const EntityList = ({
@@ -34,17 +35,55 @@ const EntityList = ({
     };
   };
 
+  // Compute height: keep writer-list fixed; book-list adapts to row count
+  const getDataGridHeight = () => {
+    if (className === 'writer-list') {
+      return '60em';
+    }
+    if (className === 'book-list') {
+      const rowCount = Array.isArray(entities?.edges) ? entities.edges.length : 0;
+      return rowCount > 12 ? '60em' : 'auto';
+    }
+    return 'auto';
+  };
+
+  const dataGridHeight = getDataGridHeight();
+  const useAutoHeight = dataGridHeight === 'auto';
+
   return (
     <div className={className}>
-      <DataGrid
-        className={`${className}__datagrid`}
-        rows={entities.edges}
-        columns={columns}
-        pageSize={pageSize}
-        rowsPerPageOptions={rowsPerPageOptions}
-        checkboxSelection={checkboxSelection}
-        disableSelectionOnClick={disableSelectionOnClick}
-      />
+      {useAutoHeight ? (
+        <DataGrid
+          className={`${className}__datagrid`}
+          rows={entities.edges}
+          columns={columns}
+          pageSize={pageSize}
+          rowsPerPageOptions={rowsPerPageOptions}
+          checkboxSelection={checkboxSelection}
+          disableSelectionOnClick={disableSelectionOnClick}
+          autoHeight
+        />
+      ) : (
+        <Box
+          sx={{
+            height: dataGridHeight,
+            '& .MuiDataGrid-root': {
+              height: '100%',
+            },
+          }}
+        >
+          <DataGrid
+            className={`${className}__datagrid`}
+            rows={entities.edges}
+            columns={columns}
+            pageSize={pageSize}
+            rowsPerPageOptions={rowsPerPageOptions}
+            checkboxSelection={checkboxSelection}
+            disableSelectionOnClick={disableSelectionOnClick}
+            autoHeight={false}
+          />
+        </Box>
+      )}
       <FetchMore
         loading={loading}
         hasNextPage={entities.pageInfo.hasNextPage}

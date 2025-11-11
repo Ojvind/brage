@@ -26,7 +26,7 @@ query($cursor: String) {
 
 export const GET_BOOKS = gql`
 query($writerId: ID, $cursor: String) {
-    books(writerId: $writerId, limit:10, cursor: $cursor) {
+    books(writerId: $writerId, limit: 10000, cursor: $cursor) {
       edges {
         id
         title
