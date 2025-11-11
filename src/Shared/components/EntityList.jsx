@@ -14,6 +14,7 @@ const EntityList = ({
   rowsPerPageOptions = [50, 100],
   checkboxSelection = false,
   disableSelectionOnClick = false,
+  height = '60em',
   children,
 }) => {
   const updateQuery = (previousResult, { fetchMoreResult }) => {
@@ -45,6 +46,14 @@ const EntityList = ({
         checkboxSelection={checkboxSelection}
         disableSelectionOnClick={disableSelectionOnClick}
         autoHeight={false}
+        sx={{
+          height: `${height}`,
+          maxHeight: `${height}`,
+          '& .MuiDataGrid-root': {
+            height: `${height}`,
+            maxHeight: `${height}`,
+          },
+        }}
       />
       <FetchMore
         loading={loading}
@@ -83,6 +92,7 @@ EntityList.propTypes = {
   rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
   checkboxSelection: PropTypes.bool,
   disableSelectionOnClick: PropTypes.bool,
+  height: PropTypes.string,
   children: PropTypes.node,
 };
 
@@ -92,6 +102,7 @@ EntityList.defaultProps = {
   rowsPerPageOptions: [50, 100],
   checkboxSelection: false,
   disableSelectionOnClick: false,
+  height: '60em',
   children: null,
 };
 

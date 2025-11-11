@@ -28,6 +28,7 @@ const BookContainer = ({ writerId }) => {
         books={data.books}
         loading={loading}
         fetchMore={fetchMore}
+        compact
       />
     </div>
   );

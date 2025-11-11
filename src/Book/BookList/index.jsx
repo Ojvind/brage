@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import EntityList from '../../Shared/components/EntityList';
 import columns from './config/columns';
 
-const BookList = ({ books, loading, fetchMore }) => (
+const BookList = ({
+  books, loading, fetchMore, compact = false,
+}) => (
   <EntityList
     entities={books}
     loading={loading}
@@ -13,6 +15,7 @@ const BookList = ({ books, loading, fetchMore }) => (
     entityName="books"
     className="book-list"
     pageSize={100}
+    height={compact ? '45em' : '60em'}
   >
     Books
   </EntityList>
@@ -28,6 +31,11 @@ BookList.propTypes = {
   }).isRequired,
   loading: PropTypes.bool.isRequired,
   fetchMore: PropTypes.func.isRequired,
+  compact: PropTypes.bool,
+};
+
+BookList.defaultProps = {
+  compact: false,
 };
 
 export default BookList;
